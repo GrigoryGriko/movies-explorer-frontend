@@ -1,11 +1,46 @@
 .content {
   display: flex;
   flex-direction: column;
-  align-items: center;
 
-  margin-top: 40px;
 }
 
+.section {
+  width: 100%;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  background-color: #073042;
+}
+
+.hero__description {
+  margin: 0;
+
+  width: 640px;
+
+  font-size: 50px;
+  font-weight: 400;
+  font-family: 'Inter';
+  color: #FFF;
+  line-height: 58px;
+}
+.hero__text {
+  margin: 0;
+
+  width: 310px;
+
+  font-size: 13px;
+  font-weight: 400;
+  font-family: 'Inter';
+  color: #FFF;
+  line-height: 15.73px;
+
+  opacity: .5;
+}
 .hero__landing-logo {
   width: 310px;
   height: 304px;

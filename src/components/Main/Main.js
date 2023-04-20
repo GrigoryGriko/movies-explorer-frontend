@@ -2,13 +2,13 @@ import React from 'react';
 
 function Main() {
   return (
-    <main className="content section">
-      <section className="hero">
-      <h1>
+    <main className="content">
+      <section className="hero section">
+      <h1 className="hero__description">
         Учебный проект студента факультета<br></br>
         Веб-разработки.
       </h1>
-      <p>
+      <p className="hero__text">
         Листайте ниже, чтобы узнать больше про этот проект и его создателя.
       </p>
 
