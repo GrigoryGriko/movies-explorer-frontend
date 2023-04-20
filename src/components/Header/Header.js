@@ -3,7 +3,7 @@ import { Link, useHistory, Switch, Route } from 'react-router-dom';
 
 function Header() {
   return (
-    <header className="header">
+    <header className="header section">
       <div className="header__container-content">
         <a className="logo" href='/'></a>
 

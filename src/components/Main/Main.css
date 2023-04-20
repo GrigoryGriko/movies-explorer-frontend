@@ -1,7 +1,5 @@
 .content {
-  display: flex;
-  flex-direction: column;
-
+  
 }
 
 .section {
@@ -9,17 +7,24 @@
 }
 
 .hero {
-  position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: left;
+
+  min-height: 574px;
 
   background-color: #073042;
 }
-
+.hero__wrapper {
+  width: calc(100% - 140px);
+  max-height: 424px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
 .hero__description {
   margin: 0;
-
+  
   width: 640px;
 
   font-size: 50px;
@@ -31,6 +36,7 @@
 .hero__text {
   margin: 0;
 
+  margin-top: 36px;
   width: 310px;
 
   font-size: 13px;
@@ -42,6 +48,7 @@
   opacity: .5;
 }
 .hero__button-more {
+  margin-top: 146px;
   width: 129px;
   height: 36px;
   border: 1px solid #fff;
@@ -61,6 +68,8 @@
 .hero__landing-logo {
   width: 310px;
   height: 304px;
+
+  align-self: end;
 
   background-color: transparent;
   background-image: url(../../images/hero__landing-logo.svg);
