@@ -12,6 +12,10 @@ function Main() {
         Листайте ниже, чтобы узнать больше про этот проект и его создателя.
       </p>
 
+      <button className="hero__button-more" type="button">
+        Узнать больше
+      </button>
+
       <div className="hero__landing-logo"></div>
       </section>
     </main>

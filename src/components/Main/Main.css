@@ -41,6 +41,23 @@
 
   opacity: .5;
 }
+.hero__button-more {
+  width: 129px;
+  height: 36px;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  outline: none;
+
+  background-color: transparent;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+
+  cursor: pointer;
+}
 .hero__landing-logo {
   width: 310px;
   height: 304px;
