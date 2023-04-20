@@ -1,20 +1,19 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter, useHistory } from "react-router-dom";
 
-import Header from './Header.js';
-import Main from './Main.js';
-import Movies from './Movies/Movies.js';
-import SavedMovies from './SavedMovies/SavedMovies.js';
-import Profile from './Profile/Profile.js';
-import Login from './Login/Login.js';
-import Register from './Register/Register.js';
+import Header from '../Header/Header.js';
+import Main from '../Main/Main.js';
+import Movies from '../Movies/Movies.js';
+import SavedMovies from '../SavedMovies/SavedMovies.js';
+import Profile from '../Profile/Profile.js';
+import Login from '../Login/Login.js';
+import Register from '../Register/Register.js';
 
 function App() {
   return (
     <div className="App">
-      <Header>
-        
-      </Header>
+      <Header/>
+      
       <Switch>
         <Route
           exact
