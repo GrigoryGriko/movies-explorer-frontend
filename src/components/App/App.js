@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
 
+import Header from './Header.js';
 import Main from './Main.js';
 import Movies from './Movies/Movies.js';
 import SavedMovies from './SavedMovies/SavedMovies.js';
@@ -11,6 +12,9 @@ import Register from './Register/Register.js';
 function App() {
   return (
     <div className="App">
+      <Header>
+        
+      </Header>
       <Switch>
         <Route
           exact
