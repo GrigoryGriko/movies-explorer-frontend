@@ -4,7 +4,7 @@ function Main() {
   return (
     <main className="content">
       <section className="hero section">
-        <div class="hero__wrapper">
+        <div class="hero__wrapper wrapper">
           <h1 className="hero__description">
             Учебный проект студента факультета<br></br>
             Веб-разработки.

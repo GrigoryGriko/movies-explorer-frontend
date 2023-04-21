@@ -4,20 +4,14 @@ import { Link, useHistory, Switch, Route } from 'react-router-dom';
 function Header() {
   return (
     <header className="header section">
-      <div className="header__container-content">
-        <a className="logo" href='/'></a>
+      <div className="header__container-content wrapper">
+        <Link to="/" className="logo"></Link>
 
-        <div className="header__wrapper-auth">
-          <Switch>
-            <route path="signup">
-                <Link to="signup" className="header__action-auth">Регистрация</Link>
-            </route>
+        <nav className="header__wrapper-auth">
+            <Link to="signup" className="header__action-reigister">Регистрация</Link>
 
-            <route path="signin">
-                <Link to="signin" className="header__action-auth">Войти</Link>
-            </route>
-          </Switch>
-        </div>
+            <Link to="signin" className="header__action-login">Войти</Link>
+        </nav>
       </div>
     </header>
   )

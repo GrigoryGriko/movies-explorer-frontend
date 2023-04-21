@@ -1,9 +1,11 @@
 .content {
   
 }
-
 .section {
   width: 100%;
+}
+.wrapper {
+  width: calc(100% - 140px);
 }
 
 .hero {
@@ -16,7 +18,6 @@
   background-color: #073042;
 }
 .hero__wrapper {
-  width: calc(100% - 140px);
   max-height: 424px;
   display: flex;
   flex-direction: column;
