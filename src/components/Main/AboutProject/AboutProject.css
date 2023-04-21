@@ -1,0 +1,97 @@
+.aboutProject {
+  display: flex;
+  justify-content: center;
+  min-height: 608px;
+}
+.aboutProject__wrapper {
+  margin-top: 110px;
+}
+
+.aboutProject__wrapper-text-about {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 70px;
+}
+
+.aboutProject__text-container {
+  text-align: left;
+  max-width: 550px;
+}
+
+.aboutProject__header-descript {
+  margin: 0;
+  
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+
+  color: #000000;
+}
+
+.aboutProject__description {
+  margin: 0;
+  margin-top: 26px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #000;
+}
+
+.aboutProject__progress-bar {
+  display: flex;
+  width: 100%;
+  height: 36px;
+  margin-top: 110px;
+}
+.aboutProject__progress-backend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  width: 25%;
+  height: 100%;
+  background-color: #2BE080;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+  color: #000000;
+}
+.aboutProject__progress-frontend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #F2F2F2;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+  color: #000000;  
+}
+.aboutProject__progress-subtitle {
+  position: absolute;
+  top: 50px;
+  margin: 0;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+
+  color: #A0A0A0;
+}

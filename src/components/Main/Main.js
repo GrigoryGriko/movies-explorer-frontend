@@ -1,11 +1,13 @@
 import React from 'react';
 
-import Promo from './Promo/Promo.js';
+import Promo from './Promo/Promo';
+import AboutProject from './AboutProject/AboutProject';
 
 function Main() {
   return (
     <main className="content">
       <Promo/>
+      <AboutProject/>
     </main>
   )
 }
