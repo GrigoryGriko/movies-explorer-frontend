@@ -1,16 +1,20 @@
 .aboutProject {
   display: flex;
   justify-content: center;
+  align-items: center;
   min-height: 608px;
+
+  background-color: #fff;
 }
 .aboutProject__wrapper {
-  margin-top: 110px;
+  margin-bottom: 32px;
 }
 
 .aboutProject__wrapper-text-about {
   display: flex;
   justify-content: space-between;
   margin-top: 70px;
+  
 }
 
 .aboutProject__text-container {
