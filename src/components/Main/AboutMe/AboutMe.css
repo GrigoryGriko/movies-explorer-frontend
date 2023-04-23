@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   padding-top: 110px;
-  padding-bottom: 110px;
+  padding-bottom: 115px;
 
   background-color: #fff;
 }
@@ -85,3 +85,65 @@
 
   overflow: hidden;
 }
+
+.aboutMe__portfolio {
+  margin: 0;
+  margin-top: 100px;
+
+  align-self: start;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 18px;
+  
+  color: #A0A0A0;
+}
+
+.aboutMe__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  margin-top: 50px;
+  width: 100%;
+}
+.aboutMe__link-item {
+  margin: 0;
+  height: 60px;
+  text-decoration: none;
+}
+.aboutMe__item {
+  font-size: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.aboutMe__item-name {
+  margin: 0;
+  height: 50px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 30px;
+  
+  letter-spacing: -0.04em;
+  
+  color: #000000;
+}
+.aboutMe__item-arrow {
+  width: 29px;
+  height: 60px;
+
+  background-color: transparent;
+  background: url(../../../images/item-arrow.svg) no-repeat center/cover;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+}
+.aboutMe__list-line {
+  width: 100%;
+  height: 1px;
+  margin-top: 9px;
+  margin-bottom: 20px;
+  background: #E8E8E8;
+}
+
+

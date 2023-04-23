@@ -28,6 +28,45 @@ function AboutMe() {
 
           <div className="aboutMe__student-avatar"></div> 
         </article>
+
+        <p className="aboutMe__portfolio">Портфолио</p>
+        
+        <ul className="aboutMe__list">
+          <a className="aboutMe__link-item" href="https://github.com/GrigoryGriko/how-to-learn">
+            <li className="aboutMe__item">
+              <p className="aboutMe__item-name">
+                Статичный сайт
+              </p>
+
+              <div className="aboutMe__item-arrow"></div>
+            </li>
+          </a>
+
+          <div className="aboutMe__list-line"></div>
+
+          <a className="aboutMe__link-item" href="https://github.com/GrigoryGriko/russian-travel">
+            <li className="aboutMe__item">
+              <p className="aboutMe__item-name">
+                Адаптивный сайт
+              </p>
+
+              <div className="aboutMe__item-arrow"></div>
+            </li>
+          </a>
+
+          <div className="aboutMe__list-line"></div>
+
+          <a className="aboutMe__link-item" href="https://github.com/GrigoryGriko/react-mesto-api-full-gha">
+            <li className="aboutMe__item">
+              <p className="aboutMe__item-name">
+                Одностраничное приложение
+              </p>
+
+              <div className="aboutMe__item-arrow"></div>
+            </li>
+          </a>
+        </ul>
+       
       </div>
     </section>
   )
