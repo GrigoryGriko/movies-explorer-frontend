@@ -1,0 +1,87 @@
+.aboutMe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 110px;
+  padding-bottom: 110px;
+
+  background-color: #fff;
+}
+.aboutMe__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.aboutMe__header {
+  align-self: start;
+}
+
+.aboutMe__student-article {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  
+  max-height: 327px;
+  margin-top: 66px;
+}
+.aboutMe__student-name {
+  margin: 0;
+  
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 50px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  text-align: left;
+}
+.aboutMe__student-info {
+  margin: 0;
+  margin-top: 18px;
+  
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 18px;
+  
+  color: #000000;
+  text-align: left;
+}
+.aboutMe__student-description {
+  margin: 0;
+  margin-top: 26px;
+  
+  max-width: 600px;
+
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  
+  color: #000000;
+  text-align: justify;
+}
+.aboutMe__link-to-github {
+  margin: 0;
+  margin-top: 99px;
+
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 14px;
+
+  color: #000000;
+  text-align: left;
+  text-decoration: none;
+}
+.aboutMe__student-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: end;
+
+  width: 270px;
+  height: 327px;
+  background: url(../../../images/student-avatar.jpg) no-repeat center/cover;
+  border-radius: 10px;
+
+  overflow: hidden;
+}

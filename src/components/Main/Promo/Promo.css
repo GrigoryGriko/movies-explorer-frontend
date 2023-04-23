@@ -3,7 +3,8 @@
   justify-content: center;
   align-items: center;
 
-  min-height: 574px;
+  padding-top: 75px;
+  padding-bottom: 75px;
 
   background-color: #073042;
 }
