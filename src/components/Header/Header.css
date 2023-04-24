@@ -1,5 +1,5 @@
 .logo {
-  width: 38px;
+  min-width: 38px;
   height: 38px;
 
   background-color: transparent;
@@ -18,14 +18,23 @@
 
   background-color: #073042;
 }
+.header_light-theme {
+  background-color: #fff;
+}
 
 .header__container-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.header__wrapper-auth {
+.header__wrapper-menu {
+  margin-left: 44px;
   display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+.header__wrapper-menu_unlogged {
+  justify-content: flex-end;
 }
 .header__action-reigister {
   margin: 0;
@@ -68,4 +77,30 @@
 }
 .header__action-login:hover {
   opacity: .8;
+}
+
+.header__menu-link {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 13px;
+  
+  color: #000000;
+  text-decoration: none;
+  margin-right: 16px;
+}
+.header__menu-link:last-child {
+  margin-right: 0;
+}
+.header__menu-link_bold {
+  font-weight: 500;
+}
+
+.header__action-account {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+
+  color: #000000;
+  text-decoration: none;
 }
