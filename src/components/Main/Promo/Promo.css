@@ -9,7 +9,7 @@
   background-color: #073042;
 }
 .promo__wrapper {
-  max-height: 424px;
+  max-height: 426px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -40,12 +40,16 @@
   opacity: .5;
 }
 .promo__button-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  line-height: 0;
   margin-top: 146px;
   width: 129px;
   height: 36px;
   border: 1px solid #fff;
   border-radius: 3px;
-  outline: none;
 
   background-color: transparent;
 
@@ -54,6 +58,7 @@
   font-weight: 500;
   font-size: 12px;
   color: #fff;
+  text-decoration: none;
 
   cursor: pointer;
 }

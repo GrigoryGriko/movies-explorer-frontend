@@ -12,9 +12,9 @@ function Promo() {
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </p>
 
-        <button className="promo__button-more" type="button">
+        <a href="#aboutProject" className="promo__button-more" type="button">
           Узнать больше
-        </button>
+        </a>
 
         <div className="promo__landing-logo"></div>
       </div>

@@ -1,0 +1,63 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 79px;
+  padding-bottom: 20px;
+
+  background-color: #fff;
+}
+.footer__wrapper {
+
+}
+.footer__about-project {
+  margin: 0;
+
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+
+  text-align: center;
+
+  color: #A0A0A0;
+}
+.footer__stroke-line {
+  width: 100%;
+  height: 1px;
+
+  background-color: #E8E8E8;
+  margin: 20px 0 20px 0;
+}
+.footer__wrapper-year-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 13px;
+  color: #000000;
+  text-decoration: none;
+  line-height: 16px;
+}
+.footer__year {
+  margin: 0;
+}
+.footer__wrapper-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer__link {
+  margin: 0;
+  margin-right: 20px;
+  
+  color: #000000;
+  text-decoration: none;
+  
+}
+.footer__link:last-child {
+  margin-right: 0;
+}
