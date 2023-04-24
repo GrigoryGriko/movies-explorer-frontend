@@ -12,9 +12,9 @@ function Header() {
       {location.pathname !== '/' ? (
         <>
         <nav className="header__wrapper-menu">
-          <Link to="movies" className="header__menu-link">Фильмы</Link>
+          <Link to="movies" className={`header__menu-link ${location.pathname === '/movies' ? 'header__menu-link_bold' : ''}`}>Фильмы</Link>
 
-          <Link to="saved-movies" className="header__menu-link">Сохранённые фильмы</Link>
+          <Link to="saved-movies" className={`header__menu-link ${location.pathname === '/saved-movies' ? 'header__menu-link_bold' : ''}`}>Сохранённые фильмы</Link>
         </nav>
         
         <Link to="profile" className="header__action-account">Аккаунт</Link>
@@ -33,23 +33,3 @@ function Header() {
 }
 
 export default Header;
-/*
-<nav className="header__wrapper-menu">
-          <Link to="signup" className="header__action-reigister">Регистрация</Link>
-
-          <Link to="signin" className="header__action-login">Войти</Link>
-        </nav>
-        */
-
-/*
-<Link to="/" className="logo"></Link>
-
-        <nav className="header__wrapper-menu">
-          <Link to="movies" className="header__menu-link">Фильмы</Link>
-
-          <Link to="saved-movies" className="header__menu-link">Сохранённые фильмы</Link>
-        </nav>
-
-        <Link to="profile" className="header__action-account">Аккаунт</Link>
-
-        */
