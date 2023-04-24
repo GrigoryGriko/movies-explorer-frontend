@@ -71,6 +71,11 @@
   color: #000000;
   text-align: left;
   text-decoration: none;
+
+  transition: .3s ease opacity
+}
+.aboutMe__link-to-github:hover {
+  opacity: .8;
 }
 .aboutMe__student-avatar {
   display: flex;
@@ -110,6 +115,11 @@
   margin: 0;
   height: 60px;
   text-decoration: none;
+
+  transition: .3s ease opacity;
+}
+.aboutMe__link-item:hover {
+  opacity: .8;
 }
 .aboutMe__item {
   font-size: 0;

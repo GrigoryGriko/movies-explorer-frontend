@@ -61,6 +61,11 @@
   text-decoration: none;
 
   cursor: pointer;
+
+  transition: .3s ease opacity;
+}
+.promo__button-more:hover { 
+  opacity: .8;
 }
 .promo__landing-logo {
   width: 310px;
