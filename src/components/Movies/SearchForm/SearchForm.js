@@ -5,7 +5,6 @@ function SearchForm() {
     <section className="search-form section">
       <div className="search-form__wrapper wrapper">
         <form className="search-form__search-input">
-          <div className="search-form_search-icon"></div>
           <input className="search-form_input-type" placeholder="Фильм"></input>
           <button className="search-form_search-button"></button>
 

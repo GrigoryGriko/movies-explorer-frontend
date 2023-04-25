@@ -1,0 +1,16 @@
+.movies-cardlist {
+
+}
+.movies-cardlist__list {
+
+}
+.movies-cardlist__item {
+
+}
+movies-cardlist__image {
+  object-fit: cover;
+  width: 360px;
+  height: 201px;
+  
+  cursor: pointer;
+}
