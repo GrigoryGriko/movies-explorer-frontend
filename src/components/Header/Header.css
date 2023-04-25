@@ -96,11 +96,19 @@
 }
 
 .header__action-account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 32px;
+
   font-family: 'Inter';
-  font-style: normal;
   font-weight: 500;
   font-size: 14px;
 
   color: #000000;
   text-decoration: none;
+  
+  background: #F9F9F9;
+  border-radius: 20px;
 }
