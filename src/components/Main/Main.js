@@ -7,7 +7,7 @@ import AboutMe from './AboutMe/AboutMe';
 
 function Main() {
   return (
-    <main className="content">
+    <main className="content section">
       <Promo/>
       <AboutProject/>
       <Techs/>
