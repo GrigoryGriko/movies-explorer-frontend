@@ -22,7 +22,7 @@ function AboutMe() {
             IT-специалистом в «МАУ МФЦ». После того, как прошёл курс по веб-разработке, 
             планирую развивать свои навыки и устроиться веб-разработчиком.
           </p>
-          <a className="aboutMe__link-to-github" href="https://github.com/GrigoryGriko">
+          <a className="aboutMe__link-to-github link-hover" href="https://github.com/GrigoryGriko">
             Github
           </a>
 
@@ -32,7 +32,7 @@ function AboutMe() {
         <p className="aboutMe__portfolio">Портфолио</p>
         
         <ul className="aboutMe__list">
-          <a className="aboutMe__link-item" href="https://github.com/GrigoryGriko/how-to-learn">
+          <a className="aboutMe__link-item link-hover" href="https://grigorygriko.github.io/how-to-learn/">
             <li className="aboutMe__item">
               <p className="aboutMe__item-name">
                 Статичный сайт
@@ -44,7 +44,7 @@ function AboutMe() {
 
           <div className="aboutMe__list-line"></div>
 
-          <a className="aboutMe__link-item" href="https://github.com/GrigoryGriko/russian-travel">
+          <a className="aboutMe__link-item link-hover" href="https://grigorygriko.github.io/russian-travel/">
             <li className="aboutMe__item">
               <p className="aboutMe__item-name">
                 Адаптивный сайт
@@ -56,7 +56,7 @@ function AboutMe() {
 
           <div className="aboutMe__list-line"></div>
 
-          <a className="aboutMe__link-item" href="https://github.com/GrigoryGriko/react-mesto-api-full-gha">
+          <a className="aboutMe__link-item link-hover" href="https://grigorygriko.github.io/mesto/">
             <li className="aboutMe__item">
               <p className="aboutMe__item-name">
                 Одностраничное приложение

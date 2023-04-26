@@ -6,7 +6,7 @@ function SearchForm() {
       <div className="search-form__wrapper wrapper">
         <form className="search-form__search-input">
           <input className="search-form_input-type" placeholder="Фильм"></input>
-          <button className="search-form_search-button"></button>
+          <button className="search-form_search-button link-hover"></button>
 
           <div className="search-form_stroke-line"></div>
 

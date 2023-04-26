@@ -16,10 +16,10 @@ function Footer() {
           </p>
 
           <div className="footer__wrapper-links">
-            <a href="https://practicum.yandex.ru" className="footer__link">
+            <a href="https://practicum.yandex.ru" className="footer__link link-hover">
               Яндекс.Практикум
             </a>
-            <a href="https://github.com/GrigoryGriko" className="footer__link">
+            <a href="https://github.com/GrigoryGriko" className="footer__link link-hover">
               Github
             </a>
           </div>

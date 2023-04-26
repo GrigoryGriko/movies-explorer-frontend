@@ -13,3 +13,10 @@
 .wrapper {
   width: calc(100% - 140px);
 }
+
+.link-hover {
+  transition: .3s ease opacity;
+}
+.link-hover:hover {
+  opacity: .8;
+}
