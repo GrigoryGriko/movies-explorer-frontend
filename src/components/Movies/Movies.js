@@ -8,6 +8,12 @@ function Movies() {
     <>
       <SearchForm/>
       <MoviesCardList/>
+
+      <section className="movies-more section">
+        <button className="movies-more__button-more wrapper link-hover">
+          Ещё
+        </button>
+      </section>
     </>
   )
 }

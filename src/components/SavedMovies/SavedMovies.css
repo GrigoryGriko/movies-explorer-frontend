@@ -1,0 +1,6 @@
+.saved-movies__devider {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
