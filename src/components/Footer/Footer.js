@@ -12,7 +12,7 @@ function Footer() {
 
         <div className="footer__wrapper-year-links">
           <p className="footer__year">
-            © 2020
+            © 2023
           </p>
 
           <div className="footer__wrapper-links">
