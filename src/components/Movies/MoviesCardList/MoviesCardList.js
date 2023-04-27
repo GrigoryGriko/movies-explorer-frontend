@@ -2,10 +2,12 @@ import React from 'react';
 import { Route, Switch } from "react-router-dom";
 
 import MoviesCard from '../MoviesCard/MoviesCard';
+import Preloader from '../Preloader/Preloader';
 
 function MoviesCardList() {
   return(
       <section className="movies-cardlist section">
+        <Preloader/>
         <ul className="movies-cardlist__list wrapper">
           <Switch>
             <Route path="/movies">
@@ -51,6 +53,16 @@ function MoviesCardList() {
             </Route>
           </Switch>
         </ul>
+
+        <Switch>
+          <Route path="/movies">
+            <section className="movies-more section">
+              <button className="movies-more__button-more wrapper link-hover">
+                Ещё
+              </button>
+            </section>
+          </Route>
+        </Switch>
       </section>
   )
 }

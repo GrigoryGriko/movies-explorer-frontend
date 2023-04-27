@@ -12,6 +12,7 @@
 @import url(./components/Main/AboutMe/AboutMe.css);
 
 @import url(./components/Movies/Movies.css);
+@import url(./components/Movies/Preloader/Preloader.css);
 @import url(./components/Movies/SearchForm/SearchForm.css);
 @import url(./components/Movies/SearchForm/FilterCheckbox/FIlterCheckbox.css);
 @import url(./components/Movies/MoviesCardList/MoviesCardList.css);
