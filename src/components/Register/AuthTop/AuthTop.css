@@ -1,0 +1,20 @@
+.auth-top {
+  display: flex;
+  justify-content: center;
+}
+.auth-top__wrapper { 
+  min-width: 396px;
+  margin-top: 70px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.auth-top__greeting-text {
+  margin: 0;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 24px;
+  color: #000;
+}

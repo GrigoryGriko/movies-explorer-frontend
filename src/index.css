@@ -19,5 +19,8 @@
 @import url(./components/Movies/MoviesCard/MoviesCard.css);
 @import url(./components/SavedMovies/SavedMovies.css);
 @import url(./components/Profile/Profile.css);
+@import url(./components/Register/AuthBottom/AuthBottom.css);
+@import url(./components/Register/AuthTop/AuthTop.css);
+@import url(./components/Register/AuthForm/AuthForm.css);
 
 @import url(./components/Footer/Footer.css);
