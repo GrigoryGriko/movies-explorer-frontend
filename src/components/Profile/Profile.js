@@ -25,10 +25,10 @@ function Profile() {
         </p>
       </div>
 
-      <button className="profile__edit-info link-hover">
+      <button className="profile__edit-info button-hover">
         Редактировать
       </button>
-      <button className="profile__logout link-hover">
+      <button className="profile__logout button-hover">
         Выйти из аккаунта
       </button>
     </section>

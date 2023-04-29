@@ -4,7 +4,7 @@
   align-items: center;
   flex-direction: column;
 }
-.auth-bottom__button-register {
+.auth-bottom__button-auth {
   margin-top: 69px;
   background: #3456F3;
   border: none;
@@ -22,6 +22,9 @@
   color: #FFFFFF;
   cursor: pointer;
 }
+.auth-bottom__button-auth_route-signin {
+  margin-top: 179px;
+}
 .auth-bottom__wrapper-text {
   display: flex;
   margin-top: 16px;
@@ -37,7 +40,7 @@
   line-height: 17px;
   color: #A0A0A0;
 }
-.auth-bottom__link-signin {
+.auth-bottom__link-auth {
   margin: 0;
   margin-left: 6px;
 

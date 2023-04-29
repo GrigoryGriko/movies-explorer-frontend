@@ -13,6 +13,9 @@
 .auth-form__field:last-child {
   margin-bottom: 83px;
 }
+.auth-form__field_route-signin {
+  margin-bottom: 42px !important;
+}
 .auth-form__caption {
   margin: 0;
   font-family: 'Inter';

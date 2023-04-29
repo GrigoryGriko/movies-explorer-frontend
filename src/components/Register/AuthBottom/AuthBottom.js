@@ -1,20 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 
 function AuthBottom() {
   return (
   <section className="auth-bottom">
-    <button className="auth-bottom__button-register link-hover">
-      Зарегистрироваться
-    </button>
-    <div className="auth-bottom__wrapper-text">
-      <p className="auth-bottom__caption">
-        Уже зарегистрированы?
-      </p>
-      <Link to="/signin" className="auth-bottom__link-signin link-hover">
-        Войти
-      </Link>
-    </div>
+    <Switch>
+      <Route path="/signup">
+        <button className="auth-bottom__button-auth link-hover">
+          Зарегистрироваться
+        </button>
+        <div className="auth-bottom__wrapper-text">
+          <p className="auth-bottom__caption">
+            Уже зарегистрированы?
+          </p>
+          <Link to="/signin" className="auth-bottom__link-auth link-hover">
+            Войти
+          </Link>
+        </div>
+      </Route>
+
+      <Route path="/signin">
+        <button className="auth-bottom__button-auth auth-bottom__button-auth_route-signin link-hover">
+          Войти
+        </button>
+        <div className="auth-bottom__wrapper-text">
+          <p className="auth-bottom__caption">
+            Еще не зарегистрированы?
+          </p>
+          <Link to="/signup" className="auth-bottom__link-auth link-hover">
+            Регистрация
+          </Link>
+        </div>
+      </Route>
+    </Switch>
   </section>
   )
 }

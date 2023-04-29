@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 
 import Header from '../Header/Header';
 
@@ -9,14 +9,23 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
+import NotFound from '../NotFound/NotFound';
 
 import Footer from '../Footer/Footer';
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="App">
-      <Header/>
-      
+      {
+        (
+          location.pathname !== '/signup' && 
+          location.pathname !== '/signin' &&
+          location.pathname !== '/404'
+        ) ? <Header/> : ''
+      }
+  
       <Switch>
         <Route
           exact
@@ -54,9 +63,22 @@ function App() {
         >
           <Register/>
         </Route>
+        
+        <Route
+          path="/404"
+        >
+          <NotFound/>
+        </Route>
       </Switch>
 
-      <Footer/>
+      {
+        ( 
+          location.pathname !== '/profile' && 
+          location.pathname !== '/signup' && 
+          location.pathname !== '/signin' &&
+          location.pathname !== '/404'
+        ) ? <Footer/> : ''
+      }
     </div>
   );
 }
