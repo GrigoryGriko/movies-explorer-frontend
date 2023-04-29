@@ -108,18 +108,19 @@
 }
 .aboutMe__link-item {
   margin: 0;
-  height: 60px;
   text-decoration: none;
 }
 .aboutMe__item {
   font-size: 0;
+  
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 .aboutMe__item-name {
   margin: 0;
-  height: 50px;
+  height: 51px;
   font-family: 'Inter';
   font-weight: 400;
   font-size: 30px;
@@ -130,7 +131,8 @@
 }
 .aboutMe__item-arrow {
   width: 29px;
-  height: 60px;
+  height: 50px;
+  align-self: baseline;
 
   background-color: transparent;
   background: url(../../../images/item-arrow.svg) no-repeat center/cover;
@@ -146,4 +148,34 @@
   background: #E8E8E8;
 }
 
+@media screen and (min-width: 768px) and (max-width: 1136px) {
+  .aboutMe {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+  .aboutMe__student-name {
+    font-size: 40px;
+  line-height: 40px;
+  }
+  .aboutMe__student-info {
+    margin-top: 16px;
+    font-size: 12px;
+  }
+  .aboutMe__student-description {
+    max-width: 364px;
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .aboutMe__student-avatar {
+    width: 255px;
+    height: 307px;
+  }
+  .aboutMe__link-to-github {
+    margin-top: 87px;
+  }
+  .aboutMe__item-name {
+    font-size: 28px;
+  }
+}
 
