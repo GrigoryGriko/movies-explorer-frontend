@@ -10,6 +10,9 @@
   position: relative;
   margin-bottom: 24px;
 }
+.auth-form__field:last-child {
+  margin-bottom: 83px;
+}
 .auth-form__caption {
   margin: 0;
   font-family: 'Inter';
@@ -45,6 +48,7 @@
 }
 
 .auth-form__input-error {
+  margin: 0;
   position: absolute;
   left: 0;
   top: calc(100% + 6px);

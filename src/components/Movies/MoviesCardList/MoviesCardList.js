@@ -57,7 +57,7 @@ function MoviesCardList() {
         <Switch>
           <Route path="/movies">
             <section className="movies-more section">
-              <button className="movies-more__button-more wrapper link-hover">
+              <button className="movies-more__button-more wrapper button-hover">
                 Ещё
               </button>
             </section>

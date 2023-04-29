@@ -12,13 +12,13 @@ function MoviesCard(props) {
 
         <Switch>
           <Route path="/movies">
-            <button className={`movies-cardlist__action-save link-hover ${props.isSaved ? 'movies-cardlist_disabled-element' : ''}`}>Сохранить</button>
+            <button className={`movies-cardlist__action-save button-hover ${props.isSaved ? 'movies-cardlist_disabled-element' : ''}`}>Сохранить</button>
 
-            <button className={`movies-cardlist__marker-saved link-hover ${!props.isSaved ? 'movies-cardlist_disabled-element' : ''}`}></button>
+            <button className={`movies-cardlist__marker-saved button-hover ${!props.isSaved ? 'movies-cardlist_disabled-element' : ''}`}></button>
           </Route>
 
           <Route path="/saved-movies">
-            <button className="movies-cardlist__action-delete link-hover"></button>
+            <button className="movies-cardlist__action-delete button-hover"></button>
           </Route>
         </Switch>
 

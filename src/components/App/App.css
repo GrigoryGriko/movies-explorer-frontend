@@ -14,9 +14,16 @@
   width: calc(100% - 140px);
 }
 
+.button-hover {
+  transition: .3s ease opacity;
+}
+.button-hover:hover {
+  opacity: .8;
+}
+
 .link-hover {
   transition: .3s ease opacity;
 }
 .link-hover:hover {
-  opacity: .8;
+  opacity: .7;
 }

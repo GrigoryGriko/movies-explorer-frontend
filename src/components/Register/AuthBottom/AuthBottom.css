@@ -1,0 +1,49 @@
+.auth-bottom {
+  min-height: 217px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.auth-bottom__button-register {
+  margin-top: 69px;
+  background: #3456F3;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  width: 396px;
+  height: 45px;
+
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 14px;
+
+  text-align: center;
+
+  color: #FFFFFF;
+  cursor: pointer;
+}
+.auth-bottom__wrapper-text {
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: 70px;
+}
+.auth-bottom__caption {
+  margin: 0;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #A0A0A0;
+}
+.auth-bottom__link-signin {
+  margin: 0;
+  margin-left: 6px;
+
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  color: #3456F3;
+  text-decoration: none;
+}

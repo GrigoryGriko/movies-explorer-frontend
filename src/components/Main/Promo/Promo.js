@@ -12,7 +12,7 @@ function Promo() {
           Листайте ниже, чтобы узнать больше про этот проект и его создателя.
         </p>
 
-        <a href="#aboutProject" className="promo__button-more link-hover" type="button">
+        <a href="#aboutProject" className="promo__button-more button-hover" type="button">
           Узнать больше
         </a>
 
