@@ -5,7 +5,7 @@ function Promo() {
     <section className="promo section">
       <div class="promo__wrapper wrapper">
         <h1 className="promo__description">
-          Учебный проект студента факультета<br></br>
+          Учебный проект студента факультета <br className="promo_display-br"></br>
           Веб-разработки.
         </h1>
         <p className="promo__text">

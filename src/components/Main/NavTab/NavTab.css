@@ -1,0 +1,72 @@
+.header__wrapper-menu {
+  margin-left: 44px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+}
+.header__wrapper-menu_unlogged {
+  justify-content: flex-end;
+}
+.header__action-reigister {
+  margin: 0;
+  align-self: center;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+}
+.header__action-login {
+  display: flex;
+  margin: 0;
+  margin-left: 30px;
+
+  justify-content: center;
+  align-items: center;
+  
+  width: 76px;
+  height: 32px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  color: #000;
+  text-decoration: none;
+
+  background-color: #2BE080;
+  border-radius: 3px;
+}
+
+.header__menu-link {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 13px;
+  
+  color: #000;
+  text-decoration: none;
+  margin-right: 16px;
+}
+.header__menu-link:last-child {
+  margin-right: 0;
+}
+
+.header__action-account {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 32px;
+
+  font-family: 'Inter';
+  font-weight: 500;
+  font-size: 14px;
+
+  color: #000;
+  text-decoration: none;
+  
+  background: #F9F9F9;
+  border-radius: 20px;
+}

@@ -74,3 +74,40 @@
   background-size: auto;
   background-position: center;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .promo {
+    padding-top: 140px;
+    padding-bottom: 76px;
+  }
+  .promo__wrapper {
+    max-height: 860px;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+  .promo__landing-logo {
+    order: -1;
+    align-self: center;
+  }
+  .promo__description {
+    margin-top: 48px;
+    width: 680px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 50px;
+  }
+  .promo__text {
+    margin-top: 22px;
+    width: 260px;
+  
+    font-size: 13px;
+    line-height: 15.73px;
+    text-align: center;
+  }
+  .promo__button-more {
+    margin-top: 92px;
+  }
+  .promo_display-br {
+    display: none;
+  }
+}
