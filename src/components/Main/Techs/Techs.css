@@ -46,6 +46,9 @@
   text-align: center;
   color: #000000;
 }
+.techs__description_display-br {
+  display: none;
+}
 .techs__list {
   margin: 0;
   padding: 0;
@@ -81,4 +84,25 @@
 }
 .techs__item:last-child {
   margin-right: 0;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1136px) {
+  .techs {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+  .techs__title {
+    margin-top: 80px;
+  }
+  .techs__description {
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .techs__description_display-br {
+    display: inline;
+  }
+  .techs__list {
+    margin-top: 83px;
+  }
 }

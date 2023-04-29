@@ -13,7 +13,7 @@ function Techs() {
           7 технологий
         </h3>
         <p className="techs__description">
-          На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.
+          На курсе веб-разработки мы освоили технологии, которые применили в <br className="techs__description_display-br"></br>дипломном проекте.
         </p>
         <ul className="techs__list">
           <li className="techs__item">
