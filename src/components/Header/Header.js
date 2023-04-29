@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <header className={`header section ${location.pathname !== '/' ? 'header_light-theme' : ''}`}>
-      <div className="header__container-content wrapper">
+      <div className="header__container-content header__container-content_wrapper">
         <Link to="/" className="logo"></Link>
 
         <NavTab/>

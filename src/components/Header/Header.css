@@ -27,6 +27,15 @@
   justify-content: space-between;
   align-items: center;
 }
+.header__container-content_wrapper {
+  width: calc(100% - 140px);
+}
 .header__menu-link_bold {
   font-weight: 500;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1136px) {
+  .header__container-content_wrapper {
+    width: calc(100% - 60px);
+  }
 }
