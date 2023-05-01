@@ -8,13 +8,26 @@ function NavTab() {
     <>
       {location.pathname !== '/' ? (
         <>
-        <nav className="header__wrapper-menu">
-          <Link to="movies" className={`header__menu-link link-hover ${location.pathname === '/movies' ? 'header__menu-link_bold' : ''}`}>Фильмы</Link>
+          <nav className="header__wrapper-menu header__wrapper-menu_site-visibility">
+            <Link to="/movies" className={`header__menu-link link-hover ${location.pathname === '/movies' ? 'header__menu-link_bold' : ''}`}>Фильмы</Link>
 
-          <Link to="saved-movies" className={`header__menu-link link-hover ${location.pathname === '/saved-movies' ? 'header__menu-link_bold' : ''}`}>Сохранённые фильмы</Link>
-        </nav>
+            <Link to="/saved-movies" className={`header__menu-link link-hover ${location.pathname === '/saved-movies' ? 'header__menu-link_bold' : ''}`}>Сохранённые фильмы</Link>
+          </nav>
+          
+          <Link to="/profile" className="header__action-account link-hover header__wrapper-menu_site-visibility">Аккаунт</Link>
         
-        <Link to="profile" className="header__action-account link-hover">Аккаунт</Link>
+          <div className="popup-menu">
+            <nav className="header__wrapper-menu">
+              <Link to="/" className={`header__menu-link link-hover ${location.pathname === '/' ? 'header__menu-link_underline' : ''}`}>Главная</Link>
+              
+              <Link to="/movies" className={`header__menu-link link-hover ${location.pathname === '/movies' ? 'header__menu-link_underline' : ''}`}>Фильмы</Link>
+
+              <Link to="/saved-movies" className={`header__menu-link link-hover ${location.pathname === '/saved-movies' ? 'header__menu-link_underline' : ''}`}>Сохранённые фильмы</Link>
+            </nav>
+            
+            <Link to="/profile" className="header__action-account link-hover">Аккаунт</Link>
+          </div>
+          <div className="popup-menu__cover"></div>
         </>
         
       ) : (

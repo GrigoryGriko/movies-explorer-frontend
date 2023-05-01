@@ -70,3 +70,84 @@
   background: #F9F9F9;
   border-radius: 20px;
 }
+
+.popup-menu {
+  display: none;
+  visibility: hidden;
+}
+.popup-menu__cover {
+  display: none;
+  visibility: hidden;
+}
+.header__menu-link_underline  {
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1136px) {
+  .header__wrapper-menu_site-visibility {
+    display: none;
+    visibility: hidden;
+  }
+  .popup-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: calc(100vw - 248px);
+    visibility: visible;
+
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+  }
+  .header__wrapper-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .header__wrapper-menu {
+    margin: 0;
+    margin-top: 159px;
+  }
+  .header__menu-link {
+    margin: 0;
+    margin-bottom: 28px;
+    
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 18px;
+
+    color: #000;
+  }
+  .header__menu-link:last-child {
+    margin-bottom: 0;
+  }
+
+  .header__action-account {
+    margin-bottom: 98px;
+    margin-top: 50px;
+    background-color: #F9F9F9;
+    border-radius: 20px;
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 14px;
+
+    color: #000;
+  }
+
+  .popup-menu__cover { 
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    visibility: visible;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: .3;
+    z-index: 998;
+  }
+}
