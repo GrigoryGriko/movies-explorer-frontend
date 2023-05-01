@@ -73,12 +73,10 @@
 }
 
 .popup-menu {
-  display: none;
   visibility: hidden;
 }
 
 .popup-menu__cover {
-  display: none;
   visibility: hidden;
 }
 .popup-menu__page-marker {
@@ -91,46 +89,55 @@
   visibility: visible;
 }
 
-.popup-menu__button-close {
-  position: fixed;
-  top: 22px;
-  right: 22px;
-  margin: 0;
-  line-height: 0;
-  padding: 0;
-  min-width: 29px;
-  height: 29px;
-
-  background-color: transparent;
-  background-image: url(../../../images/button-close.svg);
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: center;
-
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-
 @media screen and (min-width: 768px) and (max-width: 1136px) {
   .header__wrapper-menu_site-visibility {
-    display: none;
     visibility: hidden;
   }
   .popup-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
     width: calc(100vw - 248px);
     visibility: visible;
+    overflow: hidden;
 
     background-color: #fff;
+    z-index: 999;
+  }
+  .popup-menu__wrapper-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    z-index: 999;
+    height: 100%;
+    width: calc(100vw - 248px);
+  }
+  .popup-menu__button-close {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    margin: 0;
+    line-height: 0;
+    padding: 0;
+    min-width: 29px;
+    height: 29px;
+  
+    background-color: transparent;
+    background-image: url(../../../images/button-close.svg);
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+  
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
   }
   .popup-menu__wrapper-menu {
     display: flex;

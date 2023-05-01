@@ -17,49 +17,51 @@ function NavTab() {
           <Link to="/profile" className="header__action-account link-hover header__wrapper-menu_site-visibility">Аккаунт</Link>
         
           <div className="popup-menu">
-            <button className="popup-menu__button-close"></button>
+            <div className="popup-menu__wrapper-content">
+              <button className="popup-menu__button-close"></button>
 
-            <nav className="popup-menu__wrapper-menu">
-              <ul className="popup-menu__wrapper-menu-list">
-                <li className="popup-menu__wrapper-menu-item">
-                  <Link 
-                    to="/" 
-                    className="popup-menu__menu-link link-hover">
-                      Главная
-                  </Link>
-                  <div className={`popup-menu__page-marker 
-                      ${location.pathname === '/' ?
-                      'popup-menu__page-marker_visibility' : ''}`}>
-                  </div>
-                </li><br></br>
-                
-                <li className="popup-menu__wrapper-menu-item">
-                  <Link 
-                    to="/movies" 
-                    className="popup-menu__menu-link link-hover">
-                      Фильмы
-                  </Link>
-                  <div className={`popup-menu__page-marker 
-                      ${location.pathname === '/movies' ?
-                      'popup-menu__page-marker_visibility' : ''}`}>
-                  </div>
-                </li><br></br>
+              <nav className="popup-menu__wrapper-menu">
+                <ul className="popup-menu__wrapper-menu-list">
+                  <li className="popup-menu__wrapper-menu-item">
+                    <Link 
+                      to="/" 
+                      className="popup-menu__menu-link link-hover">
+                        Главная
+                    </Link>
+                    <div className={`popup-menu__page-marker 
+                        ${location.pathname === '/' ?
+                        'popup-menu__page-marker_visibility' : ''}`}>
+                    </div>
+                  </li><br></br>
+                  
+                  <li className="popup-menu__wrapper-menu-item">
+                    <Link 
+                      to="/movies" 
+                      className="popup-menu__menu-link link-hover">
+                        Фильмы
+                    </Link>
+                    <div className={`popup-menu__page-marker 
+                        ${location.pathname === '/movies' ?
+                        'popup-menu__page-marker_visibility' : ''}`}>
+                    </div>
+                  </li><br></br>
 
-                <li className="popup-menu__wrapper-menu-item">
-                  <Link
-                    to="/saved-movies"
-                    className="popup-menu__menu-link link-hover">
-                      Сохранённые фильмы
-                  </Link>
-                  <div className={`popup-menu__page-marker 
-                      ${location.pathname === '/saved-movies' ?
-                      'popup-menu__page-marker_visibility' : ''}`}>
-                  </div>
-                </li>
-              </ul>
-            </nav>
-            
-            <Link to="/profile" className="header__action-account link-hover">Аккаунт</Link>
+                  <li className="popup-menu__wrapper-menu-item">
+                    <Link
+                      to="/saved-movies"
+                      className="popup-menu__menu-link link-hover">
+                        Сохранённые фильмы
+                    </Link>
+                    <div className={`popup-menu__page-marker 
+                        ${location.pathname === '/saved-movies' ?
+                        'popup-menu__page-marker_visibility' : ''}`}>
+                    </div>
+                  </li>
+                </ul>
+              </nav>
+              
+              <Link to="/profile" className="header__action-account link-hover">Аккаунт</Link>
+            </div>
           </div>
           <div className="popup-menu__cover"></div>
         </>
