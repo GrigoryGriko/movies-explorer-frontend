@@ -40,6 +40,15 @@
   border-radius: 3px;
 }
 
+.header__wrapper-menu-list {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.header__wrapper-menu-item {
+  list-style-type: none;
+  display: inline-block;
+}
 .header__menu-link {
   font-family: 'Inter';
   font-weight: 400;
@@ -75,12 +84,40 @@
   display: none;
   visibility: hidden;
 }
+
 .popup-menu__cover {
   display: none;
   visibility: hidden;
 }
-.header__menu-link_underline  {
-  text-decoration: underline;
+.header__page-marker {
+  visibility: hidden;
+  margin-top: 4px;
+  height: 2px;
+  background-color: #000;
+}
+.header__page-marker_visibility {
+  visibility: visible;
+}
+
+.popup-menu__button-close {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  margin: 0;
+  line-height: 0;
+  padding: 0;
+  min-width: 29px;
+  height: 29px;
+
+  background-color: transparent;
+  background-image: url(../../../images/button-close.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1136px) {
@@ -112,18 +149,23 @@
     margin: 0;
     margin-top: 159px;
   }
+  
+  .header__wrapper-menu-item {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .header__wrapper-menu-item:last-child {
+    margin-bottom: 0;
+  }
+
   .header__menu-link {
     margin: 0;
-    margin-bottom: 28px;
     
     font-family: 'Inter';
     font-weight: 500;
     font-size: 18px;
 
     color: #000;
-  }
-  .header__menu-link:last-child {
-    margin-bottom: 0;
   }
 
   .header__action-account {
