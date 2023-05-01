@@ -19,41 +19,41 @@ function NavTab() {
           <div className="popup-menu">
             <button className="popup-menu__button-close"></button>
 
-            <nav className="header__wrapper-menu">
-              <ul className="header__wrapper-menu-list">
-                <li className="header__wrapper-menu-item">
+            <nav className="popup-menu__wrapper-menu">
+              <ul className="popup-menu__wrapper-menu-list">
+                <li className="popup-menu__wrapper-menu-item">
                   <Link 
                     to="/" 
-                    className="header__menu-link link-hover">
+                    className="popup-menu__menu-link link-hover">
                       Главная
                   </Link>
-                  <div className={`header__page-marker 
+                  <div className={`popup-menu__page-marker 
                       ${location.pathname === '/' ?
-                      'header__page-marker_visibility' : ''}`}>
+                      'popup-menu__page-marker_visibility' : ''}`}>
                   </div>
                 </li><br></br>
                 
-                <li className="header__wrapper-menu-item">
+                <li className="popup-menu__wrapper-menu-item">
                   <Link 
                     to="/movies" 
-                    className="header__menu-link link-hover">
+                    className="popup-menu__menu-link link-hover">
                       Фильмы
                   </Link>
-                  <div className={`header__page-marker 
+                  <div className={`popup-menu__page-marker 
                       ${location.pathname === '/movies' ?
-                      'header__page-marker_visibility' : ''}`}>
+                      'popup-menu__page-marker_visibility' : ''}`}>
                   </div>
                 </li><br></br>
 
-                <li className="header__wrapper-menu-item">
+                <li className="popup-menu__wrapper-menu-item">
                   <Link
                     to="/saved-movies"
-                    className="header__menu-link link-hover">
+                    className="popup-menu__menu-link link-hover">
                       Сохранённые фильмы
                   </Link>
-                  <div className={`header__page-marker 
+                  <div className={`popup-menu__page-marker 
                       ${location.pathname === '/saved-movies' ?
-                      'header__page-marker_visibility' : ''}`}>
+                      'popup-menu__page-marker_visibility' : ''}`}>
                   </div>
                 </li>
               </ul>
