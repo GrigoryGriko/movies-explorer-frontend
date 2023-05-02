@@ -131,7 +131,7 @@
   background-color: #000;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1136px) {
+@media screen and (min-width: 700px) and (max-width: 1136px) {
   .header__wrapper-menu_site-visibility {
     visibility: hidden;
   }
@@ -231,5 +231,12 @@
     background-color: #000;
     opacity: .3;
     z-index: 998;
+  }
+}
+
+
+@media screen and (max-width: 699px) {
+  .header__action-reigister {
+    font-size: 10px;
   }
 }

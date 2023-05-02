@@ -24,6 +24,7 @@
   font-family: 'Inter';
   color: #FFF;
   line-height: 58px;
+  letter-spacing: -0.04em;
 }
 .promo__text {
   margin: 0;
@@ -63,8 +64,8 @@
   cursor: pointer;
 }
 .promo__landing-logo {
-  width: 310px;
-  height: 304px;
+  min-width: 310px;
+  min-height: 304px;
 
   align-self: end;
 
@@ -75,7 +76,13 @@
   background-position: center;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1136px) {
+@media screen and (max-width: 1136px) {
+  .promo__landing-logo {
+    order: -1;
+    align-self: center;
+  }
+}
+@media screen and (min-width: 700px) and (max-width: 1136px) {
   .promo {
     padding-top: 140px;
     padding-bottom: 76px;
@@ -84,10 +91,6 @@
     max-height: 850px;
     align-items: center;
     flex-wrap: nowrap;
-  }
-  .promo__landing-logo {
-    order: -1;
-    align-self: center;
   }
   .promo__description {
     margin-top: 48px;
@@ -109,5 +112,25 @@
   }
   .promo_display-br {
     display: none;
+  }
+}
+@media screen and (max-width: 699px) {
+  .promo {
+    padding-top: 70px;
+  }
+  .promo__wrapper {
+    max-height: 640px;
+  }
+  .promo__landing-logo {
+    min-width: 210px;
+    min-height: 206px;
+    background-size: cover;
+  }
+  .promo__description {
+    margin-top: 44px;
+    width: 300px;
+    font-size: 30px;
+    line-height: 38px;
+    text-align: center;
   }
 }

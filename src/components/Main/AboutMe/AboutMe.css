@@ -148,7 +148,7 @@
   background: #E8E8E8;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1136px) {
+@media screen and (min-width: 700px) and (max-width: 1136px) {
   .aboutMe {
     padding-top: 90px;
     padding-bottom: 90px;

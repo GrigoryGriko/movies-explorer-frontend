@@ -18,3 +18,10 @@
   font-size: 24px;
   color: #000;
 }
+
+@media screen and (min-width: 700px) and (max-width: 1136px) {
+  .auth-top__wrapper { 
+    min-width: 379px;
+    margin-top: 232px;
+  }
+}

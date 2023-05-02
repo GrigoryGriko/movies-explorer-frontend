@@ -34,8 +34,14 @@
   font-weight: 500;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1136px) {
+@media screen and (min-width: 700px) and (max-width: 1136px) {
   .header__container-content_wrapper {
     width: calc(100% - 60px);
   }
 }
+@media screen and (max-width: 699px) {
+  .header__container-content_wrapper {
+    width: calc(100% - 28px);
+  }
+}
+

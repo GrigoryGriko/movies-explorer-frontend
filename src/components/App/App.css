@@ -28,7 +28,7 @@
   opacity: .7;
 }
 
-@media screen and (min-width: 768px) and (max-width: 1136px) {
+@media screen and (min-width: 700px) and (max-width: 1136px) {
   .wrapper {
     width: calc(100% - 60px);
   }
@@ -36,3 +36,9 @@
     width: calc(100% - 100px);
   }
 }
+@media screen and (max-width: 669px) {
+  .wrapper-promo {
+    width: calc(100% - 28px);
+  }
+}
+

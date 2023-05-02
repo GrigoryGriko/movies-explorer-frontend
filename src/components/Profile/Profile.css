@@ -70,3 +70,17 @@
 
   cursor: pointer;
 }
+
+@media screen and (min-width: 700px) and (max-width: 1136px) {
+  .profile__greeting-text {
+    margin-top: 236px;
+    margin-bottom: 96px;
+  }
+  .profile__edit-info {
+    margin-top: 210px;
+  }
+  .profile__logout {
+    margin-top: 16px;
+    margin-bottom: 269px;
+  }
+}
