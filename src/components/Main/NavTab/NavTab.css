@@ -7,6 +7,9 @@
 .header__wrapper-menu_unlogged {
   justify-content: flex-end;
 }
+.header__menu-link_dark {
+  color: #fff !important;
+}
 .header__action-reigister {
   margin: 0;
   align-self: center;
@@ -68,12 +71,54 @@
   color: #000;
   text-decoration: none;
   
-  background: #F9F9F9;
+  background-color: #F9F9F9;
   border-radius: 20px;
+}
+.header__action-account_dark {
+  border: 2px solid #F5F5F5;
+  border-radius: 20px;
+  background-color: transparent;
+  color: #fff;
+  min-height: 28px;
+}
+
+.header__popup-menu-button {
+  display: none;
+  margin: 0;
+  line-height: 0;
+  padding: 0;
+  min-width: 28px;
+  height: 24px;
+
+  background-color: transparent;
+  background-image: url(../../../images/popup-menu-button.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.header__popup-menu-button_dark {
+  background-image: url(../../../images/popup-menu-button-white.svg);
 }
 
 .popup-menu {
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: calc(100vw - 248px);
+  overflow: hidden;
+
+  background-color: #fff;
+  z-index: 999;
 }
 
 .popup-menu__cover {
@@ -85,29 +130,14 @@
   height: 2px;
   background-color: #000;
 }
-.popup-menu__page-marker_visibility {
-  visibility: visible;
-}
 
 @media screen and (min-width: 768px) and (max-width: 1136px) {
   .header__wrapper-menu_site-visibility {
     visibility: hidden;
   }
   .popup-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: calc(100vw - 248px);
+    display: none;
     visibility: visible;
-    overflow: hidden;
-
-    background-color: #fff;
-    z-index: 999;
   }
   .popup-menu__wrapper-content {
     position: relative;
@@ -138,6 +168,9 @@
     outline: none;
     background-color: transparent;
     cursor: pointer;
+  }
+  .header__popup-menu-button {
+    display: block;
   }
   .popup-menu__wrapper-menu {
     display: flex;
@@ -172,9 +205,12 @@
     text-decoration: none;
   }
 
-  .header__action-account {
+  .popup-menu__page-marker_visibility {
+    visibility: visible;
+  }
+
+  .popup-menu__action-account {
     margin-bottom: 98px;
-    margin-top: 50px;
     background-color: #F9F9F9;
     border-radius: 20px;
     font-family: 'Inter';
@@ -184,12 +220,12 @@
     color: #000;
   }
 
-  .popup-menu__cover { 
+  .popup-menu__cover {
     top: 0;
     left: 0;
     position: fixed;
     display: block;
-    visibility: visible;
+    visibility: hidden;
     width: 100vw;
     height: 100vh;
     background-color: #000;

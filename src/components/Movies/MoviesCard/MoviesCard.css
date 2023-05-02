@@ -138,3 +138,22 @@
   
   color: #A0A0A0;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1136px) {
+  .movies-cardlist {
+    margin-top: 70px;
+  }
+  .movies-cardlist__list {
+    grid-template-columns: repeat(auto-fill, 339px);
+    grid-gap: 47px 30px;
+  }
+  .movies-cardlist__image { 
+    object-fit: cover;
+    width: 339px;
+    height: 190px;
+    border-radius: 6px;
+    
+    cursor: pointer;
+  }
+}
+

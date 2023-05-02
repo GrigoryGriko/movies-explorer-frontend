@@ -6,6 +6,7 @@ import Preloader from '../Preloader/Preloader';
 
 function MoviesCardList() {
   return(
+    <>
       <section className="movies-cardlist section">
         <Preloader/>
         <ul className="movies-cardlist__list wrapper">
@@ -53,7 +54,7 @@ function MoviesCardList() {
             </Route>
           </Switch>
         </ul>
-
+      </section>
         <Switch>
           <Route path="/movies">
             <section className="movies-more section">
@@ -63,7 +64,7 @@ function MoviesCardList() {
             </section>
           </Route>
         </Switch>
-      </section>
+    </>
   )
 }
 

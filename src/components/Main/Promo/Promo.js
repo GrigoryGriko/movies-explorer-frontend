@@ -3,7 +3,7 @@ import React from 'react';
 function Promo() {
   return(
     <section className="promo section">
-      <div class="promo__wrapper wrapper">
+      <div class="promo__wrapper wrapper-promo">
         <h1 className="promo__description">
           Учебный проект студента факультета <br className="promo_display-br"></br>
           Веб-разработки.
