@@ -40,5 +40,11 @@
   .wrapper-promo {
     width: calc(100% - 28px);
   }
+  .wrapper {
+    width: calc(100% - 36px);
+  }
+  .wrapper-about-me {
+    width: calc(100% - 28px);
+  }
 }
 

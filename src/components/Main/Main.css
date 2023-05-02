@@ -18,3 +18,13 @@
 
   margin-top: 23px;
 }
+
+
+@media screen and (max-width: 699px) {
+  .text-header {
+    font-size: 18px;
+  }
+  .stroke-line {
+    margin-top: 28px;
+  }
+}

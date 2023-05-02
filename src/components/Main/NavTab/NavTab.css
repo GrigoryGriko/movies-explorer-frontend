@@ -239,4 +239,10 @@
   .header__action-reigister {
     font-size: 10px;
   }
+  .header__action-login {
+    width: 54px;
+    height: 26px;
+    margin-left: 14px;
+    font-size: 10px;
+  }
 }

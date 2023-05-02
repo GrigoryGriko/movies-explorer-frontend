@@ -178,4 +178,51 @@
     font-size: 28px;
   }
 }
-
+@media screen and (max-width: 699px) {
+  .aboutMe__student-article {
+    max-height: 655px;
+    align-items: center;
+    align-items: flex-start;
+  }
+  .aboutMe__student-avatar {
+    width: 292px;
+    height: 352px;
+    order: -1;
+  }
+  .aboutMe__student-name {
+    font-size: 30px;
+    margin-top: 40px;
+  }
+  .aboutMe__student-info {
+    font-size: 11px;
+    margin-top: 20px;
+  }
+  .aboutMe__student-description {
+    font-size: 11px;
+    line-height: 16px;
+  }
+  .aboutMe__link-to-github {
+    margin-top: 40px
+  }
+  .aboutMe__portfolio {
+    margin-top: 70px;
+    font-size: 14px;
+  }
+  .aboutMe__list {
+    margin-top: 40px;
+  }
+  .aboutMe__item {
+    height: 28px;
+  }
+  .aboutMe__item-name {
+    height: auto;
+    line-height: 28px;
+    font-size: 18px;
+  }
+  .aboutMe__item-arrow {
+    width: 9px;
+    height: 9px;
+    background-size: cover;
+    align-self: center;
+  }
+}

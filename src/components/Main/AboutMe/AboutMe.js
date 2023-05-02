@@ -3,7 +3,7 @@ import React from 'react';
 function AboutMe() {
   return(
     <section className="aboutMe section">
-      <div className="aboutMe__wrapper wrapper">
+      <div className="aboutMe__wrapper wrapper-about-me">
         <h2 className="aboutMe__header text-header">
           Студент
         </h2>
