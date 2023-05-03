@@ -1,5 +1,7 @@
 import React from 'react';
 
+import AuthBottom from '../Register/AuthBottom/AuthBottom';
+
 function Profile() {
   return (
     <section className="profile">
@@ -23,6 +25,10 @@ function Profile() {
         <p className="profile__username-data">
           griko1996@gmail.com
         </p>
+      </div>
+
+      <div className="profile__edit-button">
+      <AuthBottom/>
       </div>
 
       <button className="profile__edit-info button-hover">

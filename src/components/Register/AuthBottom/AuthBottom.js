@@ -32,6 +32,17 @@ function AuthBottom() {
           </Link>
         </div>
       </Route>
+
+      <Route path="/profile">
+        <div className="auth-bottom__wrapper-error">
+          <p className="auth-bottom__input-error">
+            При обновлении профиля произошла ошибка.
+          </p>
+        </div>
+        <button className="auth-bottom__button-auth auth-bottom__button-auth_route-profile link-hover">
+          Сохранить
+        </button>
+      </Route>
     </Switch>
   </section>
   )
