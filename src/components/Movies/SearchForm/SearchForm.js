@@ -12,9 +12,14 @@ function SearchForm() {
 
           <div className="search-form_stroke-line"></div>
 
-          <FilterCheckbox/>
+          <div className="search-form__filter-switch_desktop-visibility">
+            <FilterCheckbox/>
+          </div>
+          
         </form>
-
+          <div className="search-form__filter-switch_mobile-visibility">
+            <FilterCheckbox/>
+          </div>
         <div className="search-form_stroke-line-bottom"></div>
       </div>
     </section>

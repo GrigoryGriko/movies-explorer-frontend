@@ -3,11 +3,11 @@ import React from 'react';
 function FilterCheckbox() {
   return(
     <>
-      <button className="search-form_filter-switch">
-        <div className="search-form_switch-marker">
+      <button className="search-form__filter-switch">
+        <div className="search-form__switch-marker">
         </div>
       </button>
-      <p className="search-form_filter-name">
+      <p className="search-form__filter-name">
         Короткометражки
       </p>
     </>

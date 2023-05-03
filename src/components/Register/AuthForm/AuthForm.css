@@ -70,4 +70,11 @@
 }
 
 
-
+@media screen and (max-width: 699px) {
+  .auth-form__wrapper {
+    min-width: 260px;
+  }
+  .auth-form__input {
+    height: 14px;
+  }
+}

@@ -157,3 +157,38 @@
   }
 }
 
+@media screen and (max-width: 699px) {
+  .movies-cardlist {
+    margin-top: 40px;
+    margin-bottom: 13px;
+  }
+  .movies-cardlist__list {
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-gap: 39px 30px;
+  }
+  .movies-cardlist__image {
+    width: 300px;
+    height: 168px;
+  }
+
+  .movies-cardlist__action-save, .movies-cardlist__action-delete {
+    top: 10px;
+    right: 10px;
+    visibility: visible;
+  }
+  .movies-cardlist__marker-saved {
+    top: 10px;
+    right: 10px;
+  }
+  .movies-cardlist__title-film {
+    font-size: 12px;
+  }
+  .movies-cardlist__wrapper-text {
+    min-width: 100%;
+    margin-top: 16px;
+  }
+  .movies-more__button-more {
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+}

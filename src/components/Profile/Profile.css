@@ -84,3 +84,20 @@
     margin-bottom: 269px;
   }
 }
+
+@media screen and (max-width: 699px) {
+  .profile__greeting-text {
+    margin-top: 70px;
+    margin-bottom: 80px
+  }
+  .profile_fix-size {
+    min-width: 260px;
+  }
+  .profile__edit-info {
+    margin-top: 379px;
+  }
+  .profile__logout {
+    margin-top: 16px;
+    margin-bottom: 40px;
+  }
+}

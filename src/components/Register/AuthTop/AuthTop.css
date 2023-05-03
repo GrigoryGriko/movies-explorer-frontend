@@ -25,3 +25,15 @@
     margin-top: 232px;
   }
 }
+
+@media screen and (max-width: 699px) {
+  .auth-top__wrapper {
+    align-items: center;
+    min-width: 260px;
+    margin-top: 56px;
+  }
+  .auth-top__greeting-text {
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+}

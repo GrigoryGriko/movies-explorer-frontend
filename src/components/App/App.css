@@ -10,7 +10,7 @@
   width: 100%;
   max-width: 1280px;
 }
-.wrapper-promo, .wrapper, .wrapper-about-me, .wrapper-footer {
+.wrapper-promo, .wrapper, .wrapper-about-me, .wrapper-footer, .wrapper-movies-more {
   width: calc(100% - 140px);
 }
 
@@ -45,6 +45,9 @@
   }
   .wrapper {
     width: calc(100% - 36px);
+  }
+  .wrapper-movies-more {
+    width: calc(100% - 20px); 
   }
 }
 

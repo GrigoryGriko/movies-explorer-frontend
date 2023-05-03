@@ -89,3 +89,20 @@
     margin-top: 109px;
   }
 }
+
+@media screen and (max-width: 699px) {
+  .search-form_input-type {
+    background-image: none;
+    padding-left: 19px;
+    margin-left: 0;
+  }
+  .search-form_stroke-line {
+    display: none;
+  }
+  .search-form_search-button {
+    margin-right: 19px;
+  }
+  .search-form_stroke-line-bottom {
+    margin-top: 44px;
+  }
+}
