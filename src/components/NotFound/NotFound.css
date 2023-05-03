@@ -7,7 +7,6 @@
   margin: 0;
   margin-top: 246px;
 
-  width: 400px;
   height: 169px;
   font-family: 'Inter';
   font-weight: 400;
@@ -42,5 +41,22 @@
 @media screen and (min-width: 700px) and (max-width: 1136px) {
   .not-found__title {
     margin-top: 408px;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .not-found__title {
+    margin-top: 329px;
+    font-size: 80px;
+    height: 97px;
+  }
+  .not-found__caption {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .not-found__link-back {
+    font-size: 12px;
+    margin-top: 284px;
+    margin-bottom: 30px;
   }
 }
