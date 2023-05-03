@@ -3,10 +3,11 @@ import React from 'react';
 function FilterCheckbox() {
   return(
     <>
-      <button className="search-form__filter-switch">
-        <div className="search-form__switch-marker">
-        </div>
-      </button>
+      <label className="search-form__checkbox-filter">
+        <input type="checkbox"></input>
+        <span className="search-form__checkbox-switch"></span>
+      </label>
+     
       <p className="search-form__filter-name">
         Короткометражки
       </p>
