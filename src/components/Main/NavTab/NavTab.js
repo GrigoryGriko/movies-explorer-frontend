@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 function NavTab() {
   const location = useLocation();
-  const loggedIn = false;
+  const loggedIn = true;
   let classHeaderMenuLink;
   let classHeaderActionAccount;
   let classHeaderPopupMenuButton;

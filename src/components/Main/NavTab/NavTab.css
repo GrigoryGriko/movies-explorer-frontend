@@ -131,8 +131,10 @@
   background-color: #000;
 }
 
-@media screen and (min-width: 700px) and (max-width: 1136px) {
+
+@media screen and (max-width: 1136px) {
   .header__wrapper-menu_site-visibility {
+    display: none;
     visibility: hidden;
   }
   .popup-menu {
@@ -210,6 +212,12 @@
   }
 
   .popup-menu__action-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 32px;
+
     margin-bottom: 98px;
     background-color: #F9F9F9;
     border-radius: 20px;
@@ -218,6 +226,7 @@
     font-size: 14px;
 
     color: #000;
+    text-decoration: none;
   }
 
   .popup-menu__cover {
@@ -234,7 +243,6 @@
   }
 }
 
-
 @media screen and (max-width: 699px) {
   .header__action-reigister {
     font-size: 10px;
@@ -245,4 +253,26 @@
     margin-left: 14px;
     font-size: 10px;
   }
+
+  .popup-menu {
+    width: 100%;
+  }
+  .popup-menu__wrapper-content {
+    width: 100%;
+  }
+  .popup-menu__button-close {
+    min-width: 18px;
+    height: 18px;
+    top: 20px;
+    right: 20px;
+  }
+  .popup-menu__wrapper-menu {
+    margin-top: 144px;
+  }
+  .popup-menu__page-marker {
+    margin-top: 7px;
+  }
+}
+.popup-menu__action-account {
+  margin-bottom: 90px;
 }
