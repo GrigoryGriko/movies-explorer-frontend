@@ -10,7 +10,7 @@
   width: 100%;
   max-width: 1280px;
 }
-.wrapper-promo, .wrapper {
+.wrapper-promo, .wrapper, .wrapper-about-me, .wrapper-footer {
   width: calc(100% - 140px);
 }
 
@@ -32,19 +32,19 @@
   .wrapper {
     width: calc(100% - 60px);
   }
+  .wrapper-about-me {
+    width: calc(100% - 60px);
+  }
   .wrapper-promo {
     width: calc(100% - 100px);
   }
 }
 @media screen and (max-width: 669px) {
-  .wrapper-promo {
+  .wrapper-promo, .wrapper-about-me, .wrapper-footer {
     width: calc(100% - 28px);
   }
   .wrapper {
     width: calc(100% - 36px);
-  }
-  .wrapper-about-me {
-    width: calc(100% - 28px);
   }
 }
 

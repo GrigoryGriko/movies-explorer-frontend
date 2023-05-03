@@ -179,6 +179,9 @@
   }
 }
 @media screen and (max-width: 699px) {
+  .aboutMe {
+    padding: 70px 0 70px 0;
+  }
   .aboutMe__student-article {
     max-height: 655px;
     align-items: center;
@@ -188,6 +191,7 @@
     width: 292px;
     height: 352px;
     order: -1;
+    align-self: flex-start;
   }
   .aboutMe__student-name {
     font-size: 30px;
@@ -220,9 +224,13 @@
     font-size: 18px;
   }
   .aboutMe__item-arrow {
+    margin-top: -4px;
     width: 9px;
     height: 9px;
     background-size: cover;
     align-self: center;
+  }
+  .aboutMe__list-line {
+    margin-top: 19px;
   }
 }

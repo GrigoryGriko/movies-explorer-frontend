@@ -60,3 +60,32 @@
 .footer__link:last-child {
   margin-right: 0;
 }
+@media screen and (max-width: 699px) {
+  .footer__about-project {
+    font-size: 12px;
+    line-height: 15px;
+  }
+  .footer__stroke-line {
+    margin: 21px 0 30px 0;
+  }
+  .footer__wrapper-year-links {
+    flex-direction: column;
+  }
+  .footer__wrapper-links {
+    flex-direction: column;
+    order: -1;
+  }
+  .footer__link {
+    margin: 0;
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+  .footer__link:last-child {
+    margin-bottom: 0;
+  }
+  .footer__year {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #A0A0A0;
+  }
+}
