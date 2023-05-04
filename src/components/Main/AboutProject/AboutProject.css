@@ -13,7 +13,7 @@
 
 .aboutProject__wrapper-text-about {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 70px;
   
 }
@@ -21,6 +21,10 @@
 .aboutProject__text-container {
   text-align: left;
   max-width: 550px;
+  margin-right: 40px;
+}
+.aboutProject__text-container:last-child {
+  margin-right: 0;
 }
 
 .aboutProject__header-descript {
@@ -97,6 +101,7 @@
   }
   .aboutProject__text-container {
     max-width: 319px;
+    margin-right: 30px;
   }
   .aboutProject__description {
     margin-top: 22px;

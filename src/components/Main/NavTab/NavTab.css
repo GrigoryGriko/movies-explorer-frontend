@@ -132,7 +132,7 @@
 }
 
 
-@media screen and (max-width: 1136px) {
+@media screen and (max-width: 768px) {
   .header__wrapper-menu_site-visibility {
     display: none;
     visibility: hidden;
