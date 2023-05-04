@@ -79,7 +79,7 @@ function NavTab() {
               <Link to="/profile" className="popup-menu__action-account link-hover">Аккаунт</Link>
             </div>
           </div>
-          <div className="popup-menu__cover"></div>
+          <div className="popup-menu-cover"></div>
         </>
         
       ) : (

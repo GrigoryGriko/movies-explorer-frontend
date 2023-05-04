@@ -121,7 +121,7 @@
   z-index: 999;
 }
 
-.popup-menu__cover {
+.popup-menu-cover {
   visibility: hidden;
 }
 .popup-menu__page-marker {
@@ -229,7 +229,7 @@
     text-decoration: none;
   }
 
-  .popup-menu__cover {
+  .popup-menu-cover {
     top: 0;
     left: 0;
     position: fixed;

@@ -8,7 +8,7 @@ function Profile() {
       <section className="profile">
         <h2 className="profile__greeting-text">Привет, Григорий!</h2>
 
-        <div className="profile__stroke-info profile_fix-size">
+        <div className="profile__stroke-info profile__stroke-info_fix-size">
           <p className="profile__username-text">
             Имя
           </p>
@@ -17,9 +17,9 @@ function Profile() {
           </p>
         </div>
 
-        <div className="profile__stroke-line profile_fix-size"></div>
+        <div className="profile__stroke-line profile__stroke-line_fix-size"></div>
 
-        <div className="profile__stroke-info profile_fix-size">
+        <div className="profile__stroke-info profile__stroke-info_fix-size">
           <p className="profile__username-text">
             E-mail
           </p>

@@ -45,7 +45,7 @@
   text-align: center;
   color: #000000;
 }
-.techs__description_display-br {
+.techs__wrap {
   display: none;
 }
 .techs__list {
@@ -98,7 +98,7 @@
     font-size: 12px;
     line-height: 18px;
   }
-  .techs__description_display-br {
+  .techs__wrap {
     display: inline;
   }
   .techs__list {

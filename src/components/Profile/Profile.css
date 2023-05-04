@@ -14,7 +14,7 @@
 
   text-align: center;
 }
-.profile_fix-size {
+.profile__stroke-line_fix-size, .profile__stroke-info_fix-size {
   min-width: 410px;
 }
 .profile__stroke-info {
@@ -93,7 +93,7 @@
     margin-top: 70px;
     margin-bottom: 80px
   }
-  .profile_fix-size {
+  .profile__stroke-line_fix-size, .profile__stroke-info_fix-size {
     min-width: 260px;
   }
   .profile__edit-info {
