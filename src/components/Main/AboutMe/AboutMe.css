@@ -28,7 +28,7 @@
 .aboutMe__student-name {
   margin: 0;
   
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 50px;
   letter-spacing: -0.04em;
@@ -39,7 +39,7 @@
   margin: 0;
   margin-top: 18px;
   
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 18px;
   
@@ -52,7 +52,7 @@
   
   max-width: 600px;
 
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
@@ -64,7 +64,7 @@
   margin: 0;
   margin-top: 99px;
 
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 14px;
 
@@ -91,7 +91,7 @@
   margin-top: 100px;
 
   align-self: start;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 18px;
   
@@ -109,19 +109,18 @@
 .aboutMe__link-item {
   margin: 0;
   text-decoration: none;
-}
-.aboutMe__item {
-  font-size: 0;
-  
   height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.aboutMe__item {
+  font-size: 0;
+}
 .aboutMe__item-name {
   margin: 0;
   height: 51px;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 30px;
   
@@ -215,7 +214,7 @@
   .aboutMe__list {
     margin-top: 40px;
   }
-  .aboutMe__item {
+  .aboutMe__link-item {
     height: 28px;
   }
   .aboutMe__item-name {

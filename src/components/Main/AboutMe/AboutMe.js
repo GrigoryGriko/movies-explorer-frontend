@@ -22,7 +22,7 @@ function AboutMe() {
             IT-специалистом в «МАУ МФЦ». После того, как прошёл курс по веб-разработке, 
             планирую развивать свои навыки и устроиться веб-разработчиком.
           </p>
-          <a className="aboutMe__link-to-github link-hover" href="https://github.com/GrigoryGriko">
+          <a className="aboutMe__link-to-github link-hover" href="https://github.com/GrigoryGriko" target="_blank" rel="noopener noreferrer">
             Github
           </a>
 
@@ -32,39 +32,39 @@ function AboutMe() {
         <p className="aboutMe__portfolio">Портфолио</p>
         
         <ul className="aboutMe__list">
-          <a className="aboutMe__link-item link-hover" href="https://grigorygriko.github.io/how-to-learn/">
-            <li className="aboutMe__item">
+          <li className="aboutMe__item">
+            <a className="aboutMe__link-item link-hover" href="https://grigorygriko.github.io/how-to-learn/" target="_blank" rel="noopener noreferrer">
               <p className="aboutMe__item-name">
                 Статичный сайт
               </p>
 
               <div className="aboutMe__item-arrow"></div>
-            </li>
-          </a>
+            </a>
+          </li>
 
-          <div className="aboutMe__list-line"></div>
+          <li className="aboutMe__list-line"></li>
 
-          <a className="aboutMe__link-item link-hover" href="https://grigorygriko.github.io/russian-travel/">
-            <li className="aboutMe__item">
+          <li className="aboutMe__item">
+            <a className="aboutMe__link-item link-hover" href="https://grigorygriko.github.io/russian-travel/" target="_blank" rel="noopener noreferrer">
               <p className="aboutMe__item-name">
                 Адаптивный сайт
               </p>
 
               <div className="aboutMe__item-arrow"></div>
-            </li>
-          </a>
+            </a>
+          </li>
 
-          <div className="aboutMe__list-line"></div>
+          <li className="aboutMe__list-line"></li>
 
-          <a className="aboutMe__link-item link-hover" href="https://grigorygriko.github.io/mesto/">
-            <li className="aboutMe__item">
+          <li className="aboutMe__item">
+            <a className="aboutMe__link-item link-hover" href="https://grigorygriko.github.io/mesto/" target="_blank" rel="noopener noreferrer">
               <p className="aboutMe__item-name">
                 Одностраничное приложение
               </p>
 
               <div className="aboutMe__item-arrow"></div>
-            </li>
-          </a>
+            </a>
+          </li>
         </ul>
        
       </div>

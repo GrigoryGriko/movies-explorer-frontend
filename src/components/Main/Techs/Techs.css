@@ -20,7 +20,7 @@
   margin-top: 90px;
   
 
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
@@ -35,7 +35,7 @@
   margin-top: 26px;
   max-width: 460px;
 
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -72,7 +72,7 @@
   background: #E8E8E8;
   border-radius: 10px;
 
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

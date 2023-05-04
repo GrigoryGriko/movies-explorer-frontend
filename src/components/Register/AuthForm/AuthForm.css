@@ -18,7 +18,7 @@
 }
 .auth-form__caption {
   margin: 0;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 10px;
   color: #A0A0A0;
@@ -32,7 +32,7 @@
   border: none;
   outline: none;
   background-color: transparent;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: #000;
@@ -56,7 +56,7 @@
   left: 0;
   top: calc(100% + 6px);
 
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 10px;
   

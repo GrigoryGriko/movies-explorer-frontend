@@ -13,7 +13,7 @@
   width: 396px;
   height: 45px;
 
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 14px;
 
@@ -37,7 +37,7 @@
 }
 .auth-bottom__input-error {
   margin: 0;
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 11px;
   transition: .5s ease opacity;
@@ -55,7 +55,7 @@
 .auth-bottom__caption {
   margin: 0;
 
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -65,7 +65,7 @@
   margin: 0;
   margin-left: 6px;
 
-  font-family: 'Inter';
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 14px;
   color: #3456F3;
