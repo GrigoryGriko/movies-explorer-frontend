@@ -5,10 +5,10 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 
 function Movies() {
   return (
-    <>
+    <main className="content section">
       <SearchForm/>
       <MoviesCardList/>
-    </>
+    </main>
   )
 }
 

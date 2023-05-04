@@ -6,11 +6,11 @@ import AuthBottom from '../Register/AuthBottom/AuthBottom';
 
 function Login() {
   return (
-    <>
+    <main className="content section">
       <AuthTop/>
       <AuthForm/>
       <AuthBottom/>
-    </>
+    </main>
   )
 }
 
