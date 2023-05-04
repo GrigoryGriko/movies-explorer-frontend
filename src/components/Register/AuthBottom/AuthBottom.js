@@ -3,7 +3,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 
 function AuthBottom() {
   return (
-  <section className="auth-bottom">
+  <section className="auth-bottom" aria-label="Действие с авторизацией">
     <Switch>
       <Route path="/signup">
         <button className="auth-bottom__button-auth link-hover">

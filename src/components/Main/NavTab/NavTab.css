@@ -195,6 +195,10 @@
   .popup-menu__wrapper-menu-item:last-child {
     margin-bottom: 0;
   }
+  .popup-menu__wrap {
+    list-style-type: none;
+    font-size: 0;
+  }
 
   .popup-menu__menu-link {
     margin: 0;

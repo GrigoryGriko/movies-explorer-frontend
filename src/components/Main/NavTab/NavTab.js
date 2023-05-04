@@ -48,7 +48,7 @@ function NavTab() {
                         ${location.pathname === '/' ?
                         'popup-menu__page-marker_visibility' : ''}`}>
                     </div>
-                  </li><br></br>
+                  </li><li className="popup-menu__wrap"><br></br></li>
                   
                   <li className="popup-menu__wrapper-menu-item">
                     <Link 
@@ -60,7 +60,7 @@ function NavTab() {
                         ${location.pathname === '/movies' ?
                         'popup-menu__page-marker_visibility' : ''}`}>
                     </div>
-                  </li><br></br>
+                  </li><li className="popup-menu__wrap"><br></br></li>
 
                   <li className="popup-menu__wrapper-menu-item">
                     <Link
