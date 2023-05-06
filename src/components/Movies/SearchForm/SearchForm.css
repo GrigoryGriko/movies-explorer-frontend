@@ -1,0 +1,110 @@
+.search-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  padding: 70px 0 10px 0;
+}
+.search-form__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.search-form__search-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 72px;
+  background: #F9F9F9;
+  border-radius: 9px;
+}
+
+.search-form__input-type {
+  margin: 0;
+  padding: 0;
+  margin-left: 28px;
+  padding-left: 32px;
+  border: none;
+  background-color: #F9F9F9;
+
+  background-image: url(../../../images/search-icon.svg);   
+  background-repeat: no-repeat;
+  background-position: 4px;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  
+  color: #000;
+
+  width: 100%;
+  height: 34px;
+  margin-left: 17px;
+}
+.search-form__input-type::placeholder {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  
+  color: #A0A0A0;
+}
+.search-form__search-button {
+  margin-left: 46px;
+  min-width: 34px;
+  height: 34px;
+  border: none;
+
+  background-color: #3456F3;
+  background-image: url(../../../images/search-button.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+.search-form__search-button:active {
+  outline: 2px solid rgba(3, 18, 51, 0.329);
+ }
+
+.search-form__stroke-line {
+  margin-left: 30px;
+  width: 1px;
+  height: 40px;
+  background: #E8E8E8;
+}
+
+.search-form__stroke-line-bottom {
+  width: 100%;
+  height: 1px;
+  margin-top: 69px;
+  background: #E8E8E8;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1136px) {
+  .search-form {
+    padding: 80px 0 10px 0;
+  }
+  .search-form__stroke-line-bottom {
+    margin-top: 109px;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .search-form__input-type {
+    background-image: none;
+    padding-left: 19px;
+    margin-left: 0;
+  }
+  .search-form__stroke-line {
+    display: none;
+  }
+  .search-form__search-button {
+    margin-right: 19px;
+  }
+  .search-form__stroke-line-bottom {
+    margin-top: 44px;
+  }
+}

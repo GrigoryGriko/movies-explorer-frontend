@@ -1,0 +1,47 @@
+.logo {
+  min-width: 38px;
+  min-height: 38px;
+
+  background-color: transparent;
+  background-image: url(../../images/logo.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 74px;
+
+  background-color: #073042;
+}
+.header_light-theme {
+  background-color: #fff;
+}
+
+.header__container-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header__container-content_wrapper {
+  width: calc(100% - 140px);
+}
+.header__menu-link_bold {
+  font-weight: 500;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1136px) {
+  .header__container-content_wrapper {
+    width: calc(100% - 60px);
+  }
+}
+@media screen and (max-width: 699px) {
+  .header__container-content_wrapper {
+    width: calc(100% - 28px);
+  }
+}
+

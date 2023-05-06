@@ -1,0 +1,144 @@
+.techs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0 100px 0;
+
+  background-color: #F5F5F5;
+}
+.techs__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.techs__header {
+  align-self: start;
+}
+
+.techs__title {
+  margin: 0;
+  margin-top: 90px;
+  
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  
+  text-align: center;
+  letter-spacing: -0.04em;
+  
+  color: #000000;
+}
+.techs__description {
+  margin: 0;
+  margin-top: 26px;
+  max-width: 460px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: #000000;
+}
+.techs__wrap {
+  display: none;
+}
+.techs__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  
+  margin-top: 103px;
+  display: flex;
+  justify-content: center;
+}
+.techs__item {
+  margin: 0;
+  font-size: 0;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 90px;
+  height: 60px;
+  margin-right: 10px;
+
+  background: #E8E8E8;
+  border-radius: 10px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+  letter-spacing: -0.04em;
+
+  color: #000000;
+}
+.techs__item:last-child {
+  margin: 0;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1136px) {
+  .techs {
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+  .techs__title {
+    margin-top: 80px;
+  }
+  .techs__description {
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  .techs__wrap {
+    display: inline;
+  }
+  .techs__list {
+    margin-top: 83px;
+  }
+  .techs__item {
+    width: 84px;
+    height: 57px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 699px) {
+  .techs {
+    padding: 70px 0 70px 0;
+  }
+  .techs__title {
+    margin-top: 60px;
+    font-size: 30px;
+  }
+  .techs__description {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .techs__list {
+    width: calc(100% - 106px);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 84px);
+    grid-template-rows: repeat(auto-fill, 57px);
+    grid-auto-flow: row;
+    gap: 10px 10px;
+  
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .techs__item {
+    width: 84px;
+    height: 57px;
+    margin-right: 0;
+  }
+}

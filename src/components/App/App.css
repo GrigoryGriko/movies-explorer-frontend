@@ -1,0 +1,57 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.section {
+  width: 100%;
+  max-width: 1280px;
+}
+.wrapper-promo, .wrapper, .wrapper-about-me, .wrapper-footer, .wrapper-movies-more {
+  width: calc(100% - 140px);
+}
+
+.button-hover {
+  transition: .3s ease opacity;
+}
+.button-hover:disabled {
+  background-color: #F8F8F8;
+  color: #C2C2C2;
+}
+.button-hover:hover {
+  opacity: .8;
+}
+
+.link-hover {
+  transition: .3s ease opacity;
+}
+.link-hover:hover {
+  opacity: .7;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1136px) {
+  .wrapper {
+    width: calc(100% - 60px);
+  }
+  .wrapper-about-me {
+    width: calc(100% - 60px);
+  }
+  .wrapper-promo {
+    width: calc(100% - 100px);
+  }
+}
+@media screen and (max-width: 669px) {
+  .wrapper-promo, .wrapper-about-me, .wrapper-footer {
+    width: calc(100% - 28px);
+  }
+  .wrapper {
+    width: calc(100% - 36px);
+  }
+  .wrapper-movies-more {
+    width: calc(100% - 20px); 
+  }
+}
+
