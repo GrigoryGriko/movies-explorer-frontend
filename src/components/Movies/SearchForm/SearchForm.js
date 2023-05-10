@@ -23,7 +23,9 @@ class SearchForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    /*прогресс бар*/
+    this.props.setIsSearchMovies('Ничего не найдено')
+    this.props.setIsPreloader(true);
+
     moviesApi.getInitMovies()
       .then((res) => {
         const { 
@@ -38,12 +40,10 @@ class SearchForm extends React.Component {
         }
 
         localStorage.setItem("searchFormData", JSON.stringify(searchFormData));
+        this.props.setIsPreloader(false);
       })
-      .catch((err) => {
-        console.log(err);
-        /*this.props.onFinal({
-          message: 'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз'
-        })*/
+      .catch(() => {
+        this.props.setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
       });
   }
 

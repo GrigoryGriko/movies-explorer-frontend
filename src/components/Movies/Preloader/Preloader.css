@@ -48,9 +48,6 @@
   z-index: 10;
   padding: 20px;
 }
-.preloader {
-  display: none;
-}
 
 .preloader__container {
   width: 100px;

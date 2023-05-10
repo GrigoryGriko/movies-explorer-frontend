@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Switch, useLocation } from "react-router-dom";
 
 import Header from '../Header/Header';
@@ -14,7 +14,12 @@ import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
 
 function App() {
+  const [isPreloader, setIsPreloader] = useState(false);
+  const [isSearchMovies, setIsSearchMovies] = useState('');
+  const [isSearchError, setIsSearchError] = useState('');
+
   const location = useLocation();
+
 
   return (
     <div className="App">
@@ -37,7 +42,14 @@ function App() {
         <Route
           path="/movies"
         >
-          <Movies/>
+          <Movies
+            isPreloader={isPreloader}
+            setIsPreloader={setIsPreloader}
+            isSearchMovies={isSearchMovies}
+            setIsSearchMovies={setIsSearchMovies}
+            isSearchError={isSearchError}
+            setIsSearchError={setIsSearchError}
+          />
         </Route>
 
         <Route
