@@ -4,6 +4,13 @@ import { Route, Switch } from "react-router-dom";
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
+
+const {
+  textMovie,
+  shorthsFilms,
+  cards,
+} = JSON.parse(localStorage.getItem("searchFormData"));
+
 function MoviesCardList() {
   return(
     <>
@@ -12,33 +19,12 @@ function MoviesCardList() {
         <ul className="movies-cardlist__list wrapper">
           <Switch>
             <Route path="/movies">
-              <MoviesCard
-                isSaved={false}
+            {cards.map((card) => (
+              <MoviesCard 
+                key={card.id} 
+                card={card}
               />
-              <MoviesCard
-                isSaved={true}
-              />
-              <MoviesCard
-                isSaved={false}
-              />
-              <MoviesCard
-                isSaved={false}
-              />
-              <MoviesCard
-                isSaved={false}
-              />
-              <MoviesCard
-                isSaved={true}
-              />
-              <MoviesCard
-                isSaved={false}
-              />
-              <MoviesCard
-                isSaved={false}
-              />
-              <MoviesCard
-                isSaved={true}
-              />
+            ))}
             </Route>
 
             <Route path="/saved-movies">

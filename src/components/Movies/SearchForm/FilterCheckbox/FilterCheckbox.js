@@ -1,10 +1,14 @@
 import React from 'react';
 
-function FilterCheckbox() {
+function FilterCheckbox(props) {
   return(
     <>
       <label className="search-form__checkbox-filter">
-        <input type="checkbox"></input>
+        <input 
+          type="checkbox"
+          id="shorthsFilms"
+          onChange={props.handleChange}
+        ></input>
         <span className="search-form__checkbox-switch"></span>
       </label>
      
