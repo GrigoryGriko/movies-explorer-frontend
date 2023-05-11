@@ -27,8 +27,7 @@ function MoviesCardList(props) {
  
   useEffect(() => {
     setCards(searchedCards ? searchedCards.splice(0, maxCountCards) : []);
-    console.log(cards);
-  }, []);
+  }, [searchFormData]);
   
 
   /*useEffect(() => {
