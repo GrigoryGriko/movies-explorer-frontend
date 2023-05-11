@@ -8,11 +8,11 @@ import Preloader from '../Preloader/Preloader';
 
 
 function MoviesCardList(props) {
-  localStorage.removeItem("searchFormData");
+  //localStorage.removeItem("searchFormData");
+/*cards.length !== allCountCards.length*/
 
-
-  const [maxCountCards, setMaxCountCards] = useState(4);
-  const [isShowButton, setIsShowButton] = useState(false);
+  const [maxCountCards, setMaxCountCards] = useState(12);
+  const [isShowButton, setIsShowButton] = useState(true);
 
   const [searchFormData, SetSearchFormData] = useState({});
   const [textMovie, setTextMovie] = useState('');
@@ -30,25 +30,47 @@ function MoviesCardList(props) {
     setAllCountCards(searchFormData.cards ? searchFormData.cards : []);
     setCards(searchFormData.cards ? searchFormData.cards.splice(0, maxCountCards) : []);
 
-    console.log(cards.length);
-    console.log(allCountCards.length);
+    if (cards.length < allCountCards.length) {
+      setIsShowButton(true);
+    } else {
+      setIsShowButton(false);
+    }
+
   }, [props.isPreloader, maxCountCards])
 
-  function handleMore() {
-    setMaxCountCards(prevMaxCount => prevMaxCount + 1);
-    setCards(allCountCards ? allCountCards.splice(0, maxCountCards) : []);
-    console.log(maxCountCards);
+  console.log(useWindowSize());
+
+  function useWindowSize() {
+    const [windowWidth, setWindowWidth] = useState();
+  
+    useEffect(() => {
+      let debounceTimeout = null;
+      
+      function handleResize() {
+        clearTimeout(debounceTimeout);
+        debounceTimeout = setTimeout(() => {
+          setWindowWidth(window.innerWidth);
+        }, 300);
+      }
+
+        window.addEventListener("resize", handleResize);
+
+      handleResize();
+
+      return () => window.removeEventListener("resize", handleResize);
+    }, [])
+
+    return windowWidth;
   }
 
-  /*useEffect(() => {
-    setCards(searchedCards ? searchedCards.splice(0, maxCountCards) : []);
-  }, [searchFormData]);*/
-  
+  function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
+  }
 
-  /*useEffect(() => {
-    setMaxCountCards(maxCountCards + 1);
-  }, [cards]);
-  console.log(searchedCards);*/
+  function handleMore() {
+    setMaxCountCards(prevMaxCount => prevMaxCount + 3);
+    setCards(allCountCards ? allCountCards.splice(0, maxCountCards) : []);
+  }
   
   return ( 
     <>
@@ -80,13 +102,13 @@ function MoviesCardList(props) {
             </Switch>
           </ul> : ''
         }
-        {(searchFormData.legnth !== 0 && !props.isPreloader && props.isSearchMovies) ?
+        {(isEmpty(searchFormData) && !props.isPreloader && props.isSearchMovies) ?
         props.isSearchMovies : '' }
       </section>
          
       <Switch>
         <Route path="/movies">
-          {(true) ? 
+          {isShowButton ? 
             <section className="movies-more section">
             <button 
               className="movies-more__button-more wrapper-movies-more button-hover"
