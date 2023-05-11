@@ -5,13 +5,14 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
 
-
-
 function MoviesCardList(props) {
   //localStorage.removeItem("searchFormData");
-/*cards.length !== allCountCards.length*/
+
+  const windowWidth = useWindowSize();
 
   const [maxCountCards, setMaxCountCards] = useState(12);
+  const [countAppendCards, setCountAppendCards] = useState(3);
+
   const [isShowButton, setIsShowButton] = useState(true);
 
   const [searchFormData, SetSearchFormData] = useState({});
@@ -19,47 +20,71 @@ function MoviesCardList(props) {
   const [shorthsFilms, setShorthsFilms] = useState('');
   const [allCountCards, setAllCountCards] = useState([]);
   const [cards, setCards] = useState([]);
-  
+
   useEffect(() => {
-    const searchFormStorage = JSON.parse(localStorage.getItem("searchFormData"));
-    SetSearchFormData(searchFormStorage ? searchFormStorage : {});
+    setterSearchFormData();
+  }, []);
 
-    setTextMovie(searchFormData.textMovie ? searchFormData.textMovie : '');
-    setShorthsFilms(searchFormData.shorthsFilms ? searchFormData.shorthsFilms: '');
+  useEffect(() => {
+    if (windowWidth >= 1280) {
+      setMaxCountCards(12);
+      setCountAppendCards(3);
+    } 
+    else if (windowWidth >= 768 && windowWidth < 1280) {
+      setMaxCountCards(8);
+      setCountAppendCards(2);
+    }
+    else if (windowWidth > 480 && windowWidth < 768) {
+      setMaxCountCards(8);
+      setCountAppendCards(2);
+    }
+    else if (windowWidth >= 320 && windowWidth <= 480) {
+      setMaxCountCards(5);
+      setCountAppendCards(2);
+    }
+  }, [props.isPreloader, windowWidth]);
 
-    setAllCountCards(searchFormData.cards ? searchFormData.cards : []);
-    setCards(searchFormData.cards ? searchFormData.cards.splice(0, maxCountCards) : []);
+  useEffect(() => {
+    setterSearchFormData();
 
     if (cards.length < allCountCards.length) {
       setIsShowButton(true);
     } else {
       setIsShowButton(false);
     }
-
   }, [props.isPreloader, maxCountCards])
 
-  console.log(useWindowSize());
+  function setterSearchFormData() {
+    const searchFormStorage = JSON.parse(localStorage.getItem("searchFormData"));
+    SetSearchFormData(searchFormStorage ? searchFormStorage : {}); // searchFormData - нету
+
+    setTextMovie(searchFormData.textMovie ? searchFormData.textMovie : '');
+    setShorthsFilms(searchFormData.shorthsFilms ? searchFormData.shorthsFilms: '');
+
+    setAllCountCards(searchFormData.cards ? searchFormData.cards : []);
+    setCards(searchFormData.cards ? searchFormData.cards.splice(0, maxCountCards) : []);
+    console.log(searchFormStorage);
+  }
 
   function useWindowSize() {
-    const [windowWidth, setWindowWidth] = useState();
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   
     useEffect(() => {
       let debounceTimeout = null;
-      
+  
       function handleResize() {
         clearTimeout(debounceTimeout);
         debounceTimeout = setTimeout(() => {
           setWindowWidth(window.innerWidth);
         }, 300);
       }
-
-        window.addEventListener("resize", handleResize);
-
+  
+      window.addEventListener("resize", handleResize);
       handleResize();
-
+  
       return () => window.removeEventListener("resize", handleResize);
-    }, [])
-
+    }, []);
+  
     return windowWidth;
   }
 
@@ -68,7 +93,7 @@ function MoviesCardList(props) {
   }
 
   function handleMore() {
-    setMaxCountCards(prevMaxCount => prevMaxCount + 3);
+    setMaxCountCards(prevMaxCount => prevMaxCount + countAppendCards);
     setCards(allCountCards ? allCountCards.splice(0, maxCountCards) : []);
   }
   
