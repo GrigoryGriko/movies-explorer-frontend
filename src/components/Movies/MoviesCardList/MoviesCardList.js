@@ -13,21 +13,29 @@ function MoviesCardList(props) {
 
   const [maxCountCards, setMaxCountCards] = useState(4);
   const [isShowButton, setIsShowButton] = useState(false);
+
+  const [searchFormData, SetSearchFormData] = useState({});
+  const [textMovie, setTextMovie] = useState('');
+  const [shorthsFilms, setShorthsFilms] = useState('');
+  const [allCountCards, setAllCountCards] = useState([]);
   const [cards, setCards] = useState([]);
-
-  const searchFormData = JSON.parse(localStorage.getItem("searchFormData"));
   
-  const {
-    textMovie,
-    shorthsFilms,
-    cards: searchedCards,
-  } = searchFormData || {};
-
-  
- 
   useEffect(() => {
+    SetSearchFormData(JSON.parse(localStorage.getItem("searchFormData")));
+
+    setTextMovie(searchFormData.textMovie);
+    setShorthsFilms(searchFormData.shorthsFilms);
+
+    setAllCountCards(searchFormData.cards ? searchFormData.cards : []);
+    setCards(searchFormData.cards ? searchFormData.cards.splice(0, maxCountCards) : []);
+
+    console.log(cards.length);
+    console.log(allCountCards.length);
+  }, [props.isPreloader])
+
+  /*useEffect(() => {
     setCards(searchedCards ? searchedCards.splice(0, maxCountCards) : []);
-  }, [searchFormData]);
+  }, [searchFormData]);*/
   
 
   /*useEffect(() => {
@@ -71,7 +79,7 @@ function MoviesCardList(props) {
          
       <Switch>
         <Route path="/movies">
-          {(cards.length !== searchedCards) ? 
+          {(!cards & cards.length !== allCountCards.length) ? 
             <section className="movies-more section">
             <button className="movies-more__button-more wrapper-movies-more button-hover">
               Ещё
