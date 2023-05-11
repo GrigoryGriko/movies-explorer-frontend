@@ -8,7 +8,7 @@ import Preloader from '../Preloader/Preloader';
 
 
 function MoviesCardList(props) {
-  //localStorage.removeItem("searchFormData");
+  localStorage.removeItem("searchFormData");
 
 
   const [maxCountCards, setMaxCountCards] = useState(4);
@@ -21,17 +21,24 @@ function MoviesCardList(props) {
   const [cards, setCards] = useState([]);
   
   useEffect(() => {
-    SetSearchFormData(JSON.parse(localStorage.getItem("searchFormData")));
+    const searchFormStorage = JSON.parse(localStorage.getItem("searchFormData"));
+    SetSearchFormData(searchFormStorage ? searchFormStorage : {});
 
-    setTextMovie(searchFormData.textMovie);
-    setShorthsFilms(searchFormData.shorthsFilms);
+    setTextMovie(searchFormData.textMovie ? searchFormData.textMovie : '');
+    setShorthsFilms(searchFormData.shorthsFilms ? searchFormData.shorthsFilms: '');
 
     setAllCountCards(searchFormData.cards ? searchFormData.cards : []);
     setCards(searchFormData.cards ? searchFormData.cards.splice(0, maxCountCards) : []);
 
     console.log(cards.length);
     console.log(allCountCards.length);
-  }, [props.isPreloader])
+  }, [props.isPreloader, maxCountCards])
+
+  function handleMore() {
+    setMaxCountCards(prevMaxCount => prevMaxCount + 1);
+    setCards(allCountCards ? allCountCards.splice(0, maxCountCards) : []);
+    console.log(maxCountCards);
+  }
 
   /*useEffect(() => {
     setCards(searchedCards ? searchedCards.splice(0, maxCountCards) : []);
@@ -73,15 +80,18 @@ function MoviesCardList(props) {
             </Switch>
           </ul> : ''
         }
-        {(!searchFormData && !props.isPreloader && props.isSearchMovies) ?
+        {(searchFormData.legnth !== 0 && !props.isPreloader && props.isSearchMovies) ?
         props.isSearchMovies : '' }
       </section>
          
       <Switch>
         <Route path="/movies">
-          {(!cards & cards.length !== allCountCards.length) ? 
+          {(true) ? 
             <section className="movies-more section">
-            <button className="movies-more__button-more wrapper-movies-more button-hover">
+            <button 
+              className="movies-more__button-more wrapper-movies-more button-hover"
+              onClick={handleMore}
+            >
               Ещё
             </button>
           </section> : ''
@@ -91,5 +101,6 @@ function MoviesCardList(props) {
     </>
   )
 }
+/*cards & cards.length !== allCountCards.length*/
 
 export default MoviesCardList;
