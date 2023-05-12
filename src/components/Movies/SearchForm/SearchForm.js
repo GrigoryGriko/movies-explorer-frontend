@@ -9,11 +9,22 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       textMovie: '',
+      shortsFilms: 'off',
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    const searchFormData = JSON.parse(localStorage.getItem("searchFormData"));
+    const textMovie = searchFormData !== null ? searchFormData.textMovie : '';
+    const shortsFilms = searchFormData !== null ? searchFormData.shortsFilms : '';
+    this.setState({
+      textMovie: textMovie,
+      shortsFilms: shortsFilms,
+    });
+  }
+  
   handleChange(e) {
     const {id, value} = e.target;
     this.setState({
@@ -30,12 +41,12 @@ class SearchForm extends React.Component {
       .then((res) => {
         const { 
           textMovie,
-          shorthsFilms,
+          shortsFilms,
         } = this.state;
 
         const searchFormData = {
           textMovie,
-          shorthsFilms: shorthsFilms ? shorthsFilms : 'off',
+          shortsFilms: shortsFilms ? shortsFilms : 'off',
           cards: res,
         }
 
@@ -46,7 +57,7 @@ class SearchForm extends React.Component {
         this.props.setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
       });
   }
-
+  
   render() {
     return(
       <section className="search-form section">
@@ -67,15 +78,19 @@ class SearchForm extends React.Component {
   
             <div className="search-form__stroke-line"></div>
   
-            <div className="search-form__filter-switch_desktop-visibility">
+            <div className={"search-form__filter-switch_desktop-visibility"}>
               <FilterCheckbox
                 handleChange={this.handleChange}
+                shortsFilms={this.state.shortsFilms}
               />
             </div>
             
           </form>
             <div className="search-form__filter-switch_mobile-visibility">
-              <FilterCheckbox/>
+              <FilterCheckbox 
+                handleChange={this.handleChange}
+                shortsFilms={this.state.shortsFilms}
+              />
             </div>
           <div className="search-form__stroke-line-bottom"></div>
         </div>

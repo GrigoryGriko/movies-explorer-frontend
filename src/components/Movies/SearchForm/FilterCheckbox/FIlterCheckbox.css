@@ -69,6 +69,7 @@
   display: none;
 }
 
+
 @media screen and (max-width: 699px) {
   .search-form__filter-switch_desktop-visibility {
     display: none;

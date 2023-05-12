@@ -17,7 +17,7 @@ function MoviesCardList(props) {
 
   const [searchFormData, SetSearchFormData] = useState({});
   const [textMovie, setTextMovie] = useState('');
-  const [shorthsFilms, setShorthsFilms] = useState('');
+  const [shortsFilms, setshortsFilms] = useState('');
   const [allCountCards, setAllCountCards] = useState([]);
   const [cards, setCards] = useState([]);
 
@@ -59,13 +59,13 @@ function MoviesCardList(props) {
     SetSearchFormData(searchFormStorage ? searchFormStorage : {});
 
     setTextMovie(searchFormStorage !== null ? searchFormStorage.textMovie : '');
-    setShorthsFilms(searchFormStorage !== null ? searchFormStorage.shorthsFilms: '');
+    setshortsFilms(searchFormStorage !== null ? searchFormStorage.shortsFilms: '');
 
     setAllCountCards(searchFormStorage !== null ? searchFormStorage.cards : []);
     setCards(searchFormStorage !== null ? searchFormStorage.cards.splice(0, maxCountCards) : []);
     
     console.log(textMovie);
-    console.log(shorthsFilms);
+    console.log(shortsFilms);
     console.log(allCountCards);
   }
 
