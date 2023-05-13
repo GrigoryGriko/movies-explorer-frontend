@@ -100,20 +100,15 @@ function MoviesCardList(props) {
     setCards(allCountCards ? allCountCards.splice(0, maxCountCards) : []);
   }
   
-  function handleCardSave(card, cardIndex) {
-    card.isSaved = true;
-
-    /*allCountCards[cardIndex] = card;
-    setAllCountCards(allCountCards);
-    console.log(card);*/
-
+  function handleCard(action, card) {
+    const flag = (action === 'save') ? true : false;
     const searchFormData = getSearchFormData();
 
     const cards = searchFormData.cards || [];
     
-    cards.forEach((c, index) => {
-      if (c.id === card.id) {
-        c.isSaved = true;
+    cards.forEach((i, index) => {
+      if (i.id === card.id) {
+        i.isSaved = flag;
         return;
       }
     });
@@ -122,6 +117,15 @@ function MoviesCardList(props) {
 
     localStorage.setItem("searchFormData", JSON.stringify(searchFormData));
   }
+
+  function handleCardSave(card) {
+    handleCard('save', card);
+  }
+
+  function handleCardDelete(card) {
+    handleCard('delete', card);
+  }
+
   return ( 
     <>
       <section className="movies-cardlist section">
@@ -134,8 +138,8 @@ function MoviesCardList(props) {
                   <MoviesCard 
                     key={card.id} 
                     card={card}
-                    cardIndex={index}
                     onCardSave={handleCardSave}
+                    onCardDelete={handleCardDelete}
                   />
                 )) : ''}
               </Route>
