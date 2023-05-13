@@ -6,7 +6,7 @@ import Preloader from '../Preloader/Preloader';
 
 
 function MoviesCardList(props) {
-  //localStorage.removeItem("searchFormData");
+  //localStorage.removeItem("searchFormData"); //SyntaxError: "undefined" is not valid JSON
 
   const windowWidth = useWindowSize();
 
@@ -54,19 +54,19 @@ function MoviesCardList(props) {
     }
   }, [props.isPreloader, maxCountCards])
 
+
+  function getSearchFormData() {
+    return JSON.parse(localStorage.getItem("searchFormData"));
+  }
   function setterSearchFormData() {
-    const searchFormStorage = JSON.parse(localStorage.getItem("searchFormData"));
-    SetSearchFormData(searchFormStorage ? searchFormStorage : {});
+    const searchFormData = getSearchFormData();
+    SetSearchFormData(searchFormData ? searchFormData : {});
 
-    setTextMovie(searchFormStorage !== null ? searchFormStorage.textMovie : '');
-    setshortsFilms(searchFormStorage !== null ? searchFormStorage.shortsFilms: '');
+    setTextMovie(searchFormData !== null ? searchFormData.textMovie : '');
+    setshortsFilms(searchFormData !== null ? searchFormData.shortsFilms: '');
 
-    setAllCountCards(searchFormStorage !== null ? searchFormStorage.cards : []);
-    setCards(searchFormStorage !== null ? searchFormStorage.cards.splice(0, maxCountCards) : []);
-    
-    console.log(textMovie);
-    console.log(shortsFilms);
-    console.log(allCountCards);
+    setAllCountCards(searchFormData !== null ? searchFormData.cards : []);
+    setCards(searchFormData !== null ? searchFormData.cards.splice(0, maxCountCards) : []);
   }
 
   function useWindowSize() {
@@ -100,6 +100,28 @@ function MoviesCardList(props) {
     setCards(allCountCards ? allCountCards.splice(0, maxCountCards) : []);
   }
   
+  function handleCardSave(card, cardIndex) {
+    card.isSaved = true;
+
+    /*allCountCards[cardIndex] = card;
+    setAllCountCards(allCountCards);
+    console.log(card);*/
+
+    const searchFormData = getSearchFormData();
+
+    const cards = searchFormData.cards || [];
+    
+    cards.forEach((c, index) => {
+      if (c.id === card.id) {
+        c.isSaved = true;
+        return;
+      }
+    });
+    
+    searchFormData.cards = cards;
+
+    localStorage.setItem("searchFormData", JSON.stringify(searchFormData));
+  }
   return ( 
     <>
       <section className="movies-cardlist section">
@@ -112,6 +134,8 @@ function MoviesCardList(props) {
                   <MoviesCard 
                     key={card.id} 
                     card={card}
+                    cardIndex={index}
+                    onCardSave={handleCardSave}
                   />
                 )) : ''}
               </Route>

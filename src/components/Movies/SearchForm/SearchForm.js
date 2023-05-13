@@ -9,7 +9,7 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       textMovie: '',
-      shortsFilms: 'off',
+      shortsFilms: '',
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
