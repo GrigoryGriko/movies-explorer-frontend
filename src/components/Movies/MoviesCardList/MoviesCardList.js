@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from "react-router-dom";
+import mainApi from '../../../utils/MainApi';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
@@ -119,11 +120,24 @@ function MoviesCardList(props) {
   }
 
   function handleCardSave(card) {
-    handleCard('save', card);
+    mainApi.addMovie(
+      card.nameRU,
+      `https://api.nomoreparties.co/${card.image.url}`,
+      card.trailerLink,
+      card.duration
+    )
+      .then(() => {
+        handleCard('save', card);
+      })
+      .catch(err => console.log(err));
   }
 
   function handleCardDelete(card) {
-    handleCard('delete', card);
+    mainApi.addMovie(card.id)
+      .then(() => {
+        handleCard('delete', card);
+      })
+      .catch(err => console.log(err));
   }
 
   return ( 

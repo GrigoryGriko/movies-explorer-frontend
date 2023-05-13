@@ -51,7 +51,7 @@ function MoviesCard (props) {
         </Switch>
 
         <div className="movies-cardlist__wrapper-text">
-          <h5 className="movies-cardlist__title-film">{''+props.card.isSaved} 33 слова о дизайне</h5>
+          <h5 className="movies-cardlist__title-film">33 слова о дизайне</h5>
           <p className="movies-cardlist__duration-film">1ч 17м</p>
         </div>
       </li>
