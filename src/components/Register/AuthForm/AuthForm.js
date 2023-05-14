@@ -2,36 +2,89 @@ import React, {useState, useEffect} from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 
-const useValidation = (value, validations) => {
+function useValidation (value, validations) {
+  const [textError, setTextError] = useState('');
 	const [isEmpty, setIsEmpty] = useState(false);
 	const [minLengthError, setMinLengthError] = useState(false);
+  const [maxLengthError, setMaxLengthError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+
+  function switchValidation(isValidation) {
+    let isEmpty = false;
+    let minLength = false;
+    let maxLength = false;
+    let isEmail = false;
+
+    if (isValidation === 'isEmpty') isEmpty = true;
+    else if (isValidation === 'minLength') minLength = true;
+    else if (isValidation === 'maxLength') maxLength  = true;
+    else if (isValidation === 'isEmail') isEmail = true;
+
+    setIsEmpty(isEmpty);
+    setMinLengthError(minLength);
+    setMaxLengthError(maxLength);
+    setEmailError(isEmail);
+  }
 
 	useEffect(() => {
 		for (const validation in validations) {
 			switch (validation) {
 				case 'minLength':
-					value.length < validations[validation] ? setMinLengthError(true) : setMinLengthError(false);
-          console.log('minLength ' + minLengthError);
+					if (value.length > 0 && value.length < validations[validation]) {
+						switchValidation('minLength');
+
+						setTextError('Минимальная длинна поля 3 символа');
+					} else {
+						setMinLengthError(false);
+					}
 					break;
+        case 'maxLength':
+          if (value.length > validations[validation]) {
+            switchValidation('maxLength');
+
+            setTextError('Максимальная длинна поля 30 символов');
+          } else {
+            setMaxLengthError(false);
+          }
+          break;
 				case 'isEmpty':
-					value ? setIsEmpty(false) : setIsEmpty(true);
+					if (value.trim().length === 0) {
+						switchValidation('isEmpty');
+            
+						setTextError('Поле не должно быть пустым');
+					} else {
+						setIsEmpty(false);
+					}
 					break;
+        case 'isEmail':
+          const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+          if ( value.trim().length !== 0 && !re.test(String(value).toLowerCase()) ) {
+            switchValidation('isEmail');
+
+            setTextError('Невалидный Email');
+          } else {
+            setEmailError(false);
+          }
+        break;
 			}
 		}
 	}, [value])
 
 	return {
+    textError,
 		isEmpty,
 		minLengthError,
+    maxLengthError,
+    emailError,
 	}
 }
 
-const useInput = (initialValue, validations) => {
+function useInput (initialValue, validations) {
 	const [value, setValue] = useState(initialValue);
   const [isChange, setIsChange] = useState(false);
 	const valid = useValidation(value, validations);
 
-	const onChange = (e) => {
+	function onChange (e) {
 		setValue(e.target.value);
     setIsChange(true);
 	}
@@ -44,10 +97,20 @@ const useInput = (initialValue, validations) => {
 	}
 }
 
-const AuthForm = () => {
-  const name = useInput('', {isEmpty: true, minLength: 3});
-  const email = useInput('', {isEmpty: true, minLength: 3});
-	const password = useInput('', {isEmpty: true, minLength: 3});
+function displayError(nameInput) {
+  return nameInput.isChange && 
+    (nameInput.isEmpty 
+    || nameInput.minLengthError
+    || nameInput.maxLengthError
+    || nameInput.emailError)
+      ? 'block'
+      : 'none';
+}
+
+function AuthForm () {
+  const name = useInput('', {isEmpty: true, minLength: 3, maxLength: 30,});
+  const email = useInput('', {isEmpty: true, isEmail: true});
+	const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 30});
 
   return (
   <section className="auth-form" aria-label="форма с полями ввода">
@@ -66,13 +129,9 @@ const AuthForm = () => {
 
             <span
               className="auth-form__input-error" 
-              style={
-                (name.isChange && (name.isEmpty || name.minLengthError)) 
-                ? { display: 'block' } 
-                : { display: 'none' }
-              }
+              style={{ display: displayError(name) }}
             >
-              Что-то пошло не так...
+              {name.textError}
             </span>
           </label>
 
