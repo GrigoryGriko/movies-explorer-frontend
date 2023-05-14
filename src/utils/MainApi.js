@@ -18,7 +18,7 @@ class MainApi {
   }) {
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
-      /*credentials: "include",*/
+      credentials: "include",
       headers: {
         'Content-type': 'application-json'
       },
@@ -28,7 +28,7 @@ class MainApi {
   deleteMovie(movieId) {
     return fetch(`${this._baseUrl}/movies/${movieId}`, {
       method: 'DELETE',
-      /*credentials: "include",*/
+      credentials: "include",
       headers: {
         'Content-type': 'application-json'
       },
