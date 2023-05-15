@@ -113,14 +113,27 @@ function useInput (initialValue, validations) {
 }
 
 function displayError(nameInput) {
-  return nameInput.isChange && 
+  let isTextError = 'none';
+  let isUnderlinError = '';
+  let isValueError = '';
+
+  if (nameInput.isChange && 
     (nameInput.isEmpty 
     || nameInput.minLengthError
     || nameInput.maxLengthError
     || nameInput.emailError
-    || nameInput.nameError)
-      ? 'block'
-      : 'none';
+    || nameInput.nameError)) 
+  {
+    isTextError = 'block';
+    isUnderlinError = 'auth-form__stroke-line-error-data';
+    isValueError = 'auth-form__input-error-data';
+  }
+
+  return {
+    isTextError,
+    isUnderlinError,
+    isValueError,
+  }
 }
 
 function AuthForm () {
@@ -137,15 +150,15 @@ function AuthForm () {
             <span  className="auth-form__caption">
               Имя
             </span>
-            <input className="auth-form__input"
+            <input className={`auth-form__input ${displayError(name).isValueError}`}
               onChange={e => name.onChange(e)}
               value={name.value}
             ></input>
-            <span className="auth-form__stroke-line"></span>
+            <span className={`auth-form__stroke-line ${displayError(name).isUnderlinError}`}></span>
 
             <span
               className="auth-form__input-error" 
-              style={{ display: displayError(name) }}
+              style={{ display: displayError(name).isTextError }}
             >
               {name.textError}
             </span>
@@ -155,26 +168,36 @@ function AuthForm () {
             <span  className="auth-form__caption">
               E-mail
             </span>
-            <input className="auth-form__input"
+            <input className={`auth-form__input ${displayError(email).isValueError}`}
               onChange={e => email.onChange(e)}
               value={email.value}
             ></input>
-            <span className="auth-form__stroke-line"></span>
+            <span className={`auth-form__stroke-line ${displayError(email).isUnderlinError}`}></span>
 
-            <span className="auth-form__input-error" style={{ display: 'none' }}>Что-то пошло не так...</span>
+            <span
+              className="auth-form__input-error" 
+              style={{ display: displayError(email).isTextError }}
+            >
+              {email.textError}
+            </span>
           </label>
 
           <label className="auth-form__field">
             <span  className="auth-form__caption">
               Пароль
             </span>
-            <input className="auth-form__input auth-form__input-error-data"
+            <input className={`auth-form__input ${displayError(name).isValueError}`}
               onChange={e => password.onChange(e)}
               value={password.value}
             ></input>
-            <span className="auth-form__stroke-line"></span>
+            <span className={`auth-form__stroke-line ${displayError(password).isUnderlinError}`}></span>
 
-            <span className="auth-form__input-error">Что-то пошло не так...</span>
+            <span
+              className="auth-form__input-error" 
+              style={{ display: displayError(password).isTextError }}
+            >
+              {password.textError}
+            </span>
           </label>
         </Route>
 
@@ -183,20 +206,35 @@ function AuthForm () {
             <span  className="auth-form__caption">
               E-mail
             </span>
-            <input className="auth-form__input"></input>
-            <span className="auth-form__stroke-line"></span>
+            <input className={`auth-form__input ${displayError(email).isValueError}`}
+              onChange={e => password.onChange(e)}
+              value={password.value}
+            ></input>
+            <span className={`auth-form__stroke-line ${displayError(email).isUnderlinError}`}></span>
 
-            <span className="auth-form__input-error" style={{ display: 'none' }}>Что-то пошло не так...</span>
+            <span
+              className="auth-form__input-error" 
+              style={{ display: displayError(email).isTextError }}
+            >
+              {password.textError}
+            </span>
           </label>
 
           <label className="auth-form__field auth-form__field_route-signin">
             <span  className="auth-form__caption">
               Пароль
             </span>
-            <input className="auth-form__input"></input>
-            <span className="auth-form__stroke-line"></span>
+            <input className={`auth-form__input ${displayError(email).isValueError}`}
+              onChange={e => password.onChange(e)}
+              value={password.value}
+            ></input>
+            <span className={`auth-form__stroke-line ${displayError(password).isUnderlinError}`}></span>
 
-            <span className="auth-form__input-error" style={{ display: 'none' }}>Что-то пошло не так...</span>
+            <span
+              className="auth-form__input-error" 
+              style={{ display: displayError(password).isTextError }}
+            >
+            </span>
           </label>
         </Route>
       </Switch>
