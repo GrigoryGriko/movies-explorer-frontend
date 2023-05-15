@@ -8,22 +8,26 @@ function useValidation (value, validations) {
 	const [minLengthError, setMinLengthError] = useState(false);
   const [maxLengthError, setMaxLengthError] = useState(false);
   const [emailError, setEmailError] = useState(false);
+  const [nameError, setNameError] = useState(false);
 
   function switchValidation(isValidation) {
     let isEmpty = false;
     let minLength = false;
     let maxLength = false;
     let isEmail = false;
+    let isName = false;
 
     if (isValidation === 'isEmpty') isEmpty = true;
     else if (isValidation === 'minLength') minLength = true;
     else if (isValidation === 'maxLength') maxLength  = true;
     else if (isValidation === 'isEmail') isEmail = true;
+    else if (isValidation === 'isName') isName = true;
 
     setIsEmpty(isEmpty);
     setMinLengthError(minLength);
     setMaxLengthError(maxLength);
     setEmailError(isEmail);
+    setNameError(isName);
   }
 
 	useEffect(() => {
@@ -57,13 +61,23 @@ function useValidation (value, validations) {
 					}
 					break;
         case 'isEmail':
-          const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-          if ( value.trim().length !== 0 && !re.test(String(value).toLowerCase()) ) {
+          const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+          if ( value.trim().length !== 0 && !regexEmail.test(String(value).toLowerCase()) ) {
             switchValidation('isEmail');
 
             setTextError('Невалидный Email');
           } else {
             setEmailError(false);
+          }
+        break;
+        case 'isName':
+          const regexName = /^[a-zA-ZА-я\s-]*$/u;
+          if (!regexName.test(String(value).toLowerCase()) ) {
+            switchValidation('isName');
+
+            setTextError('Невалидное Имя');
+          } else {
+            setNameError(false);
           }
         break;
 			}
@@ -76,6 +90,7 @@ function useValidation (value, validations) {
 		minLengthError,
     maxLengthError,
     emailError,
+    nameError,
 	}
 }
 
@@ -102,13 +117,14 @@ function displayError(nameInput) {
     (nameInput.isEmpty 
     || nameInput.minLengthError
     || nameInput.maxLengthError
-    || nameInput.emailError)
+    || nameInput.emailError
+    || nameInput.nameError)
       ? 'block'
       : 'none';
 }
 
 function AuthForm () {
-  const name = useInput('', {isEmpty: true, minLength: 3, maxLength: 30,});
+  const name = useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true});
   const email = useInput('', {isEmpty: true, isEmail: true});
 	const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 30});
 
