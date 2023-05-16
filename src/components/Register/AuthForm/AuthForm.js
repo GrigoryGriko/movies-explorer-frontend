@@ -1,156 +1,31 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import {useInput, displayError} from '../../../utils/ValidationForm';
 
-function useValidation (value, validations) {
-  const [textError, setTextError] = useState('');
-	const [isEmpty, setIsEmpty] = useState(false);
-	const [minLengthError, setMinLengthError] = useState(false);
-  const [maxLengthError, setMaxLengthError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [nameError, setNameError] = useState(false);
-
-  function switchValidation(isValidation) {
-    let isEmpty = false;
-    let minLength = false;
-    let maxLength = false;
-    let isEmail = false;
-    let isName = false;
-
-    if (isValidation === 'isEmpty') isEmpty = true;
-    else if (isValidation === 'minLength') minLength = true;
-    else if (isValidation === 'maxLength') maxLength  = true;
-    else if (isValidation === 'isEmail') isEmail = true;
-    else if (isValidation === 'isName') isName = true;
-
-    setIsEmpty(isEmpty);
-    setMinLengthError(minLength);
-    setMaxLengthError(maxLength);
-    setEmailError(isEmail);
-    setNameError(isName);
+function AuthForm() {
+  const nameInput = {
+    name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
+    email: useInput('', {isEmpty: true, isEmail: true}),
+    password: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
   }
 
-	useEffect(() => {
-		for (const validation in validations) {
-			switch (validation) {
-				case 'minLength':
-					if (value.length > 0 && value.length < validations[validation]) {
-						switchValidation('minLength');
-
-						setTextError('Минимальная длинна поля 3 символа');
-					} else {
-						setMinLengthError(false);
-					}
-					break;
-        case 'maxLength':
-          if (value.length > validations[validation]) {
-            switchValidation('maxLength');
-
-            setTextError('Максимальная длинна поля 30 символов');
-          } else {
-            setMaxLengthError(false);
-          }
-          break;
-				case 'isEmpty':
-					if (value.trim().length === 0) {
-						switchValidation('isEmpty');
-            
-						setTextError('Поле не должно быть пустым');
-					} else {
-						setIsEmpty(false);
-					}
-					break;
-        case 'isEmail':
-          const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-          if ( value.trim().length !== 0 && !regexEmail.test(String(value).toLowerCase()) ) {
-            switchValidation('isEmail');
-
-            setTextError('Невалидный Email');
-          } else {
-            setEmailError(false);
-          }
-        break;
-        case 'isName':
-          const regexName = /^[a-zA-ZА-я\s-]*$/u;
-          if (!regexName.test(String(value).toLowerCase()) ) {
-            switchValidation('isName');
-
-            setTextError('Невалидное Имя');
-          } else {
-            setNameError(false);
-          }
-        break;
-			}
-		}
-	}, [value])
-
-	return {
-    textError,
-		isEmpty,
-		minLengthError,
-    maxLengthError,
-    emailError,
-    nameError,
-	}
-}
-
-function useInput (initialValue, validations) {
-	const [value, setValue] = useState(initialValue);
-  const [isChange, setIsChange] = useState(false);
-	const valid = useValidation(value, validations);
-
-	function onChange (e) {
-		setValue(e.target.value);
-    setIsChange(true);
-	}
-
-	return {
-		value,
-    isChange,
-		onChange,
-		...valid,
-	}
-}
-
-function displayError(nameInput) {
-  let isTextError = 'none';
-  let isUnderlinError = '';
-  let isValueError = '';
-
-  if (nameInput.isChange && 
-    (nameInput.isEmpty 
-    || nameInput.minLengthError
-    || nameInput.maxLengthError
-    || nameInput.emailError
-    || nameInput.nameError)) 
-  {
-    isTextError = 'block';
-    isUnderlinError = 'auth-form__stroke-line-error-data';
-    isValueError = 'auth-form__input-error-data';
-  }
-
-  return {
-    isTextError,
-    isUnderlinError,
-    isValueError,
-  }
-}
-
-function AuthForm () {
-  const name = useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true});
-  const email = useInput('', {isEmpty: true, isEmail: true});
-	const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 30});
+  const {name, email, password} = nameInput;
 
   return (
   <section className="auth-form" aria-label="форма с полями ввода">
-    <form className="auth-form__wrapper">
+    <form 
+      className="auth-form__wrapper"
+    >
       <Switch>
         <Route path="/signup">
           <label className="auth-form__field">
-            <span  className="auth-form__caption">
+            <span className="auth-form__caption">
               Имя
             </span>
-            <input className={`auth-form__input ${displayError(name).isValueError}`}
+            <input 
+              className={`auth-form__input ${displayError(name).isValueError}`}
+              type="text"
               onChange={e => name.onChange(e)}
               value={name.value}
             ></input>
@@ -165,10 +40,12 @@ function AuthForm () {
           </label>
 
           <label className="auth-form__field">
-            <span  className="auth-form__caption">
+            <span className="auth-form__caption">
               E-mail
             </span>
-            <input className={`auth-form__input ${displayError(email).isValueError}`}
+            <input 
+              className={`auth-form__input ${displayError(email).isValueError}`}
+              type="email"
               onChange={e => email.onChange(e)}
               value={email.value}
             ></input>
@@ -183,10 +60,12 @@ function AuthForm () {
           </label>
 
           <label className="auth-form__field">
-            <span  className="auth-form__caption">
+            <span className="auth-form__caption">
               Пароль
             </span>
-            <input className={`auth-form__input ${displayError(name).isValueError}`}
+            <input 
+              className={`auth-form__input ${displayError(password).isValueError}`}
+              type="password"
               onChange={e => password.onChange(e)}
               value={password.value}
             ></input>
@@ -203,10 +82,12 @@ function AuthForm () {
 
         <Route path="/signin">
           <label className="auth-form__field">
-            <span  className="auth-form__caption">
+            <span className="auth-form__caption">
               E-mail
             </span>
-            <input className={`auth-form__input ${displayError(email).isValueError}`}
+            <input 
+              className={`auth-form__input ${displayError(email).isValueError}`}
+              type="email"
               onChange={e => password.onChange(e)}
               value={password.value}
             ></input>
@@ -221,10 +102,12 @@ function AuthForm () {
           </label>
 
           <label className="auth-form__field auth-form__field_route-signin">
-            <span  className="auth-form__caption">
+            <span className="auth-form__caption">
               Пароль
             </span>
-            <input className={`auth-form__input ${displayError(email).isValueError}`}
+            <input 
+              className={`auth-form__input ${displayError(email).isValueError}`}
+              type="password"
               onChange={e => password.onChange(e)}
               value={password.value}
             ></input>

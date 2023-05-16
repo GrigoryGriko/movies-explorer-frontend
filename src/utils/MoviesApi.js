@@ -13,7 +13,6 @@ class MoviesApi {
   getInitMovies() {
     return fetch(`${this._baseUrl}`, {
       method: 'GET',
-      /*credentials: "include",*/
       headers: {
         'Content-Type': 'application/json'
       },

@@ -1,12 +1,27 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
-function AuthBottom() {
+import {useInput} from '../../../utils/ValidationForm';
+
+
+function AuthBottom(props) {
+  const nameInput = {
+    name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
+    email: useInput('', {isEmpty: true, isEmail: true}),
+    password: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
+  }
+
+  const {name, email, password} = nameInput;
+  /*disabled={!name.inputValid || !email.inputValid || !password.inputValid}  поместить в кнопку когда получится наладить код*/
   return (
   <section className="auth-bottom" aria-label="Действие с авторизацией">
     <Switch>
       <Route path="/signup">
-        <button className="auth-bottom__button-auth link-hover">
+        <button
+
+          onClick={props.handleSubmit}
+          className="auth-bottom__button-auth link-hover"
+        >
           Зарегистрироваться
         </button>
         <div className="auth-bottom__wrapper-text">
@@ -39,7 +54,9 @@ function AuthBottom() {
             При обновлении профиля произошла ошибка.
           </p>
         </div>
-        <button className="auth-bottom__button-auth auth-bottom__button-auth_route-profile link-hover">
+        <button
+          className="auth-bottom__button-auth auth-bottom__button-auth_route-profile link-hover"
+        >
           Сохранить
         </button>
       </Route>

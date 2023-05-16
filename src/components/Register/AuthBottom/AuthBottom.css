@@ -22,6 +22,14 @@
   color: #FFFFFF;
   cursor: pointer;
 }
+.auth-bottom__button-auth:disabled {
+  color: #CCCCCC;
+
+  border: 1px #CCCCCC solid;
+  background-color: #f3f3f3;
+  cursor: default;
+}
+
 .auth-bottom__button-auth_route-signin {
   margin-top: 179px;
 }
