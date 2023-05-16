@@ -27,6 +27,7 @@ function useValidation (value, validations) {
     setMaxLengthError(maxLength);
     setEmailError(isEmail);
     setNameError(isName);
+    
   }
 
   useEffect(() => {
@@ -60,7 +61,7 @@ function useValidation (value, validations) {
           }
           break;
         case 'isEmail':
-          const regexEmail = /^(([^<>()[\],;:\s@]+([^<>()[\],;:\s@]+)*)|(.+))@(([^<>()[\],;:\s@]+)+[^<>()[\],;:\s@]{2,})$/i;
+          const regexEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
           if ( value.trim().length !== 0 && !regexEmail.test(String(value).toLowerCase()) ) {
             switchValidation('isEmail');
 
@@ -111,6 +112,7 @@ function useInput (initialValue, validations) {
     setValue(e.target.value);
     setIsChange(true);
   }
+  
   return {
     value,
     isChange,
@@ -142,6 +144,5 @@ function displayError(nameInput) {
     isValueError,
   }
 }
-
 
 export {useInput, displayError};

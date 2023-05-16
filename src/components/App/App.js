@@ -18,6 +18,8 @@ function App() {
   const [isSearchMovies, setIsSearchMovies] = useState('');
   const [isSearchError, setIsSearchError] = useState('');
 
+
+
   const location = useLocation();
 
 

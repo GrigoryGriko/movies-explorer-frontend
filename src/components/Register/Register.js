@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import AuthTop from './AuthTop/AuthTop';
@@ -7,7 +7,12 @@ import AuthBottom from './AuthBottom/AuthBottom';
 
 import * as auth from '../../utils/Auth';
 
-function Register() {
+
+
+function Register(props) {
+  const [isDisabled, setIsDisabled] = useState('');
+  const [dataForm, setDataForm] = useState({});
+  
   const history = useHistory();
 
   function handleSubmit(e) {
@@ -27,9 +32,16 @@ function Register() {
   return (
   <main className="content section">
     <AuthTop/>
-    <AuthForm/>
+    <AuthForm
+      isDisabled={isDisabled}
+      setIsDisabled={setIsDisabled}
+      dataForm={dataForm}
+      setDataForm={setDataForm}
+    />
     <AuthBottom
+      isDisabled={isDisabled}
       handleSubmit={handleSubmit}
+      dataForm={dataForm}
     />
   </main>
   )

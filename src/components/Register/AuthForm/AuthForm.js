@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import {useInput, displayError} from '../../../utils/ValidationForm';
 
-function AuthForm() {
+function AuthForm(props) {
   const nameInput = {
     name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
     email: useInput('', {isEmpty: true, isEmail: true}),
@@ -11,6 +11,10 @@ function AuthForm() {
   }
 
   const {name, email, password} = nameInput;
+    
+  useEffect(() => {
+    props.setIsDisabled(!name.inputValid || !email.inputValid || !password.inputValid);
+  })
 
   return (
   <section className="auth-form" aria-label="форма с полями ввода">

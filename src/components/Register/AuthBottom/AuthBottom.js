@@ -12,13 +12,13 @@ function AuthBottom(props) {
   }
 
   const {name, email, password} = nameInput;
-  /*disabled={!name.inputValid || !email.inputValid || !password.inputValid}  поместить в кнопку когда получится наладить код*/
+  
   return (
   <section className="auth-bottom" aria-label="Действие с авторизацией">
     <Switch>
       <Route path="/signup">
         <button
-
+          disabled={props.isDisabled}
           onClick={props.handleSubmit}
           className="auth-bottom__button-auth link-hover"
         >
