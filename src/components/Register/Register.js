@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 
 import AuthTop from './AuthTop/AuthTop';
 import AuthForm from './AuthForm/AuthForm';
@@ -8,21 +8,25 @@ import AuthBottom from './AuthBottom/AuthBottom';
 import * as auth from '../../utils/Auth';
 
 
-
 function Register(props) {
-  const [isDisabled, setIsDisabled] = useState('');
-  const [dataForm, setDataForm] = useState({});
-  
   const history = useHistory();
 
+  function handleChange(e) {
+    const {name, value} = e.target;
+    props.setDataForm((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    console.log(props.dataForm);
+  }
+
   function handleSubmit(e) {
-    console.log('reg');
     e.preventDefault();
 
-    const { name, email, password } = this.state; //надо получить валуисы
+    const { name, email, password } = props.dataForm;
     auth.register(name, email, password)
     .then((res) => {
-        this.props.history.push('/signin');
+      history.push('/signin');
     })
     .catch(() => {
       console.log('Что-то пошло не так! Попробуйте ещё раз.');
@@ -33,15 +37,15 @@ function Register(props) {
   <main className="content section">
     <AuthTop/>
     <AuthForm
-      isDisabled={isDisabled}
-      setIsDisabled={setIsDisabled}
-      dataForm={dataForm}
-      setDataForm={setDataForm}
+      isDisabled={props.isDisabled}
+      setIsDisabled={props.setIsDisabled}
+      dataForm={props.dataForm}
+      setDataForm={props.setDataForm}
+      handleChange={handleChange}
     />
     <AuthBottom
-      isDisabled={isDisabled}
+      isDisabled={props.isDisabled}
       handleSubmit={handleSubmit}
-      dataForm={dataForm}
     />
   </main>
   )

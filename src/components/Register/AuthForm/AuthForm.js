@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import {useInput, displayError} from '../../../utils/ValidationForm';
 
-function AuthForm(props) {
+function AuthForm(props) {    //при вводе значений стейты с валуесами не обновляются, а обновляются, если включается валидация
   const nameInput = {
     name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
     email: useInput('', {isEmpty: true, isEmail: true}),
@@ -13,8 +13,12 @@ function AuthForm(props) {
   const {name, email, password} = nameInput;
     
   useEffect(() => {
-    props.setIsDisabled(!name.inputValid || !email.inputValid || !password.inputValid);
+    const isValid = !name.inputValid || !email.inputValid || !password.inputValid;
+    props.setIsDisabled(isValid);
   })
+  useEffect(() => {
+    props.setDataForm({name: name.value, email: email.value, password: password.value});
+  }, [props.isDisabled])
 
   return (
   <section className="auth-form" aria-label="форма с полями ввода">
@@ -29,8 +33,12 @@ function AuthForm(props) {
             </span>
             <input 
               className={`auth-form__input ${displayError(name).isValueError}`}
+              name="name"
               type="text"
-              onChange={e => name.onChange(e)}
+              onChange={e => {
+                name.onChange(e);
+                props.handleChange(e);
+              }}
               value={name.value}
             ></input>
             <span className={`auth-form__stroke-line ${displayError(name).isUnderlinError}`}></span>
@@ -49,8 +57,12 @@ function AuthForm(props) {
             </span>
             <input 
               className={`auth-form__input ${displayError(email).isValueError}`}
+              name="email"
               type="email"
-              onChange={e => email.onChange(e)}
+              onChange={e => {
+                email.onChange(e);
+                props.handleChange(e);
+              }}
               value={email.value}
             ></input>
             <span className={`auth-form__stroke-line ${displayError(email).isUnderlinError}`}></span>
@@ -69,8 +81,12 @@ function AuthForm(props) {
             </span>
             <input 
               className={`auth-form__input ${displayError(password).isValueError}`}
+              name="password"
               type="password"
-              onChange={e => password.onChange(e)}
+              onChange={e => {
+                password.onChange(e);
+                props.handleChange(e);
+              }}
               value={password.value}
             ></input>
             <span className={`auth-form__stroke-line ${displayError(password).isUnderlinError}`}></span>

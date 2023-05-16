@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 
 import Header from '../Header/Header';
 
@@ -13,15 +13,17 @@ import NotFound from '../NotFound/NotFound';
 
 import Footer from '../Footer/Footer';
 
+
 function App() {
   const [isPreloader, setIsPreloader] = useState(false);
   const [isSearchMovies, setIsSearchMovies] = useState('');
   const [isSearchError, setIsSearchError] = useState('');
-
-
+  
+  const [isDisabled, setIsDisabled] = useState('');
+  
+  const [dataForm, setDataForm] = useState({});
 
   const location = useLocation();
-
 
   return (
     <div className="App">
@@ -75,7 +77,12 @@ function App() {
         <Route
           path="/signup"
         >
-          <Register/>
+          <Register
+            isDisabled={isDisabled}
+            dataForm={dataForm}
+            setIsDisabled={setIsDisabled}
+            setDataForm={setDataForm}
+          />
         </Route>
         
         <Route

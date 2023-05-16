@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+const BASE_URL = 'https://api.grigorygriko.nomoredomains.monster';
 
 export function _getResponseData(res) {
   if (!res.ok) {
