@@ -5,14 +5,6 @@ import {useInput} from '../../../utils/ValidationForm';
 
 
 function AuthBottom(props) {
-  const nameInput = {
-    name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
-    email: useInput('', {isEmpty: true, isEmail: true}),
-    password: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
-  }
-
-  const {name, email, password} = nameInput;
-  
   return (
   <section className="auth-bottom" aria-label="Действие с авторизацией">
     <Switch>
@@ -35,7 +27,11 @@ function AuthBottom(props) {
       </Route>
 
       <Route path="/signin">
-        <button className="auth-bottom__button-auth auth-bottom__button-auth_route-signin link-hover">
+        <button 
+          disabled={props.isDisabled}
+          onClick={props.handleSubmit}
+          className="auth-bottom__button-auth auth-bottom__button-auth_route-signin link-hover"
+        >
           Войти
         </button>
         <div className="auth-bottom__wrapper-text">

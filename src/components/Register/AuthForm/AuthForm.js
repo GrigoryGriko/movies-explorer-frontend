@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 import {useInput, displayError} from '../../../utils/ValidationForm';
 
@@ -13,7 +13,16 @@ function AuthForm(props) {
   const {name, email, password} = nameInput;
     
   useEffect(() => {
-    const isValid = !name.inputValid || !email.inputValid || !password.inputValid;
+    let isValid;
+    const { location } = props;
+    
+    if (location.pathname === '/signup') {
+      isValid = !name.inputValid || !email.inputValid || !password.inputValid;
+    } 
+    else if (location.pathname === '/signin') {
+      isValid = !email.inputValid || !password.inputValid;
+    }
+    
     props.setIsDisabled(isValid);
   })
 
@@ -99,14 +108,18 @@ function AuthForm(props) {
 
         <Route path="/signin">
           <label className="auth-form__field">
-            <span className="auth-form__caption">
+          <span className="auth-form__caption">
               E-mail
             </span>
             <input 
               className={`auth-form__input ${displayError(email).isValueError}`}
+              name="email"
               type="email"
-              onChange={e => password.onChange(e)}
-              value={password.value}
+              onChange={e => {
+                email.onChange(e);
+                props.handleChange(e);
+              }}
+              value={email.value}
             ></input>
             <span className={`auth-form__stroke-line ${displayError(email).isUnderlinError}`}></span>
 
@@ -114,18 +127,22 @@ function AuthForm(props) {
               className="auth-form__input-error" 
               style={{ display: displayError(email).isTextError }}
             >
-              {password.textError}
+              {email.textError}
             </span>
           </label>
 
-          <label className="auth-form__field auth-form__field_route-signin">
+          <label className="auth-form__field">
             <span className="auth-form__caption">
               Пароль
             </span>
             <input 
-              className={`auth-form__input ${displayError(email).isValueError}`}
+              className={`auth-form__input ${displayError(password).isValueError}`}
+              name="password"
               type="password"
-              onChange={e => password.onChange(e)}
+              onChange={e => {
+                password.onChange(e);
+                props.handleChange(e);
+              }}
               value={password.value}
             ></input>
             <span className={`auth-form__stroke-line ${displayError(password).isUnderlinError}`}></span>
@@ -134,6 +151,7 @@ function AuthForm(props) {
               className="auth-form__input-error" 
               style={{ display: displayError(password).isTextError }}
             >
+              {password.textError}
             </span>
           </label>
         </Route>
@@ -143,4 +161,4 @@ function AuthForm(props) {
   )
 }
 
-export default AuthForm;
+export default withRouter(AuthForm);
