@@ -9,21 +9,22 @@ import * as auth from '../../utils/Auth';
 
 
 function Register(props) {
+  const [dataForm, setDataForm] = useState({});
+
   const history = useHistory();
 
   function handleChange(e) {
     const {name, value} = e.target;
-    props.setDataForm((prevData) => ({
+    setDataForm((prevData) => ({
       ...prevData,
       [name]: value,
     }));
-    console.log(props.dataForm);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const { name, email, password } = props.dataForm;
+    const { name, email, password } = dataForm;
     auth.register(name, email, password)
     .then((res) => {
       history.push('/signin');

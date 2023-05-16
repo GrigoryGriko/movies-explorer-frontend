@@ -21,7 +21,7 @@ function App() {
   
   const [isDisabled, setIsDisabled] = useState('');
   
-  const [dataForm, setDataForm] = useState({});
+  
 
   const location = useLocation();
 
@@ -79,9 +79,7 @@ function App() {
         >
           <Register
             isDisabled={isDisabled}
-            dataForm={dataForm}
             setIsDisabled={setIsDisabled}
-            setDataForm={setDataForm}
           />
         </Route>
         

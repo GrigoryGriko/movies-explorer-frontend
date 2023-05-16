@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import {useInput, displayError} from '../../../utils/ValidationForm';
 
-function AuthForm(props) {    //при вводе значений стейты с валуесами не обновляются, а обновляются, если включается валидация
+function AuthForm(props) {
   const nameInput = {
     name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
     email: useInput('', {isEmpty: true, isEmail: true}),
@@ -16,9 +16,6 @@ function AuthForm(props) {    //при вводе значений стейты 
     const isValid = !name.inputValid || !email.inputValid || !password.inputValid;
     props.setIsDisabled(isValid);
   })
-  useEffect(() => {
-    props.setDataForm({name: name.value, email: email.value, password: password.value});
-  }, [props.isDisabled])
 
   return (
   <section className="auth-form" aria-label="форма с полями ввода">
