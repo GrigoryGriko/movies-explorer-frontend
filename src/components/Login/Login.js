@@ -23,15 +23,18 @@ function Login(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const { name, email, password } = dataForm;
-    auth.register(name, email, password)
+    const { email, password } = dataForm;
+    auth.login(email, password)
     .then((res) => {
-      history.push('/signin');
+      setDataForm({});
+      props.handleLogin();
+      history.push('/movies');
     })
     .catch(() => {
       console.log('Что-то пошло не так! Попробуйте ещё раз.');
     });
   }
+
   return (
     <main className="content section">
       <AuthTop/>

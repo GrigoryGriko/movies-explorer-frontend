@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.grigorygriko.nomoredomains.monster';
+const BASE_URL = 'http://localhost:3001';
 
 export function _getResponseData(res) {
   if (!res.ok) {
@@ -14,6 +14,27 @@ export function register(name, email, password) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({name, email, password})
+  }).then(res => this._getResponseData(res));
+}
+
+export function login(email, password) {
+  return fetch(`${BASE_URL}/signin`, {
+    method: 'POST',
+    credentials: "include",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({email, password})
+  }).then(res => this._getResponseData(res));
+}
+
+export function cookieLogin() {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    credentials: "include",
+    headers: {
+      'Content-Type': 'application/json'
+    },
   }).then(res => this._getResponseData(res));
 }
   

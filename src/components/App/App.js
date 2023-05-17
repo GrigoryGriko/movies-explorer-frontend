@@ -12,18 +12,44 @@ import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFound';
 
 import Footer from '../Footer/Footer';
-
+import * as auth from '../../utils/Auth';
 
 function App() {
   const [isPreloader, setIsPreloader] = useState(false);
   const [isSearchMovies, setIsSearchMovies] = useState('');
   const [isSearchError, setIsSearchError] = useState('');
+
+  const [isCookieChecked, setIsCookieChecked] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   
   const [isDisabled, setIsDisabled] = useState('');
-  
-  
 
   const location = useLocation();
+  const history = useHistory();
+  
+  autoLoginCookie();
+
+  function autoLoginCookie() {
+    if (!loggedIn && !isCookieChecked) {
+      auth.cookieLogin()
+      .then((res) => {
+        handleLogin();
+        setIsCookieChecked(true);
+        history.push('/movies');
+      })
+      .catch((err) => {
+        setIsCookieChecked(true);
+        console.log('Авторизация по cookie не удалась ' + err);
+      });   
+    }
+  }
+  
+  function handleLogin() {
+    setLoggedIn(true);
+  }
+  function unsetLoggedIn() {
+    setLoggedIn(false)
+  }
 
   return (
     <div className="App">
@@ -74,6 +100,7 @@ function App() {
           <Login
             isDisabled={isDisabled}
             setIsDisabled={setIsDisabled}
+            handleLogin={handleLogin}
           />
         </Route>
 
