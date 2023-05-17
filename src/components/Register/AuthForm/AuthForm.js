@@ -4,27 +4,12 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import {useInput, displayError} from '../../../utils/ValidationForm';
 
 function AuthForm(props) {
-  const nameInput = {
-    name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
-    email: useInput('', {isEmpty: true, isEmail: true}),
-    password: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
-  }
-
-  const {name, email, password} = nameInput;
-    
-  useEffect(() => {
-    let isValid;
-    const { location } = props;
-    
-    if (location.pathname === '/signup') {
-      isValid = !name.inputValid || !email.inputValid || !password.inputValid;
-    } 
-    else if (location.pathname === '/signin') {
-      isValid = !email.inputValid || !password.inputValid;
-    }
-    
-    props.setIsDisabled(isValid);
-  })
+  const {
+    name,
+    email,
+    password,
+    isValid,
+  } = props.setValidation(props, useInput, useEffect);
 
   return (
   <section className="auth-form" aria-label="форма с полями ввода">

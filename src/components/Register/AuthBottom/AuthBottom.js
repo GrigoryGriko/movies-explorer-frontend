@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 
-import {useInput} from '../../../utils/ValidationForm';
-
 
 function AuthBottom(props) {
   return (
@@ -51,6 +49,8 @@ function AuthBottom(props) {
           </p>
         </div>
         <button
+          disabled={props.isDisabled}
+          onClick={props.handleSubmit}
           className="auth-bottom__button-auth auth-bottom__button-auth_route-profile link-hover"
         >
           Сохранить

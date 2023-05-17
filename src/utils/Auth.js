@@ -7,6 +7,16 @@ export function _getResponseData(res) {
   return res.json();
 }
 
+export function getUserData() {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    credentials: "include",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }).then(res => _getResponseData(res));
+}
+
 export function register(name, email, password) {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
@@ -14,7 +24,7 @@ export function register(name, email, password) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({name, email, password})
-  }).then(res => this._getResponseData(res));
+  }).then(res => _getResponseData(res));
 }
 
 export function login(email, password) {
@@ -25,16 +35,19 @@ export function login(email, password) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({email, password})
-  }).then(res => this._getResponseData(res));
+  }).then(res => _getResponseData(res));
 }
 
-export function getUserData() {
+export function updateProfile(name, email) {
   return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
+    method: 'PATCH',
     credentials: "include",
     headers: {
       'Content-Type': 'application/json'
     },
-  }).then(res => this._getResponseData(res));
+    body: JSON.stringify({name, email})
+  }).then(res => _getResponseData(res));
 }
+
+
   

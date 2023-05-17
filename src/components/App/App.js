@@ -33,6 +33,40 @@ function App() {
   
   autoLoginCookie();
 
+  function setValidation(props, useInput, useEffect) {
+    const nameInput = {
+      name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
+      email: useInput('', {isEmpty: true, isEmail: true}),
+      password: useInput('', {isEmpty: true, minLength: 3, maxLength: 30}),
+    }
+
+    const {name, email, password} = nameInput;
+    
+    let isValid;
+    useEffect(() => {
+      const { location } = props;
+      
+      if (location.pathname === '/signup') {
+        isValid = !name.inputValid || !email.inputValid || !password.inputValid;
+      } 
+      else if (location.pathname === '/signin') {
+        isValid = !email.inputValid || !password.inputValid;
+      }
+      else if (location.pathname === '/profile') {
+        isValid = !name.inputValid || !email.inputValid;
+      }
+      
+      props.setIsDisabled(isValid);
+    })
+
+    return {
+      name,
+      email,
+      password,
+      isValid,
+    }
+  }
+
   function autoLoginCookie() {
     if (!loggedIn && !isCookieChecked) {
       auth.getUserData()
@@ -51,7 +85,6 @@ function App() {
   function handleLogin({email, password}) {
     auth.login(email, password)
       .then((res) => {
-        console.log(res);
         setLoggedIn(true);
 
         auth.getUserData()
@@ -72,7 +105,7 @@ function App() {
   function unsetLoggedIn() {
     setLoggedIn(false)
   }
-
+  
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="App">
@@ -114,13 +147,18 @@ function App() {
           <Route
             path="/profile"
           >
-            <Profile/>
+            <Profile
+              setValidation={setValidation}
+              isDisabled={isDisabled}
+              setIsDisabled={setIsDisabled}
+            />
           </Route>
 
           <Route
             path="/signin"
           >
             <Login
+              setValidation={setValidation}
               isDisabled={isDisabled}
               setIsDisabled={setIsDisabled}
               handleLogin={handleLogin}
@@ -131,6 +169,7 @@ function App() {
             path="/signup"
           >
             <Register
+              setValidation={setValidation}
               isDisabled={isDisabled}
               setIsDisabled={setIsDisabled}
               handleLogin={handleLogin}
