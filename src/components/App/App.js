@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 
+import { CurrentUserContext } from '../../context/CurrentUserContext';
+
 import Header from '../Header/Header';
 
 import Main from '../Main/Main';
@@ -14,11 +16,13 @@ import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
 import * as auth from '../../utils/Auth';
 
+
 function App() {
   const [isPreloader, setIsPreloader] = useState(false);
   const [isSearchMovies, setIsSearchMovies] = useState('');
   const [isSearchError, setIsSearchError] = useState('');
 
+  const [currentUser, setCurrentUser] = useState({});
   const [isCookieChecked, setIsCookieChecked] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   
@@ -31,7 +35,7 @@ function App() {
 
   function autoLoginCookie() {
     if (!loggedIn && !isCookieChecked) {
-      auth.cookieLogin()
+      auth.getUserData()
       .then((res) => {
         handleLogin();
         setIsCookieChecked(true);
@@ -44,92 +48,112 @@ function App() {
     }
   }
   
-  function handleLogin() {
-    setLoggedIn(true);
+  function handleLogin({email, password}) {
+    auth.login(email, password)
+      .then((res) => {
+        console.log(res);
+        setLoggedIn(true);
+
+        auth.getUserData()
+          .then((res) => {
+            setCurrentUser(res);
+            history.push('/movies');
+          })
+          .catch((err) => {
+            setIsCookieChecked(true);
+            console.log('Ошибка получения данных пользователя ' + err);
+          });
+      })
+      .catch((err) => {
+        console.log('Что-то пошло не так! Попробуйте ещё раз. ' + err);
+      });
   }
+  
   function unsetLoggedIn() {
     setLoggedIn(false)
   }
 
   return (
-    <div className="App">
-      {
-        (
-          location.pathname !== '/signup' && 
-          location.pathname !== '/signin' &&
-          location.pathname !== '/404'
-        ) ? <Header/> : ''
-      }
-  
-      <Switch>
-        <Route
-          exact
-          path="/"
-        >
-          <Main/>
-        </Route>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="App">
+        {
+          (
+            location.pathname !== '/signup' && 
+            location.pathname !== '/signin' &&
+            location.pathname !== '/404'
+          ) ? <Header/> : ''
+        }
+    
+        <Switch>
+          <Route
+            exact
+            path="/"
+          >
+            <Main/>
+          </Route>
 
-        <Route
-          path="/movies"
-        >
-          <Movies
-            isPreloader={isPreloader}
-            setIsPreloader={setIsPreloader}
-            isSearchMovies={isSearchMovies}
-            setIsSearchMovies={setIsSearchMovies}
-            isSearchError={isSearchError}
-            setIsSearchError={setIsSearchError}
-          />
-        </Route>
+          <Route
+            path="/movies"
+          >
+            <Movies
+              isPreloader={isPreloader}
+              setIsPreloader={setIsPreloader}
+              isSearchMovies={isSearchMovies}
+              setIsSearchMovies={setIsSearchMovies}
+              isSearchError={isSearchError}
+              setIsSearchError={setIsSearchError}
+            />
+          </Route>
 
-        <Route
-          path="/saved-movies"
-        >
-          <SavedMovies/>
-        </Route>
+          <Route
+            path="/saved-movies"
+          >
+            <SavedMovies/>
+          </Route>
 
-        <Route
-          path="/profile"
-        >
-          <Profile/>
-        </Route>
+          <Route
+            path="/profile"
+          >
+            <Profile/>
+          </Route>
 
-        <Route
-          path="/signin"
-        >
-          <Login
-            isDisabled={isDisabled}
-            setIsDisabled={setIsDisabled}
-            handleLogin={handleLogin}
-          />
-        </Route>
+          <Route
+            path="/signin"
+          >
+            <Login
+              isDisabled={isDisabled}
+              setIsDisabled={setIsDisabled}
+              handleLogin={handleLogin}
+            />
+          </Route>
 
-        <Route
-          path="/signup"
-        >
-          <Register
-            isDisabled={isDisabled}
-            setIsDisabled={setIsDisabled}
-            handleLogin={handleLogin}
-          />
-        </Route>
-        
-        <Route
-          path="/404"
-        >
-          <NotFound/>
-        </Route>
-      </Switch>
+          <Route
+            path="/signup"
+          >
+            <Register
+              isDisabled={isDisabled}
+              setIsDisabled={setIsDisabled}
+              handleLogin={handleLogin}
+            />
+          </Route>
+          
+          <Route
+            path="/404"
+          >
+            <NotFound/>
+          </Route>
+        </Switch>
 
-      {
-        ( 
-          location.pathname !== '/profile' && 
-          location.pathname !== '/signup' && 
-          location.pathname !== '/signin' &&
-          location.pathname !== '/404'
-        ) ? <Footer/> : ''
-      }
-    </div>
+        {
+          ( 
+            location.pathname !== '/profile' && 
+            location.pathname !== '/signup' && 
+            location.pathname !== '/signin' &&
+            location.pathname !== '/404'
+          ) ? <Footer/> : ''
+        }
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

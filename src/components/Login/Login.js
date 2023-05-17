@@ -24,15 +24,7 @@ function Login(props) {
     e.preventDefault();
 
     const { email, password } = dataForm;
-    auth.login(email, password)
-    .then((res) => {
-      setDataForm({});
-      props.handleLogin();
-      history.push('/movies');
-    })
-    .catch(() => {
-      console.log('Что-то пошло не так! Попробуйте ещё раз.');
-    });
+    props.handleLogin({email, password});
   }
 
   return (

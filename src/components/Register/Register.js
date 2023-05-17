@@ -27,15 +27,7 @@ function Register(props) {
     const { name, email, password } = dataForm;
     auth.register(name, email, password)
     .then((res) => {
-      auth.login(email, password)
-        .then((res) => {
-          setDataForm({});
-          props.handleLogin();
-          history.push('/movies');
-        })
-        .catch(() => {
-          console.log('Что-то пошло не так! Попробуйте ещё раз.');
-        });
+      props.handleLogin({email, password});
     })
     .catch(() => {
       console.log('Что-то пошло не так! Попробуйте ещё раз.');

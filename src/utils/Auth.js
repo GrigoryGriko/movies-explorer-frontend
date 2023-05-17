@@ -28,7 +28,7 @@ export function login(email, password) {
   }).then(res => this._getResponseData(res));
 }
 
-export function cookieLogin() {
+export function getUserData() {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     credentials: "include",
