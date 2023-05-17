@@ -33,7 +33,7 @@ function Profile(props) {
     const { name, email} = dataForm;
     auth.register(name, email)
     .then((res) => {
-      props.handleLogin({name, email});
+      console.log(res);
     })
     .catch(() => {
       console.log('Что-то пошло не так! Попробуйте ещё раз.');

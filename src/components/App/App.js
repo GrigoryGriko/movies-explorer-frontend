@@ -67,21 +67,6 @@ function App() {
     }
   }
 
-  function autoLoginCookie() {
-    if (!loggedIn && !isCookieChecked) {
-      auth.getUserData()
-      .then((res) => {
-        handleLogin();
-        setIsCookieChecked(true);
-        history.push('/movies');
-      })
-      .catch((err) => {
-        setIsCookieChecked(true);
-        console.log('Авторизация по cookie не удалась ' + err);
-      });   
-    }
-  }
-  
   function handleLogin({email, password}) {
     auth.login(email, password)
       .then((res) => {
@@ -100,6 +85,21 @@ function App() {
       .catch((err) => {
         console.log('Что-то пошло не так! Попробуйте ещё раз. ' + err);
       });
+  }
+
+  function autoLoginCookie() {
+    if (!loggedIn && !isCookieChecked) {
+      auth.getUserData()
+      .then((res) => {
+        setIsCookieChecked(true);
+        setCurrentUser(res);
+        history.push('/movies');
+      })
+      .catch((err) => {
+        setIsCookieChecked(true);
+        console.log('Авторизация по cookie не удалась ' + err);
+      });   
+    }
   }
   
   function unsetLoggedIn() {
