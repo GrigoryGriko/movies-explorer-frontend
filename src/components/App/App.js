@@ -110,6 +110,7 @@ function App() {
           <Register
             isDisabled={isDisabled}
             setIsDisabled={setIsDisabled}
+            handleLogin={handleLogin}
           />
         </Route>
         
