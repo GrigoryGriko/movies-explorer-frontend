@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { withRouter } from "react-router-dom";
 
 import {useInput, displayError} from '../../utils/ValidationForm';
@@ -9,21 +9,34 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function Profile(props) {
   
-  const {currentUser, setCurrentUser} = React.useContext(CurrentUserContext);
+  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
   console.log(currentUser);
   const [isButtonEdit, setIsButtonEdit] = useState(false);
   const [dataForm, setDataForm] = useState({});
+  const [isFirstClickEdit, setIsFirstClickEdit] = useState(true);
+  
 
   const {
     name,
     email,
   } = props.setValidation(props, useInput, useEffect);
+  
+
+
+console.log("isFirst ", isFirstClickEdit);
+
+  //isFirstClickEdit сдеклать false
+console.log('value ', name.value);
 
   function handleClick() {
     setIsButtonEdit(true);
+    setIsFirstClickEdit(true);
   }
 
   function handleChange(e) {
+    if (isFirstClickEdit) {
+      setIsFirstClickEdit(false);
+    }
     const {name, value} = e.target;
     setDataForm((prevData) => ({
       ...prevData,
@@ -49,7 +62,6 @@ function Profile(props) {
       <section className="profile">
         <h2 className="profile__greeting-text">Привет, {currentUser.name}!</h2>
 
-
         {isButtonEdit ?
           <form 
             className="auth-form__wrapper"
@@ -66,7 +78,8 @@ function Profile(props) {
                   name.onChange(e);
                   handleChange(e);
                 }}
-                value={name.value}
+                value={isFirstClickEdit ? currentUser.name : name.value }
+                
               ></input>
               <span className={`auth-form__stroke-line ${displayError(name).isUnderlinError}`}></span>
 
@@ -90,7 +103,7 @@ function Profile(props) {
                   email.onChange(e);
                   handleChange(e);
                 }}
-                value={email.value}
+                value={isFirstClickEdit ? currentUser.email : email.value }
               ></input>
               <span className={`auth-form__stroke-line ${displayError(email).isUnderlinError}`}></span>
 

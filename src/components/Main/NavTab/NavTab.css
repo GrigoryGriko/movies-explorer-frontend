@@ -82,6 +82,13 @@
   min-height: 28px;
 }
 
+.header__action-reigister_light {
+  color: #000;
+}
+.header__action-login_light {
+  color: #fff;
+}
+
 .header__popup-menu-button {
   display: none;
   margin: 0;

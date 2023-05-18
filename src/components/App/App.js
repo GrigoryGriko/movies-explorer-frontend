@@ -23,10 +23,6 @@ function App() {
   const [isSearchError, setIsSearchError] = useState('');
 
   const [currentUser, setCurrentUser] = useState({});
-  const userContextValue = {
-    currentUser: currentUser,
-    setCurrentUser: setCurrentUser,
-  }
   const [isCookieChecked, setIsCookieChecked] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   
@@ -35,6 +31,13 @@ function App() {
   const location = useLocation();
   const history = useHistory();
   
+  const userContextValue = {
+    currentUser: currentUser,
+    setCurrentUser: setCurrentUser,
+    loggedIn : loggedIn,
+    setLoggedIn : setLoggedIn,
+  }
+
   useEffect(() => {
     autoLoginCookie();
   }, [])

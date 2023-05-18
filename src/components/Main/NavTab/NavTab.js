@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import { CurrentUserContext } from '../../../context/CurrentUserContext';
+
+
 function NavTab() {
+  const {loggedIn, setLoggedIn} = useContext(CurrentUserContext);
+
   const location = useLocation();
-  const loggedIn = false;
   let classHeaderMenuLink;
   let classHeaderActionAccount;
   let classHeaderPopupMenuButton;
+  
+  let classHeaderPopupButtonRegister;
+  let classHeaderPopupButtonLogin;
 
   if (location.pathname === '/') {
     classHeaderMenuLink = 'header__menu-link_dark';
     classHeaderActionAccount = 'header__action-account_dark';
     classHeaderPopupMenuButton = 'header__popup-menu-button_dark';
+
+    classHeaderPopupButtonRegister = '';
+    classHeaderPopupButtonLogin = '';
   } else {
     classHeaderMenuLink = '';
     classHeaderActionAccount = '';
     classHeaderPopupMenuButton = '';
+    
+    classHeaderPopupButtonRegister = 'header__action-reigister_light';
+    classHeaderPopupButtonLogin = 'header__action-login_light';
   }
 
   return (
@@ -84,9 +97,9 @@ function NavTab() {
         
       ) : (
         <nav className="header__wrapper-menu header__wrapper-menu_unlogged">
-          <Link to="signup" className="header__action-reigister link-hover">Регистрация</Link>
+          <Link to="signup" className={`header__action-reigister link-hover ${classHeaderPopupButtonRegister}`}>Регистрация</Link>
 
-          <Link to="signin" className="header__action-login link-hover">Войти</Link>
+          <Link to="signin" className={`header__action-login link-hover ${classHeaderPopupButtonLogin}`}>Войти</Link>
         </nav>
       )}
     </>
