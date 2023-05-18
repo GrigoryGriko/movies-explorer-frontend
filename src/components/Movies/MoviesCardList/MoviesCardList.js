@@ -120,6 +120,7 @@ function MoviesCardList(props) {
   }
 
   function handleCardSave(card) {
+    console.log('handlecardsave ', card);
     mainApi.addMovie(card)
       .then(() => {
         handleCard('save', card);

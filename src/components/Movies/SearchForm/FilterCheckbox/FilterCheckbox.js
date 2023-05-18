@@ -1,7 +1,7 @@
 import React from 'react';
 
-function FilterCheckbox(props) {
-  console.log('shooorts ' + props.shortsFilms);
+function FilterCheckbox({handleChange, shortsFilms}) {
+  console.log('shooorts ' + shortsFilms);
 
   return(
     <>
@@ -9,8 +9,8 @@ function FilterCheckbox(props) {
         <input 
           type="checkbox"
           id="shortsFilms"
-          onChange={() => props.handleChange(!props.shortsFilms)}
-          checked={props.shortsFilms}
+          onChange={() => handleChange(!shortsFilms)}
+          checked={shortsFilms}
         ></input>
         <span className="search-form__checkbox-switch"></span>
       </label>
