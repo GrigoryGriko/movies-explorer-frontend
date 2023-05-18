@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import moviesCardListImage from '../../../images/movies-cardlist__image.jpg';
 
 
-function MoviesCard (props) {
+function MoviesCard(props) {
   const [isSaved, setIsSaved] = useState(props.card.isSaved);
 
   function handleSaveClick() {

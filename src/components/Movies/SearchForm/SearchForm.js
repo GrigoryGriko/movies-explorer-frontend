@@ -9,16 +9,17 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       textMovie: '',
-      shortsFilms: '',
+      shortsFilms: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeCheckbox = this.handleChangeCheckbox.bind(this);
   }
 
   componentDidMount() {
     const searchFormData = JSON.parse(localStorage.getItem("searchFormData"));
-    const textMovie = searchFormData !== null ? searchFormData.textMovie : '';
-    const shortsFilms = searchFormData !== null ? searchFormData.shortsFilms : '';
+    const textMovie = searchFormData ? searchFormData.textMovie : '';
+    const shortsFilms = searchFormData;
     this.setState({
       textMovie: textMovie,
       shortsFilms: shortsFilms,
@@ -27,8 +28,19 @@ class SearchForm extends React.Component {
   
   handleChange(e) {
     const {id, value} = e.target;
+    console.log(id);
+    console.log(value);
+    
     this.setState({
-      [id]: value,
+      ...this.state,
+      id: value,
+    });
+  }
+
+  handleChangeCheckbox(state) {
+    this.setState({
+      ...this.state,
+      shortsFilms: state,
     });
   }
 
@@ -43,10 +55,10 @@ class SearchForm extends React.Component {
           textMovie,
           shortsFilms,
         } = this.state;
-
+console.log('shorts= ', shortsFilms);
         const searchFormData = {
           textMovie,
-          shortsFilms: shortsFilms ? shortsFilms : 'off',
+          shortsFilms: shortsFilms,
           cards: res,
         }
 
@@ -80,7 +92,7 @@ class SearchForm extends React.Component {
   
             <div className={"search-form__filter-switch_desktop-visibility"}>
               <FilterCheckbox
-                handleChange={this.handleChange}
+                handleChange={this.handleChangeCheckbox}
                 shortsFilms={this.state.shortsFilms}
               />
             </div>

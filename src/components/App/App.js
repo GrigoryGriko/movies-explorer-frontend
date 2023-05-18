@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 
 import { CurrentUserContext } from '../../context/CurrentUserContext';
@@ -23,6 +23,10 @@ function App() {
   const [isSearchError, setIsSearchError] = useState('');
 
   const [currentUser, setCurrentUser] = useState({});
+  const userContextValue = {
+    currentUser: currentUser,
+    setCurrentUser: setCurrentUser,
+  }
   const [isCookieChecked, setIsCookieChecked] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   
@@ -31,7 +35,11 @@ function App() {
   const location = useLocation();
   const history = useHistory();
   
-  autoLoginCookie();
+  useEffect(() => {
+    autoLoginCookie();
+  }, [])
+
+  console.log('--- ' + loggedIn);
 
   function setValidation(props, useInput, useEffect) {
     const nameInput = {
@@ -74,7 +82,10 @@ function App() {
 
         auth.getUserData()
           .then((res) => {
+            console.log(res)
+            setIsCookieChecked(true);
             setCurrentUser(res);
+
             history.push('/movies');
           })
           .catch((err) => {
@@ -91,9 +102,11 @@ function App() {
     if (!loggedIn && !isCookieChecked) {
       auth.getUserData()
       .then((res) => {
+        setLoggedIn(true);
         setIsCookieChecked(true);
         setCurrentUser(res);
-        history.push('/movies');
+
+        //history.push('/movies');
       })
       .catch((err) => {
         setIsCookieChecked(true);
@@ -107,7 +120,7 @@ function App() {
   }
   
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={userContextValue}>
       <div className="App">
         {
           (
@@ -124,7 +137,7 @@ function App() {
           >
             <Main/>
           </Route>
-
+          
           <Route
             path="/movies"
           >

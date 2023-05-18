@@ -5,8 +5,12 @@ import {useInput, displayError} from '../../utils/ValidationForm';
 
 import AuthBottom from '../Register/AuthBottom/AuthBottom';
 import * as auth from '../../utils/Auth';
+import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function Profile(props) {
+  
+  const {currentUser, setCurrentUser} = React.useContext(CurrentUserContext);
+  console.log(currentUser);
   const [isButtonEdit, setIsButtonEdit] = useState(false);
   const [dataForm, setDataForm] = useState({});
 
@@ -31,9 +35,9 @@ function Profile(props) {
     e.preventDefault();
 
     const { name, email} = dataForm;
-    auth.register(name, email)
+    auth.updateProfile(name, email)
     .then((res) => {
-      console.log(res);
+      setCurrentUser(res);
     })
     .catch(() => {
       console.log('Что-то пошло не так! Попробуйте ещё раз.');
@@ -43,7 +47,7 @@ function Profile(props) {
   return (
     <main className="content section">
       <section className="profile">
-        <h2 className="profile__greeting-text">Привет, Григорий!</h2>
+        <h2 className="profile__greeting-text">Привет, {currentUser.name}!</h2>
 
 
         {isButtonEdit ?
@@ -105,7 +109,7 @@ function Profile(props) {
                 Имя
               </p>
               <p className="profile__username-data">
-                Григорий
+                {currentUser.name}
               </p>
             </div>
 
@@ -116,7 +120,7 @@ function Profile(props) {
                 E-mail
               </p>
               <p className="profile__username-data">
-                griko1996@gmail.com
+                {currentUser.email}
               </p>
             </div>
           </>
