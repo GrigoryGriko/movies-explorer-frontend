@@ -20,12 +20,12 @@ class SearchForm extends React.Component {
     const searchFormData = JSON.parse(localStorage.getItem("searchFormData"));
     const textMovie = searchFormData ? searchFormData.textMovie : '';
     const shortsFilms = searchFormData;
+    console.log('Did ', shortsFilms);
     this.setState({
       textMovie: textMovie,
       shortsFilms: shortsFilms,
     });
   }
-  
   handleChange(e) {
     const {id, value} = e.target;
     console.log(id);
@@ -61,7 +61,7 @@ console.log('shorts= ', shortsFilms);
           shortsFilms: shortsFilms,
           cards: res,
         }
-
+        console.log('shorts beforesetItem = ', shortsFilms);
         localStorage.setItem("searchFormData", JSON.stringify(searchFormData));
         this.props.setIsPreloader(false);
       })

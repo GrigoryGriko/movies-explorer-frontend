@@ -4,27 +4,41 @@ import { Switch, Route } from 'react-router-dom';
 import moviesCardListImage from '../../../images/movies-cardlist__image.jpg';
 
 
-function MoviesCard(props) {
-  const [isSaved, setIsSaved] = useState(props.card.isSaved);
+function MoviesCard({
+    card,
+    onCardSave,
+    onCardDelete,
+  }) 
+{
+  console.log(card);
+  const [isSaved, setIsSaved] = useState(card.isSaved);
 
   function handleSaveClick() {
     setIsSaved(true);
-    props.onCardSave(props.card);
+    onCardSave(card);
   }
 
   function handleDeleteClick() {
     setIsSaved(false);
-    props.onCardDelete(props.card);
+    onCardDelete(card);
+  }
+
+  function formatTime(minutes) {
+    let hours = Math.floor(minutes / 60);
+    let remainingMinutes = minutes % 60;
+    return `${hours}ч ${remainingMinutes}м`;
   }
 
   useEffect(() => {
-    setIsSaved(props.card.isSaved);
-  }, [props.card.isSaved]);
+    setIsSaved(card.isSaved);
+  }, [card.isSaved]);
 
   return(
     <>
       <li className="movies-cardlist__item">
-        <img className="movies-cardlist__image" src={moviesCardListImage} alt="карточка фильма"/>
+        <a className="movies-cardlist__link-trailer" href={card.trailerLink} target="_blank">
+          <img className="movies-cardlist__image" src={`https://api.nomoreparties.co/${card.image.url}`} alt="карточка фильма"/>
+        </a>
 
         <Switch>
           <Route path="/movies">
@@ -51,8 +65,8 @@ function MoviesCard(props) {
         </Switch>
 
         <div className="movies-cardlist__wrapper-text">
-          <h5 className="movies-cardlist__title-film">33 слова о дизайне</h5>
-          <p className="movies-cardlist__duration-film">1ч 17м</p>
+          <h5 className="movies-cardlist__title-film">{card.nameRU}</h5>
+          <p className="movies-cardlist__duration-film">{formatTime(card.duration)}</p>
         </div>
       </li>
     </>

@@ -15,6 +15,7 @@ import NotFound from '../NotFound/NotFound';
 
 import Footer from '../Footer/Footer';
 import * as auth from '../../utils/Auth';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 
 function App() {
@@ -41,8 +42,6 @@ function App() {
   useEffect(() => {
     autoLoginCookie();
   }, [])
-
-  console.log('--- ' + loggedIn);
 
   function setValidation(props, useInput, useEffect) {
     const nameInput = {
@@ -141,34 +140,40 @@ function App() {
             <Main/>
           </Route>
           
-          <Route
+          <ProtectedRoute
+            exact
             path="/movies"
-          >
-            <Movies
-              isPreloader={isPreloader}
-              setIsPreloader={setIsPreloader}
-              isSearchMovies={isSearchMovies}
-              setIsSearchMovies={setIsSearchMovies}
-              isSearchError={isSearchError}
-              setIsSearchError={setIsSearchError}
-            />
-          </Route>
+            component={Movies}
+            loggedIn={loggedIn}
 
-          <Route
+            isPreloader={isPreloader}
+            setIsPreloader={setIsPreloader}
+            isSearchMovies={isSearchMovies}
+            setIsSearchMovies={setIsSearchMovies}
+            isSearchError={isSearchError}
+            setIsSearchError={setIsSearchError}
+          >
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
             path="/saved-movies"
+            component={SavedMovies}
+            loggedIn={loggedIn}
           >
-            <SavedMovies/>
-          </Route>
+          </ProtectedRoute>
 
-          <Route
+          <ProtectedRoute
+            exact
             path="/profile"
-          >
-            <Profile
-              setValidation={setValidation}
+            component={Profile}
+            loggedIn={loggedIn}
+
+            setValidation={setValidation}
               isDisabled={isDisabled}
               setIsDisabled={setIsDisabled}
-            />
-          </Route>
+          >
+          </ProtectedRoute>
 
           <Route
             path="/signin"

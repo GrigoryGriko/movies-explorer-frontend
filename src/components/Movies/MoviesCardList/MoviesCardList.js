@@ -63,11 +63,11 @@ function MoviesCardList(props) {
     const searchFormData = getSearchFormData();
     SetSearchFormData(searchFormData ? searchFormData : {});
 
-    setTextMovie(searchFormData !== null ? searchFormData.textMovie : '');
-    setshortsFilms(searchFormData !== null ? searchFormData.shortsFilms: '');
+    setTextMovie(searchFormData ? searchFormData.textMovie : '');
+    setshortsFilms(searchFormData ? searchFormData.shortsFilms: '');
 
-    setAllCountCards(searchFormData !== null ? searchFormData.cards : []);
-    setCards(searchFormData !== null ? searchFormData.cards.splice(0, maxCountCards) : []);
+    setAllCountCards(searchFormData ? searchFormData.cards : []);
+    setCards(searchFormData ? searchFormData.cards.splice(0, maxCountCards) : []);
   }
 
   function useWindowSize() {
