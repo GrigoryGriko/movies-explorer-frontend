@@ -10,7 +10,6 @@ function MoviesCard({
     onCardDelete,
   }) 
 {
-  console.log(card);
   const [isSaved, setIsSaved] = useState(card.isSaved);
 
   function handleSaveClick() {

@@ -14,9 +14,9 @@
   cursor: pointer;
 }
 
-.movies-cardlist__image:hover + .movies-cardlist__action-save, 
+.movies-cardlist__link-trailer:hover + .movies-cardlist__action-save, 
 .movies-cardlist__action-save:hover, 
-.movies-cardlist__image:hover + .movies-cardlist__action-delete, 
+.movies-cardlist__link-trailer:hover + .movies-cardlist__action-delete, 
 .movies-cardlist__action-delete:hover { 
   visibility: visible;
 }
