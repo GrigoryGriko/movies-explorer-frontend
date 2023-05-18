@@ -11,7 +11,6 @@ function MoviesCard({
   }) 
 {
   const [isSaved, setIsSaved] = useState(card.isSaved);
-
   function handleSaveClick() {
     setIsSaved(true);
     onCardSave(card);
@@ -36,7 +35,7 @@ function MoviesCard({
     <>
       <li className="movies-cardlist__item">
         <a className="movies-cardlist__link-trailer" href={card.trailerLink} target="_blank">
-          <img className="movies-cardlist__image" src={`https://api.nomoreparties.co/${card.image.url}`} alt="карточка фильма"/>
+          <img className="movies-cardlist__image" src={`https://api.nomoreparties.co/${card.image.url}`} alt={card.nameRU}/>
         </a>
 
         <Switch>

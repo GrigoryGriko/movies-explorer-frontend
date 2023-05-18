@@ -10,18 +10,14 @@ class MainApi {
     return res.json();
   }
 
-  addMovie({
-    name,
-    imageURL,
-    trailerLink,
-    duration
-  }) {
+  addMovie(data) {
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
       credentials: "include",
       headers: {
         'Content-type': 'application-json'
       },
+      body: JSON.stringify(data)
     }).then(res => this._getResponseData(res));
   }
 

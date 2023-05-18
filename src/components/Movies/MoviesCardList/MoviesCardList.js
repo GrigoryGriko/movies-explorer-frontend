@@ -120,16 +120,13 @@ function MoviesCardList(props) {
   }
 
   function handleCardSave(card) {
-    mainApi.addMovie(
-      card.nameRU,
-      `https://api.nomoreparties.co/${card.image.url}`,
-      card.trailerLink,
-      card.duration
-    )
+    mainApi.addMovie(card)
       .then(() => {
         handleCard('save', card);
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        console.log(err)
+      });
   }
 
   function handleCardDelete(card) {
@@ -193,6 +190,5 @@ function MoviesCardList(props) {
     </>
   )
 }
-/*cards & cards.length !== allCountCards.length*/
 
 export default MoviesCardList;
