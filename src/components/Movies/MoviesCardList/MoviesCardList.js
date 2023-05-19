@@ -5,7 +5,7 @@ import mainApi from '../../../utils/MainApi';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
-import { getSearchMovies, getFilterFormData } from '../../../utils/SearchMovies';
+import { getFilterFormData } from '../../../utils/SearchMovies';
 
 function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   //localStorage.removeItem("searchMovies"); //SyntaxError: "undefined" is not valid JSON Проверка, если в локал стораж нет данных поиска
@@ -18,12 +18,7 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   const [isShowButton, setIsShowButton] = useState(false);
 
   const [filterFormData, SetFilterFormData] = useState({});
-  const [textMovie, setTextMovie] = useState('');
-  const [shortsFilms, setshortsFilms] = useState('');
-  const [allCountCards, setAllCountCards] = useState([]);
   const [cards, setCards] = useState([]);
-
-  const searchFormData = getSearchMovies();
 
   useEffect(() => {
     setterFilterFormData();
@@ -69,9 +64,6 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   function setterFilterFormData() {
     const filterFormData = getFilterFormData();
     SetFilterFormData(filterFormData ? filterFormData : {});
-
-    setTextMovie(filterFormData ? filterFormData.textMovie : '');
-    setshortsFilms(filterFormData ? filterFormData.shortsFilms: '');
 
     setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
   }

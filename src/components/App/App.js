@@ -158,6 +158,13 @@ function App() {
             path="/saved-movies"
             component={SavedMovies}
             loggedIn={loggedIn}
+
+            isPreloader={isPreloader}
+            setIsPreloader={setIsPreloader}
+            isSearchMovies={isSearchMovies}
+            setIsSearchMovies={setIsSearchMovies}
+            isSearchError={isSearchError}
+            setIsSearchError={setIsSearchError}
           >
           </ProtectedRoute>
 

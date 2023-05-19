@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Route, Switch, useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import AuthTop from '../Register/AuthTop/AuthTop';
 import AuthForm from '../Register/AuthForm/AuthForm';
 import AuthBottom from '../Register/AuthBottom/AuthBottom';
 
-import * as auth from '../../utils/Auth';
 
 function Login(props) {
   const [dataForm, setDataForm] = useState({});

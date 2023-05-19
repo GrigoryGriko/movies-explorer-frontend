@@ -1,8 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import moviesCardListImage from '../../../images/movies-cardlist__image.jpg';
-
 
 function MoviesCard({
     card,
@@ -34,7 +32,7 @@ function MoviesCard({
   return(
     <>
       <li className="movies-cardlist__item">
-        <a className="movies-cardlist__link-trailer" href={card.trailerLink} target="_blank">
+        <a className="movies-cardlist__link-trailer" href={card.trailerLink} target="_blank" rel="noopener noreferrer">
           <img className="movies-cardlist__image" src={`https://api.nomoreparties.co/${card.image.url}`} alt={card.nameRU}/>
         </a>
 

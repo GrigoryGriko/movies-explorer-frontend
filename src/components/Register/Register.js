@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Route, Switch, useLocation, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import AuthTop from './AuthTop/AuthTop';
 import AuthForm from './AuthForm/AuthForm';

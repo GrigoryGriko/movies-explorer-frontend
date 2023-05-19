@@ -10,7 +10,6 @@ function Movies({ isPreloader, setIsPreloader, isSearchMovies, setIsSearchMovies
         setIsPreloader={setIsPreloader}
         setIsSearchMovies={setIsSearchMovies}
         setIsSearchError={setIsSearchError}
-
       />
       <MoviesCardList
         isPreloader={isPreloader}

@@ -5,7 +5,7 @@ import { CurrentUserContext } from '../../../context/CurrentUserContext';
 
 
 function NavTab() {
-  const {loggedIn, setLoggedIn} = useContext(CurrentUserContext);
+  const { loggedIn } = useContext(CurrentUserContext);
 
   const location = useLocation();
   let classHeaderMenuLink;
