@@ -20,17 +20,13 @@ export function getFilterFormDataSavedMovies() {
 
 export function handleSubmit(
     e, 
-    location, 
-    setIsSearchMovies, 
+    location,  
     setIsPreloader, 
     setIsSearchError, 
     shortsFilms, 
     textMovie
   ) {
   e.preventDefault();
-  setIsSearchMovies('Ничего не найдено');
-  console.log('uuuuuuuuuuuuuu ', getFilterFormData().cards);
-  console.log('location.pathname ', location.pathname);
   
   if (location.pathname === '/movies') {
     reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location);

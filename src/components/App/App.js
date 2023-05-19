@@ -20,7 +20,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const [isPreloader, setIsPreloader] = useState(false);
-  const [isSearchMovies, setIsSearchMovies] = useState('');
   const [isSearchError, setIsSearchError] = useState('');
 
   const [currentUser, setCurrentUser] = useState({});
@@ -146,8 +145,6 @@ function App() {
 
             isPreloader={isPreloader}
             setIsPreloader={setIsPreloader}
-            isSearchMovies={isSearchMovies}
-            setIsSearchMovies={setIsSearchMovies}
             isSearchError={isSearchError}
             setIsSearchError={setIsSearchError}
           >
@@ -161,8 +158,6 @@ function App() {
 
             isPreloader={isPreloader}
             setIsPreloader={setIsPreloader}
-            isSearchMovies={isSearchMovies}
-            setIsSearchMovies={setIsSearchMovies}
             isSearchError={isSearchError}
             setIsSearchError={setIsSearchError}
           >

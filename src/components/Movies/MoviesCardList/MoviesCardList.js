@@ -7,7 +7,7 @@ import Preloader from '../Preloader/Preloader';
 
 import { getFilterFormData, getFilterFormDataSavedMovies } from '../../../utils/SearchMovies';
 
-function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
+function MoviesCardList({isPreloader, isSearchError }) {
   //localStorage.removeItem("searchMovies"); //SyntaxError: "undefined" is not valid JSON Проверка, если в локал стораж нет данных поиска
 
   const windowWidth = useWindowSize();
@@ -21,7 +21,8 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   const [cards, setCards] = useState([]);
 
   const location = useLocation();
-  
+  const isSearchMovies = 'ничего не найдено';
+
   useEffect(() => {
     setterFilterFormData();
   }, []);
@@ -93,10 +94,6 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
     }, []);
   
     return windowWidth;
-  }
-
-  function isEmpty(obj) {
-    return Object.keys(obj).length === 0;
   }
 
   function handleMore() {
@@ -177,8 +174,10 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
             </Switch>
           </ul> : ''
         }
-        {(isEmpty(filterFormData) && !isPreloader && isSearchMovies) ?
-        isSearchMovies : '' }
+        <p class="movies-cardlist__text">
+          {(filterFormData.cards && filterFormData.cards.length === 0 && !isPreloader) ?
+          isSearchMovies : '' }
+        </p>
       </section>
          
       <Switch>
