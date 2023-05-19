@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter, useLocation } from "react-router-dom";
 import mainApi from '../../../utils/MainApi';
 
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
-import { getFilterFormData } from '../../../utils/SearchMovies';
+import { getFilterFormData, getFilterFormDataSavedMovies } from '../../../utils/SearchMovies';
 
 function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   //localStorage.removeItem("searchMovies"); //SyntaxError: "undefined" is not valid JSON Проверка, если в локал стораж нет данных поиска
@@ -20,10 +20,11 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   const [filterFormData, SetFilterFormData] = useState({});
   const [cards, setCards] = useState([]);
 
+  const location = useLocation();
+  
   useEffect(() => {
     setterFilterFormData();
   }, []);
-  console.log('isShowButton ', isShowButton);
 
   useEffect(() => {
     if (windowWidth >= 1280) {
@@ -62,7 +63,11 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   }, [isPreloader, maxCountCards])
 
   function setterFilterFormData() {
-    const filterFormData = getFilterFormData();
+    let filterFormData;
+
+    if (location.pathname === '/movies') filterFormData = getFilterFormData();
+    else if (location.pathname === '/saved-movies')  filterFormData = getFilterFormDataSavedMovies();
+
     SetFilterFormData(filterFormData ? filterFormData : {});
 
     setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
@@ -101,7 +106,13 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   
   function handleCard(action, card) {   //здесь меняем сохраненность фильма в общем массиве. А надло не в общем а в новом отфильтрованном
     const flag = (action === 'save') ? true : false;
-    const filterFormData = getFilterFormData();
+
+    let filterFormData;
+
+    if (location.pathname === '/movies') filterFormData = getFilterFormData();
+    else if (location.pathname === '/saved-movies') filterFormData = getFilterFormDataSavedMovies();
+
+   
 
     const cards = filterFormData.cards || [];
     
@@ -188,4 +199,4 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   )
 }
 
-export default MoviesCardList;
+export default withRouter(MoviesCardList);

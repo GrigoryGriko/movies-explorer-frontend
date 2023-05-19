@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, withRouter, useLocation } from 'react-router-dom';
 
 
 function MoviesCard({
@@ -8,6 +8,7 @@ function MoviesCard({
     onCardDelete,
   }) 
 {
+  const location = useLocation();
   const [isSaved, setIsSaved] = useState(card.isSaved);
   function handleSaveClick() {
     setIsSaved(true);
@@ -24,7 +25,13 @@ function MoviesCard({
     let remainingMinutes = minutes % 60;
     return `${hours}ч ${remainingMinutes}м`;
   }
-
+  function generateUrlImageCard() {
+    let urlImageCard;
+    if (location.pathname === '/movies') urlImageCard = `https://api.nomoreparties.co/${card.image.url}`;
+    else if (location.pathname === '/saved-movies') urlImageCard = `https://api.nomoreparties.co/${card.image}`;
+    
+    return urlImageCard;
+  }
   useEffect(() => {
     setIsSaved(card.isSaved);
   }, [card.isSaved]);
@@ -33,7 +40,7 @@ function MoviesCard({
     <>
       <li className="movies-cardlist__item">
         <a className="movies-cardlist__link-trailer" href={card.trailerLink} target="_blank" rel="noopener noreferrer">
-          <img className="movies-cardlist__image" src={`https://api.nomoreparties.co/${card.image.url}`} alt={card.nameRU}/>
+          <img className="movies-cardlist__image" src={generateUrlImageCard()} alt={card.nameRU}/>
         </a>
 
         <Switch>
@@ -69,4 +76,4 @@ function MoviesCard({
   );
 }
 
-export default MoviesCard;
+export default withRouter(MoviesCard);

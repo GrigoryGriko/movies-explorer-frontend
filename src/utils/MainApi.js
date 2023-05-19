@@ -10,6 +10,16 @@ class MainApi {
     return res.json();
   }
 
+  getMovies() {
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'GET',
+      credentials: "include",
+      headers: {
+        'Content-type': 'application-json'
+      },
+    }).then(res => this._getResponseData(res));
+  }
+
   addMovie(data) {
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',

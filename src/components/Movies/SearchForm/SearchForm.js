@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 
-import { getFilterFormData, handleSubmit } from '../../../utils/SearchMovies';
+import { getFilterFormData, getFilterFormDataSavedMovies, handleSubmit } from '../../../utils/SearchMovies';
 
 function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError }) {
   const [textMovie, setTextMovie] = useState('');
   const [shortsFilms, setShortsFilms] = useState(false);
 
+  const location = useLocation();
+
   useEffect(() => {
-    const filterFormData = getFilterFormData();
-    const textMovie = filterFormData.textMovie;
-    const shortsFilms = filterFormData.shortsFilms;
+    let filterFormData;
+    if (location.pathname === '/movies') filterFormData = getFilterFormData();
+    else if (location.pathname === '/saved-movies') filterFormData = getFilterFormDataSavedMovies();
+
+    const textMovie = filterFormData ? filterFormData.textMovie : textMovie;
+    const shortsFilms = filterFormData ? filterFormData.shortsFilms : shortsFilms;
     
     setTextMovie(textMovie);
     setShortsFilms(shortsFilms);
@@ -29,15 +34,21 @@ function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError }) {
   function handleChangeCheckbox(state) {
     setShortsFilms(state);
   }
-
-  
   
   return(
     <section className="search-form section">
       <div className="search-form__wrapper wrapper">
         <form 
           className="search-form__search-input"
-          onSubmit={e => handleSubmit(e, setIsSearchMovies, setIsPreloader, setIsSearchError, shortsFilms, textMovie)}
+          onSubmit={e => handleSubmit(
+              e, 
+              location, 
+              setIsSearchMovies, 
+              setIsPreloader, 
+              setIsSearchError, 
+              shortsFilms, 
+              textMovie
+            )}
           >
           <input
             id="textMovie"
