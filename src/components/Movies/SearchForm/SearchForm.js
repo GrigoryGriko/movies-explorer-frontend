@@ -4,16 +4,16 @@ import { withRouter } from 'react-router-dom';
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 import moviesApi from '../../../utils/MoviesApi';
 
-function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError, getSearchFormData }) {
+import { getSearchMovies, getFilterFormData } from '../../../utils/SearchMovies';
+
+function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError }) {
   const [textMovie, setTextMovie] = useState('');
   const [shortsFilms, setShortsFilms] = useState(false);
 
   useEffect(() => {
-    const searchFormData = JSON.parse(localStorage.getItem("searchFormData"));  //здесь shortsFilms сохранен в виде объекта
-    const textMovie = searchFormData ? searchFormData.textMovie : '';
-    console.log('searchFormData ------ ', searchFormData);
-    console.log('shorts ------ ', searchFormData.shortsFilms);
-    const shortsFilms = searchFormData.shortsFilms; //превращается в объект
+    const filterFormData = getFilterFormData();
+    const textMovie = filterFormData.textMovie;
+    const shortsFilms = filterFormData.shortsFilms;
     
     console.log('Did ', shortsFilms);
     setTextMovie(textMovie);
@@ -21,7 +21,7 @@ function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError, getSe
   }, [])
 
   function handleChange(e) {
-    const value = 'о';
+    const value = e.target.value;
     
     console.log(value);
     
@@ -33,42 +33,43 @@ function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError, getSe
   }
 
   function handleSubmit(e) {
-    e.preventDefault()
-    setIsSearchMovies('Ничего не найдено')
+    e.preventDefault();
+    setIsSearchMovies('Ничего не найдено');
     
-    if (!getSearchFormData()) {
+    if (!getSearchMovies()) {
       setIsPreloader(true);
 
       moviesApi.getInitMovies()
-      .then((res) => {
-        
-        console.log('shorts= ', shortsFilms);
+      .then((res) => {      
+        const searchMovies = res;
+        localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
 
-        const searchFormData = {
-          textMovie,
-          shortsFilms: shortsFilms,
-          cards: res,
-        }
-        console.log('shorts beforesetItem = ', shortsFilms);
-        localStorage.setItem("searchFormData", JSON.stringify(searchFormData));
+        filterMovies();
+
         setIsPreloader(false);
       })
       .catch(() => {
         setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
       });
+    } else {
+      filterMovies();
     }
+  }
 
-    const cards = getSearchFormData().cards;
-
+  function filterMovies() {
+    const cards = getSearchMovies();
     const durationLimit = shortsFilms ? 40 : Infinity;
 
-    const filterFormData = cards.filter(movie => 
+    const filteredMovies = cards.filter(movie => 
       movie.nameRU.toLowerCase().includes(textMovie.toLowerCase()) &&
       (movie.duration <= durationLimit)
     );
-    console.log(filterFormData);
-
-    //localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
+    const filterFormData = {
+      textMovie: textMovie,
+      shortsFilms: shortsFilms,
+      cards: filteredMovies,
+    }
+    localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
   }
   
   return(

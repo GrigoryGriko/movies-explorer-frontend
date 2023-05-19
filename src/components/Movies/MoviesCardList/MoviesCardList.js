@@ -5,9 +5,10 @@ import mainApi from '../../../utils/MainApi';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
+import { getSearchMovies, getFilterFormData } from '../../../utils/SearchMovies';
 
-function MoviesCardList({isPreloader, isSearchMovies, isSearchError, getSearchFormData}) {
-  //localStorage.removeItem("searchFormData"); //SyntaxError: "undefined" is not valid JSON
+function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
+  //localStorage.removeItem("searchMovies"); //SyntaxError: "undefined" is not valid JSON
 
   const windowWidth = useWindowSize();
 
@@ -56,14 +57,14 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError, getSearchFo
   }, [isPreloader, maxCountCards])
 
   function setterSearchFormData() {
-    const searchFormData = getSearchFormData();
+    const searchFormData = getSearchMovies();
     SetSearchFormData(searchFormData ? searchFormData : {});
 
     setTextMovie(searchFormData ? searchFormData.textMovie : '');
     setshortsFilms(searchFormData ? searchFormData.shortsFilms: '');
 
-    setAllCountCards(searchFormData ? searchFormData.cards : []);
-    setCards(searchFormData ? searchFormData.cards.splice(0, maxCountCards) : []);
+    setAllCountCards(searchFormData ? searchFormData : []);
+    setCards(searchFormData ? searchFormData.splice(0, maxCountCards) : []);
   }
 
   function useWindowSize() {
@@ -99,9 +100,9 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError, getSearchFo
   
   function handleCard(action, card) {   //здесь меняем сохраненность фильма в общем массиве. А надло не в общем а в новом отфильтрованном
     const flag = (action === 'save') ? true : false;
-    const searchFormData = getSearchFormData();
+    const searchMovies = getSearchMovies();
 
-    const cards = searchFormData.cards || [];
+    const cards = searchMovies || [];
     
     cards.forEach((i, index) => {
       if (i.id === card.id) {
@@ -110,9 +111,9 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError, getSearchFo
       }
     });
     
-    searchFormData.cards = cards;
+    searchMovies = cards;
 
-    localStorage.setItem("searchFormData", JSON.stringify(searchFormData)); //помечаем фильмы, которые сохраннены. Надо меня другой локал стораж
+    localStorage.setItem("searchMovies", JSON.stringify(searchMovies)); //помечаем фильмы, которые сохраннены. Надо меня другой локал стораж
   }
 
   function handleCardSave(card) {
