@@ -4,14 +4,16 @@ import { withRouter } from 'react-router-dom';
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 import moviesApi from '../../../utils/MoviesApi';
 
-function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError }) {
+function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError, getSearchFormData }) {
   const [textMovie, setTextMovie] = useState('');
   const [shortsFilms, setShortsFilms] = useState(false);
 
   useEffect(() => {
-    const searchFormData = JSON.parse(localStorage.getItem("searchFormData"));
+    const searchFormData = JSON.parse(localStorage.getItem("searchFormData"));  //здесь shortsFilms сохранен в виде объекта
     const textMovie = searchFormData ? searchFormData.textMovie : '';
-    const shortsFilms = searchFormData;
+    console.log('searchFormData ------ ', searchFormData);
+    console.log('shorts ------ ', searchFormData.shortsFilms);
+    const shortsFilms = searchFormData.shortsFilms; //превращается в объект
     
     console.log('Did ', shortsFilms);
     setTextMovie(textMovie);
@@ -19,11 +21,11 @@ function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError }) {
   }, [])
 
   function handleChange(e) {
-    const value = e.target;
+    const value = 'о';
     
     console.log(value);
     
-    setTextMovie(value)
+    setTextMovie(value);
   }
 
   function handleChangeCheckbox(state) {
@@ -33,9 +35,11 @@ function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError }) {
   function handleSubmit(e) {
     e.preventDefault()
     setIsSearchMovies('Ничего не найдено')
-    setIsPreloader(true);
+    
+    if (!getSearchFormData()) {
+      setIsPreloader(true);
 
-    moviesApi.getInitMovies()
+      moviesApi.getInitMovies()
       .then((res) => {
         
         console.log('shorts= ', shortsFilms);
@@ -52,6 +56,19 @@ function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError }) {
       .catch(() => {
         setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
       });
+    }
+
+    const cards = getSearchFormData().cards;
+
+    const durationLimit = shortsFilms ? 40 : Infinity;
+
+    const filterFormData = cards.filter(movie => 
+      movie.nameRU.toLowerCase().includes(textMovie.toLowerCase()) &&
+      (movie.duration <= durationLimit)
+    );
+    console.log(filterFormData);
+
+    //localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
   }
   
   return(
@@ -83,7 +100,7 @@ function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError }) {
         </form>
           <div className="search-form__filter-switch_mobile-visibility">
             <FilterCheckbox 
-              handleChange={handleChange}
+              handleChange={handleChangeCheckbox}
               shortsFilms={shortsFilms}
             />
           </div>

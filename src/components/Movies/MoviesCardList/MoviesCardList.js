@@ -6,7 +6,7 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 
 
-function MoviesCardList(props) {
+function MoviesCardList({isPreloader, isSearchMovies, isSearchError, getSearchFormData}) {
   //localStorage.removeItem("searchFormData"); //SyntaxError: "undefined" is not valid JSON
 
   const windowWidth = useWindowSize();
@@ -43,7 +43,7 @@ function MoviesCardList(props) {
       setMaxCountCards(5);
       setCountAppendCards(2);
     }
-  }, [props.isPreloader, windowWidth]);
+  }, [isPreloader, windowWidth]);
 
   useEffect(() => {
     setterSearchFormData();
@@ -53,12 +53,8 @@ function MoviesCardList(props) {
     } else {
       setIsShowButton(false);
     }
-  }, [props.isPreloader, maxCountCards])
+  }, [isPreloader, maxCountCards])
 
-
-  function getSearchFormData() {
-    return JSON.parse(localStorage.getItem("searchFormData"));
-  }
   function setterSearchFormData() {
     const searchFormData = getSearchFormData();
     SetSearchFormData(searchFormData ? searchFormData : {});
@@ -101,7 +97,7 @@ function MoviesCardList(props) {
     setCards(allCountCards ? allCountCards.splice(0, maxCountCards) : []);
   }
   
-  function handleCard(action, card) {
+  function handleCard(action, card) {   //здесь меняем сохраненность фильма в общем массиве. А надло не в общем а в новом отфильтрованном
     const flag = (action === 'save') ? true : false;
     const searchFormData = getSearchFormData();
 
@@ -116,7 +112,7 @@ function MoviesCardList(props) {
     
     searchFormData.cards = cards;
 
-    localStorage.setItem("searchFormData", JSON.stringify(searchFormData));
+    localStorage.setItem("searchFormData", JSON.stringify(searchFormData)); //помечаем фильмы, которые сохраннены. Надо меня другой локал стораж
   }
 
   function handleCardSave(card) {
@@ -141,7 +137,7 @@ function MoviesCardList(props) {
   return ( 
     <>
       <section className="movies-cardlist section">
-        {props.isPreloader ? <Preloader/> : ''}
+        {isPreloader ? <Preloader/> : ''}
         {searchFormData ? 
           <ul className="movies-cardlist__list wrapper">       
             <Switch>
@@ -170,8 +166,8 @@ function MoviesCardList(props) {
             </Switch>
           </ul> : ''
         }
-        {(isEmpty(searchFormData) && !props.isPreloader && props.isSearchMovies) ?
-        props.isSearchMovies : '' }
+        {(isEmpty(searchFormData) && !isPreloader && isSearchMovies) ?
+        isSearchMovies : '' }
       </section>
          
       <Switch>

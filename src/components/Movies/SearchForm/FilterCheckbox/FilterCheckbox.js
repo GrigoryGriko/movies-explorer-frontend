@@ -2,6 +2,7 @@ import React from 'react';
 
 function FilterCheckbox({handleChange, shortsFilms}) {
   console.log('shooorts ' + shortsFilms);
+  console.dir(shortsFilms);
 
   return(
     <>

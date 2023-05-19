@@ -107,8 +107,6 @@ function App() {
         setLoggedIn(true);
         setIsCookieChecked(true);
         setCurrentUser(res);
-
-        //history.push('/movies');
       })
       .catch((err) => {
         setIsCookieChecked(true);
