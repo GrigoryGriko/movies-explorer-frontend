@@ -8,7 +8,7 @@ import Preloader from '../Preloader/Preloader';
 import { getSearchMovies, getFilterFormData } from '../../../utils/SearchMovies';
 
 function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
-  //localStorage.removeItem("searchMovies"); //SyntaxError: "undefined" is not valid JSON
+  //localStorage.removeItem("searchMovies"); //SyntaxError: "undefined" is not valid JSON Проверка, если в локал стораж нет данных поиска
 
   const windowWidth = useWindowSize();
 
@@ -17,15 +17,18 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
 
   const [isShowButton, setIsShowButton] = useState(false);
 
-  const [searchFormData, SetSearchFormData] = useState({});
+  const [filterFormData, SetFilterFormData] = useState({});
   const [textMovie, setTextMovie] = useState('');
   const [shortsFilms, setshortsFilms] = useState('');
   const [allCountCards, setAllCountCards] = useState([]);
   const [cards, setCards] = useState([]);
 
+  const searchFormData = getSearchMovies();
+
   useEffect(() => {
-    setterSearchFormData();
+    setterFilterFormData();
   }, []);
+  console.log('isShowButton ', isShowButton);
 
   useEffect(() => {
     if (windowWidth >= 1280) {
@@ -47,24 +50,30 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
   }, [isPreloader, windowWidth]);
 
   useEffect(() => {
-    setterSearchFormData();
-
-    if (cards.length < allCountCards.length) {
-      setIsShowButton(true);
-    } else {
+    setterFilterFormData();
+    
+    if (cards && filterFormData.cards) {
+      console.log('cards.length', cards.length);
+      console.log('filterFormData.cards.length ', filterFormData.cards.length);
+      if (cards.length < filterFormData.cards.length) {
+        setIsShowButton(true);
+      } else {
+        setIsShowButton(false);
+      }
+    }
+     else {
       setIsShowButton(false);
     }
   }, [isPreloader, maxCountCards])
 
-  function setterSearchFormData() {
-    const searchFormData = getSearchMovies();
-    SetSearchFormData(searchFormData ? searchFormData : {});
+  function setterFilterFormData() {
+    const filterFormData = getFilterFormData();
+    SetFilterFormData(filterFormData ? filterFormData : {});
 
-    setTextMovie(searchFormData ? searchFormData.textMovie : '');
-    setshortsFilms(searchFormData ? searchFormData.shortsFilms: '');
+    setTextMovie(filterFormData ? filterFormData.textMovie : '');
+    setshortsFilms(filterFormData ? filterFormData.shortsFilms: '');
 
-    setAllCountCards(searchFormData ? searchFormData : []);
-    setCards(searchFormData ? searchFormData.splice(0, maxCountCards) : []);
+    setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
   }
 
   function useWindowSize() {
@@ -95,14 +104,14 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
 
   function handleMore() {
     setMaxCountCards(prevMaxCount => prevMaxCount + countAppendCards);
-    setCards(allCountCards ? allCountCards.splice(0, maxCountCards) : []);
+    setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
   }
   
   function handleCard(action, card) {   //здесь меняем сохраненность фильма в общем массиве. А надло не в общем а в новом отфильтрованном
     const flag = (action === 'save') ? true : false;
-    const searchMovies = getSearchMovies();
+    const filterFormData = getFilterFormData();
 
-    const cards = searchMovies || [];
+    const cards = filterFormData.cards || [];
     
     cards.forEach((i, index) => {
       if (i.id === card.id) {
@@ -111,9 +120,9 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
       }
     });
     
-    searchMovies = cards;
+    filterFormData.cards = cards;
 
-    localStorage.setItem("searchMovies", JSON.stringify(searchMovies)); //помечаем фильмы, которые сохраннены. Надо меня другой локал стораж
+    localStorage.setItem("filterFormData", JSON.stringify(filterFormData)); //помечаем фильмы, которые сохраннены. Надо меня другой локал стораж
   }
 
   function handleCardSave(card) {
@@ -139,7 +148,7 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
     <>
       <section className="movies-cardlist section">
         {isPreloader ? <Preloader/> : ''}
-        {searchFormData ? 
+        {filterFormData ? 
           <ul className="movies-cardlist__list wrapper">       
             <Switch>
               <Route path="/movies">
@@ -154,20 +163,18 @@ function MoviesCardList({isPreloader, isSearchMovies, isSearchError }) {
               </Route>
 
               <Route path="/saved-movies">
-                <MoviesCard
-                  isSaved={true}
-                />
-                <MoviesCard
-                  isSaved={true}
-                />
-                <MoviesCard
-                  isSaved={true}
-                />
+                {cards ? cards.map((card, index) => (
+                  <MoviesCard 
+                    key={card.id} 
+                    card={card}
+                    onCardDelete={handleCardDelete}
+                  />
+                )) : ''}
               </Route>
             </Switch>
           </ul> : ''
         }
-        {(isEmpty(searchFormData) && !isPreloader && isSearchMovies) ?
+        {(isEmpty(filterFormData) && !isPreloader && isSearchMovies) ?
         isSearchMovies : '' }
       </section>
          

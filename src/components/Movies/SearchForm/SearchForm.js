@@ -52,7 +52,10 @@ function SearchForm({ setIsPreloader, setIsSearchMovies, setIsSearchError }) {
         setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
       });
     } else {
+      setIsPreloader(true);
       filterMovies();
+      setIsPreloader(false);
+      console.log(getFilterFormData().cards);
     }
   }
 
