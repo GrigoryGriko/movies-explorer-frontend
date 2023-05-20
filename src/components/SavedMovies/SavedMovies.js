@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 
-function SavedMovies({ isPreloader, setIsPreloader, isSearchError, setIsSearchError }) {
+function SavedMovies({ isPreloader, setIsPreloader }) {
+  const [isSearchError, setIsSearchError] = useState('');
+
   return (
     <main className="content section">
       <SearchForm

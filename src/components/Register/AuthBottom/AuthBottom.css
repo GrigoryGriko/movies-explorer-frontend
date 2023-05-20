@@ -5,7 +5,7 @@
   flex-direction: column;
 }
 .auth-bottom__button-auth {
-  margin-top: 69px;
+  margin-top: 10px;
   background: #3456F3;
   border: none;
   outline: none;
@@ -31,12 +31,12 @@
 }
 
 .auth-bottom__button-auth_route-signin {
-  margin-top: 179px;
+  margin-top: 10px;
 }
 
 .auth-bottom__button-auth_route-profile {
   width: 410px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 50px;
 }
 .auth-bottom__wrapper-error {
@@ -83,7 +83,7 @@
 
 @media screen and (max-width: 699px) {
   .auth-bottom__button-auth {
-    margin-top: 157px;
+    margin-top: 20px;
     width : 260px;
     font-size: 12px;
   }
@@ -99,7 +99,7 @@
     font-size: 12px;
   }
   .auth-bottom__button-auth_route-signin {
-    margin-top: 267px;
+    margin-top: 10px;
   }
 
   .auth-bottom__button-auth_route-profile {

@@ -9,8 +9,9 @@ import { CurrentUserContext } from '../../context/CurrentUserContext';
 
 function Profile(props) {
   
-  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
-  console.log(currentUser);
+  const {currentUser, setCurrentUser, signOut} = useContext(CurrentUserContext);
+
+  const [isErrorText, setIsErrorText] = useState('');
   const [isButtonEdit, setIsButtonEdit] = useState(false);
   const [dataForm, setDataForm] = useState({});
   const [isFirstClickEdit, setIsFirstClickEdit] = useState(true);
@@ -20,13 +21,11 @@ function Profile(props) {
     name,
     email,
   } = props.setValidation(props, useInput, useEffect);
-  
 
+  console.log("isFirst ", isFirstClickEdit);
 
-console.log("isFirst ", isFirstClickEdit);
-
-  //isFirstClickEdit сдеклать false
-console.log('value ', name.value);
+    //isFirstClickEdit сдеклать false
+  console.log('value ', name.value);
 
   function handleClick() {
     setIsButtonEdit(true);
@@ -53,7 +52,7 @@ console.log('value ', name.value);
       setCurrentUser(res);
     })
     .catch(() => {
-      console.log('Что-то пошло не так! Попробуйте ещё раз.');
+      setIsErrorText('При обновлении профиля произошла ошибка.');
     });
   }
   
@@ -145,6 +144,7 @@ console.log('value ', name.value);
             <AuthBottom
               isDisabled={props.isDisabled}
               handleSubmit={handleSubmit}
+              isErrorText={isErrorText}
             />
           </div>
           :
@@ -156,7 +156,10 @@ console.log('value ', name.value);
           </button>
         }
         
-        <button className="profile__logout button-hover">
+        <button 
+          onClick={signOut}
+          className="profile__logout button-hover"
+        >
           Выйти из аккаунта
         </button>
       </section>

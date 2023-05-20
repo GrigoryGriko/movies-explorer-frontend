@@ -17,7 +17,7 @@ function MoviesCardList({isPreloader, isSearchError }) {
 
   const [isShowButton, setIsShowButton] = useState(false);
 
-  const [filterFormData, SetFilterFormData] = useState({});
+  const [filterFormData, setFilterFormData] = useState({});
   const [cards, setCards] = useState([]);
 
   const location = useLocation();
@@ -69,7 +69,7 @@ function MoviesCardList({isPreloader, isSearchError }) {
     if (location.pathname === '/movies') filterFormData = getFilterFormData();
     else if (location.pathname === '/saved-movies')  filterFormData = getFilterFormDataSavedMovies();
 
-    SetFilterFormData(filterFormData ? filterFormData : {});
+    setFilterFormData(filterFormData ? filterFormData : {});
 
     setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
   }
@@ -104,13 +104,7 @@ function MoviesCardList({isPreloader, isSearchError }) {
   function handleCard(action, card) {   //здесь меняем сохраненность фильма в общем массиве. А надло не в общем а в новом отфильтрованном
     const flag = (action === 'save') ? true : false;
 
-    let filterFormData;
-
-    if (location.pathname === '/movies') filterFormData = getFilterFormData();
-    else if (location.pathname === '/saved-movies') filterFormData = getFilterFormDataSavedMovies();
-
-   
-
+    const filterFormData = getFilterFormData();
     const cards = filterFormData.cards || [];
     
     cards.forEach((i, index) => {
@@ -126,6 +120,7 @@ function MoviesCardList({isPreloader, isSearchError }) {
   }
 
   function handleCardSave(card) {
+    card.image = card.image.url;
     console.log('handlecardsave ', card);
     mainApi.addMovie(card)
       .then(() => {
@@ -143,7 +138,7 @@ function MoviesCardList({isPreloader, isSearchError }) {
       })
       .catch(err => console.log(err));
   }
-
+  console.log('filterFormData.cards ', filterFormData.cards);
   return ( 
     <>
       <section className="movies-cardlist section">
@@ -154,7 +149,7 @@ function MoviesCardList({isPreloader, isSearchError }) {
               <Route path="/movies">
                 {cards ? cards.map((card, index) => (
                   <MoviesCard 
-                    key={card.id} 
+                    key={card.id}
                     card={card}
                     onCardSave={handleCardSave}
                     onCardDelete={handleCardDelete}
@@ -174,9 +169,11 @@ function MoviesCardList({isPreloader, isSearchError }) {
             </Switch>
           </ul> : ''
         }
-        <p class="movies-cardlist__text">
+        <p className="movies-cardlist__text wrapper">
           {(filterFormData.cards && filterFormData.cards.length === 0 && !isPreloader) ?
           isSearchMovies : '' }
+          
+          {isSearchError ? isSearchError : ''}
         </p>
       </section>
          

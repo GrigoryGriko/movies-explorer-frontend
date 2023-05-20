@@ -49,5 +49,14 @@ export function updateProfile(name, email) {
   }).then(res => _getResponseData(res));
 }
 
+export function signOut() {
+  return fetch(`${BASE_URL}/signout`, {
+    method: 'GET',
+    credentials: "include",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }).then(res => _getResponseData(res));
+}
 
   

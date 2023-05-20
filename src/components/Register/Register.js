@@ -9,6 +9,7 @@ import * as auth from '../../utils/Auth';
 
 
 function Register(props) {
+  const [isErrorText, setIsErrorText] = useState('');
   const [dataForm, setDataForm] = useState({});
 
   const history = useHistory();
@@ -30,7 +31,7 @@ function Register(props) {
       props.handleLogin({email, password});
     })
     .catch(() => {
-      console.log('Что-то пошло не так! Попробуйте ещё раз.');
+      setIsErrorText('При регистрации произошла ошибка.');
     });
   }
 
@@ -48,6 +49,7 @@ function Register(props) {
     <AuthBottom
       isDisabled={props.isDisabled}
       handleSubmit={handleSubmit}
+      isErrorText={isErrorText}
     />
   </main>
   )

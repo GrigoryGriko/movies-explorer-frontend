@@ -10,6 +10,7 @@ function MoviesCard({
 {
   const location = useLocation();
   const [isSaved, setIsSaved] = useState(card.isSaved);
+  
   function handleSaveClick() {
     setIsSaved(true);
     onCardSave(card);

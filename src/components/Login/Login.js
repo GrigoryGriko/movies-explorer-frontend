@@ -7,6 +7,7 @@ import AuthBottom from '../Register/AuthBottom/AuthBottom';
 
 
 function Login(props) {
+  const [isErrorText, setIsErrorText] = useState('');
   const [dataForm, setDataForm] = useState({});
 
   const history = useHistory();
@@ -23,7 +24,7 @@ function Login(props) {
     e.preventDefault();
 
     const { email, password } = dataForm;
-    props.handleLogin({email, password});
+    props.handleLogin({email, password}, setIsErrorText);
   }
 
   return (
@@ -40,6 +41,7 @@ function Login(props) {
       <AuthBottom
         isDisabled={props.isDisabled}
         handleSubmit={handleSubmit}
+        isErrorText={isErrorText}
       />
     </main>
   )

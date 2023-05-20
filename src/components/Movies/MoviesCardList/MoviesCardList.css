@@ -24,9 +24,8 @@
 }
 .movies-cardlist__text {
   margin: 0;
-  
   font-family: 'Inter', sans-serif;
-  font-style: normal;
+  text-align: center;
   font-weight: 400;
   font-size: 30px;
   color: #ababab;

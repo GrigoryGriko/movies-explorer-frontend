@@ -7,6 +7,12 @@ function AuthBottom(props) {
   <section className="auth-bottom" aria-label="Действие с авторизацией">
     <Switch>
       <Route path="/signup">
+        <div className="auth-bottom__wrapper-error">
+          <p className="auth-bottom__input-error">
+            {props.isErrorText}
+          </p>
+        </div>
+
         <button
           disabled={props.isDisabled}
           onClick={props.handleSubmit}
@@ -25,6 +31,12 @@ function AuthBottom(props) {
       </Route>
 
       <Route path="/signin">
+        <div className="auth-bottom__wrapper-error">
+          <p className="auth-bottom__input-error">
+            {props.isErrorText}
+          </p>
+        </div>
+
         <button 
           disabled={props.isDisabled}
           onClick={props.handleSubmit}
@@ -45,7 +57,7 @@ function AuthBottom(props) {
       <Route path="/profile">
         <div className="auth-bottom__wrapper-error">
           <p className="auth-bottom__input-error">
-            При обновлении профиля произошла ошибка.
+            {props.isErrorText}
           </p>
         </div>
         <button

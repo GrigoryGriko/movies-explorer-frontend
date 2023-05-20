@@ -20,7 +20,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
   const [isPreloader, setIsPreloader] = useState(false);
-  const [isSearchError, setIsSearchError] = useState('');
 
   const [currentUser, setCurrentUser] = useState({});
   const [isCookieChecked, setIsCookieChecked] = useState(false);
@@ -36,6 +35,7 @@ function App() {
     setCurrentUser: setCurrentUser,
     loggedIn : loggedIn,
     setLoggedIn : setLoggedIn,
+    signOut : signOut,
   }
 
   useEffect(() => {
@@ -76,7 +76,7 @@ function App() {
     }
   }
 
-  function handleLogin({email, password}) {
+  function handleLogin({email, password}, setIsErrorText) {
     auth.login(email, password)
       .then((res) => {
         setLoggedIn(true);
@@ -91,7 +91,7 @@ function App() {
           })
           .catch((err) => {
             setIsCookieChecked(true);
-            console.log('Ошибка получения данных пользователя ' + err);
+            setIsErrorText('При обновлении профиля произошла ошибка.');
           });
       })
       .catch((err) => {
@@ -114,8 +114,21 @@ function App() {
     }
   }
   
-  function unsetLoggedIn() {
+  function signOut(e) {
+    e.preventDefault();
+
     setLoggedIn(false)
+    setCurrentUser({});
+
+    auth.signOut()
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch(() => {
+        console.log('При выходе возникла ошибка.');
+      });
+
+    history.push('/');
   }
   
   return (
@@ -145,8 +158,6 @@ function App() {
 
             isPreloader={isPreloader}
             setIsPreloader={setIsPreloader}
-            isSearchError={isSearchError}
-            setIsSearchError={setIsSearchError}
           >
           </ProtectedRoute>
 
@@ -158,8 +169,6 @@ function App() {
 
             isPreloader={isPreloader}
             setIsPreloader={setIsPreloader}
-            isSearchError={isSearchError}
-            setIsSearchError={setIsSearchError}
           >
           </ProtectedRoute>
 
