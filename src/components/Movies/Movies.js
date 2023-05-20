@@ -15,6 +15,7 @@ function Movies({ isPreloader, setIsPreloader }) {
       <MoviesCardList
         isPreloader={isPreloader}
         isSearchError={isSearchError}
+        setIsSearchError={setIsSearchError}
       />
     </main>
   )

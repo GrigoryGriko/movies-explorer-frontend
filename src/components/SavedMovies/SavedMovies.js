@@ -15,6 +15,7 @@ function SavedMovies({ isPreloader, setIsPreloader }) {
       <MoviesCardList
         isPreloader={isPreloader}
         isSearchError={isSearchError}
+        setIsSearchError={setIsSearchError}
       />
 
       <section className="saved-movies__devider section"></section>
