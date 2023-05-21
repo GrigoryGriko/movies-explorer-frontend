@@ -47,6 +47,7 @@ export function handleSubmit(
 function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location) {
   if (!getSearchMovies()) {
     setIsPreloader(true);
+    setIsSearchError('');
     
     moviesApi.getInitMovies()
     .then((res) => {      
@@ -54,7 +55,7 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
       localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
 
       filterMovies(shortsFilms, textMovie, location);
-
+      
       setIsPreloader(false);
     })
     .catch(() => {
@@ -70,6 +71,8 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
 function reqSaveMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location) {
   if (!getSearchSavedMovies()) {
     setIsPreloader(true);
+    setIsSearchError('');
+
     mainApi.getMovies()
       .then((res) => {      
         const searchSavedMovies = res;

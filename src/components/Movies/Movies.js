@@ -14,7 +14,7 @@ function Movies({ isPreloader, setIsPreloader }) {
   const [filterFormData, setFilterFormData] = useState({});
 
   const location = useLocation();
-
+  
   function setterFilterFormData() {
     let filterFormData;
 

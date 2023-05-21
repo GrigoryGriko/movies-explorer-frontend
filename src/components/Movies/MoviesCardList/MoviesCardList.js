@@ -129,11 +129,15 @@ function MoviesCardList({
   }
 
   function handleCardSave(card) {
-    //card.image = card.image.url;
     console.log('handlecardsave ', card);
-    mainApi.addMovie(card)
-      .then((card) => {
-        handleCard('save', card);
+    mainApi.addMovie({
+      ...card,
+      movieId: card.id,
+      image: `https://api.nomoreparties.co${card.image.url}` || 'http://example.com', 
+      thumbnail: card.thumbnail || 'http://example.com'
+    })
+      .then((cardData) => {
+        handleCard('save', cardData);
       })
       .catch((err) => {
         console.log(err)

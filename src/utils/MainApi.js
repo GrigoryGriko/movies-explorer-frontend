@@ -21,14 +21,19 @@ class MainApi {
   }
 
   addMovie(data) {
-    console.log(JSON.stringify(data))
+    console.log(data);
+    const newData = {...data};
+    delete newData.id;
+    delete newData.created_at;
+    delete newData.updated_at;
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
       credentials: "include",
       headers: {
-        'Content-type': 'application-json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(newData)
     }).then(res => this._getResponseData(res));
   }
 
