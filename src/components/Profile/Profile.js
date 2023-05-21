@@ -13,8 +13,7 @@ function Profile(props) {
 
   const [isErrorText, setIsErrorText] = useState('');
   const [isButtonEdit, setIsButtonEdit] = useState(false);
-  const [dataForm, setDataForm] = useState({});
-  const [isFirstClickEdit, setIsFirstClickEdit] = useState(true);
+  const [dataForm, setDataForm] = useState({name: '', email: ''});
   
 
   const {
@@ -22,20 +21,21 @@ function Profile(props) {
     email,
   } = props.setValidation(props, useInput, useEffect);
 
-  console.log("isFirst ", isFirstClickEdit);
-
     //isFirstClickEdit сдеклать false
   console.log('value ', name.value);
 
   function handleClick() {
     setIsButtonEdit(true);
-    setIsFirstClickEdit(true);
   }
 
+  useEffect(() => {
+    setDataForm({
+      name: currentUser.name,
+      email: currentUser.email
+    })
+  }, [currentUser])
+
   function handleChange(e) {
-    if (isFirstClickEdit) {
-      setIsFirstClickEdit(false);
-    }
     const {name, value} = e.target;
     setDataForm((prevData) => ({
       ...prevData,
@@ -77,7 +77,7 @@ function Profile(props) {
                   name.onChange(e);
                   handleChange(e);
                 }}
-                value={isFirstClickEdit ? currentUser.name : name.value }
+                value={dataForm.name}
                 
               ></input>
               <span className={`auth-form__stroke-line ${displayError(name).isUnderlinError}`}></span>
@@ -102,7 +102,7 @@ function Profile(props) {
                   email.onChange(e);
                   handleChange(e);
                 }}
-                value={isFirstClickEdit ? currentUser.email : email.value }
+                value={dataForm.email}
               ></input>
               <span className={`auth-form__stroke-line ${displayError(email).isUnderlinError}`}></span>
 
