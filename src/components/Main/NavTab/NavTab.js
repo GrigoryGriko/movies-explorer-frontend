@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { CurrentUserContext } from '../../../context/CurrentUserContext';
@@ -6,6 +6,8 @@ import { CurrentUserContext } from '../../../context/CurrentUserContext';
 
 function NavTab() {
   const { loggedIn } = useContext(CurrentUserContext);
+
+  const [popupMenuVisible, setPopupMenuVisible] = useState('');
 
   const location = useLocation();
   let classHeaderMenuLink;
@@ -31,6 +33,14 @@ function NavTab() {
     classHeaderPopupButtonLogin = 'header__action-login_light';
   }
 
+  function handleClickButtonOpen() {
+    setPopupMenuVisible('popup-menu__change_visible');
+  }
+
+  function handleClickButtonClose() {
+    setPopupMenuVisible('');
+  }
+
   return (
     <>
       {loggedIn ? (
@@ -43,11 +53,19 @@ function NavTab() {
           
           <Link to="/profile" className={`header__action-account link-hover ${classHeaderActionAccount} header__wrapper-menu_site-visibility`}>Аккаунт</Link>
 
-          <button className={`header__popup-menu-button button-hover ${classHeaderPopupMenuButton}`}></button>
+          <button
+            className={`header__popup-menu-button button-hover ${classHeaderPopupMenuButton}`}
+            onClick={handleClickButtonOpen}
+          ></button>
 
-          <div className="popup-menu">
+          <div 
+            className={`popup-menu ${popupMenuVisible}`}
+          >
             <div className="popup-menu__wrapper-content">
-              <button className="popup-menu__button-close"></button>
+              <button 
+                className="popup-menu__button-close"
+                onClick={handleClickButtonClose}
+              ></button>
 
               <nav className="popup-menu__wrapper-menu">
                 <ul className="popup-menu__wrapper-menu-list">
@@ -92,7 +110,9 @@ function NavTab() {
               <Link to="/profile" className="popup-menu__action-account link-hover">Аккаунт</Link>
             </div>
           </div>
-          <div className="popup-menu-cover"></div>
+          <div 
+            className={`popup-menu-cover ${popupMenuVisible}`}
+          ></div>
         </>
         
       ) : (
