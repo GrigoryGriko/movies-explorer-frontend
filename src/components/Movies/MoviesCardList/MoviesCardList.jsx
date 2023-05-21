@@ -55,9 +55,6 @@ function MoviesCardList({
     setterFilterFormData();
     
     if (cards && filterFormData.cards) {
-      console.log('cards.length', cards.length);
-      console.log('filterFormData.cards.length ', filterFormData.cards.length);
-
       if (filterFormData.cards.length === 0 && !isPreloader) {
         setIsSearchError('ничего не найдено');
       }    
@@ -151,7 +148,6 @@ function MoviesCardList({
       })
       .catch(err => console.log(err));
   }
-  console.log('filterFormData.cards ', filterFormData.cards);
   return ( 
     <>
       <section className="movies-cardlist section">

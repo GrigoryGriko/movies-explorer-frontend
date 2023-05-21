@@ -20,7 +20,6 @@ export function getUserData() {
 export function register(name, email, password) {
   return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
-    credentials: "include",
     headers: {
       'Content-Type': 'application/json'
     },
