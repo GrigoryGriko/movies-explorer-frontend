@@ -90,7 +90,7 @@ function App() {
           })
           .catch((err) => {
             setIsCookieChecked(true);
-            setIsErrorText('При обновлении профиля произошла ошибка.');
+            setIsErrorText('Ошибка авторизации.');
           });
       })
       .catch((err) => {
