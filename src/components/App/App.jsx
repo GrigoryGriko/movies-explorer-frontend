@@ -83,7 +83,6 @@ function App() {
 
         auth.getUserData()
           .then((res) => {
-            console.log(res)
             setIsCookieChecked(true);
             setCurrentUser(res);
 

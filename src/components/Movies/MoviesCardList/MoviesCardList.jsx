@@ -60,13 +60,7 @@ function MoviesCardList({
 
       if (filterFormData.cards.length === 0 && !isPreloader) {
         setIsSearchError('ничего не найдено');
-      }
-
-      /*if (cards.length < filterFormData.cards.length) {
-        setIsShowButton(true);
-      } else {
-        setIsShowButton(false);
-      }*/      
+      }    
     }
   }, [isPreloader, maxCountCards])
 

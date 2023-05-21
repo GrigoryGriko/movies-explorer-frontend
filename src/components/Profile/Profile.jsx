@@ -21,9 +21,6 @@ function Profile(props) {
     email,
   } = props.setValidation(props, useInput, useEffect);
 
-    //isFirstClickEdit сдеклать false
-  console.log('value ', name.value);
-
   function handleClick() {
     setIsButtonEdit(true);
   }

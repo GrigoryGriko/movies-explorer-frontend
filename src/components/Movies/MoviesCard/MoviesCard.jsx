@@ -29,7 +29,7 @@ function MoviesCard({
   function generateUrlImageCard() {
     let urlImageCard;
     if (location.pathname === '/movies') urlImageCard = `https://api.nomoreparties.co/${card.image.url}`;
-    else if (location.pathname === '/saved-movies') urlImageCard = `https://api.nomoreparties.co/${card.image}`;
+    else if (location.pathname === '/saved-movies') urlImageCard = card.image;
     
     return urlImageCard;
   }
