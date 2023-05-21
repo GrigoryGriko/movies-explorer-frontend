@@ -2,6 +2,10 @@
 
 Фронтенд проекта `movies-explorer`.
 
+## Ссылка на приложение
+
+http://grigorygriko.nomoredomains.monster/
+
 ## Ссылка на пулл реквест
 
 https://github.com/GrigoryGriko/movies-explorer-frontend/pull/2
