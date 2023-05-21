@@ -20,18 +20,24 @@ export function getFilterFormDataSavedMovies() {
 
 export function handleSubmit(
     e, 
-    location,  
+    location,
+    setIsTextFormError,
     setIsPreloader, 
     setIsSearchError, 
     shortsFilms, 
     textMovie
   ) {
   e.preventDefault();
-  
-  if (location.pathname === '/movies') {
-    reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location);
-  } else if (location.pathname === '/saved-movies') {
-    reqSaveMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location);
+  if (!textMovie) {
+    setIsTextFormError('Нужно ввести ключевое слово');
+  } else {
+    setIsTextFormError('');
+
+    if (location.pathname === '/movies') {
+      reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location);
+    } else if (location.pathname === '/saved-movies') {
+      reqSaveMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location);
+    }
   }
 }
 

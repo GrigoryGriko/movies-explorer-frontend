@@ -8,6 +8,7 @@ import { getFilterFormData, getFilterFormDataSavedMovies, handleSubmit } from '.
 function SearchForm({ setIsPreloader, setIsSearchError }) {
   const [textMovie, setTextMovie] = useState('');
   const [shortsFilms, setShortsFilms] = useState(false);
+  const [isTextFormError, setIsTextFormError] = useState('');
 
   const location = useLocation();
 
@@ -43,6 +44,7 @@ function SearchForm({ setIsPreloader, setIsSearchError }) {
           onSubmit={e => handleSubmit(
               e, 
               location,
+              setIsTextFormError,
               setIsPreloader, 
               setIsSearchError, 
               shortsFilms, 
@@ -55,7 +57,7 @@ function SearchForm({ setIsPreloader, setIsSearchError }) {
             placeholder="Фильм"
             value={textMovie}
             onChange={handleChange}
-            required>
+          >
           </input>
           <button className="search-form__search-button button-hover"></button>
 
@@ -69,12 +71,16 @@ function SearchForm({ setIsPreloader, setIsSearchError }) {
           </div>
           
         </form>
-          <div className="search-form__filter-switch_mobile-visibility">
-            <FilterCheckbox 
-              handleChange={handleChangeCheckbox}
-              shortsFilms={shortsFilms}
-            />
-          </div>
+        <div className="search-form__error-text">
+          {isTextFormError}  
+        </div>
+
+        <div className="search-form__filter-switch_mobile-visibility">
+          <FilterCheckbox 
+            handleChange={handleChangeCheckbox}
+            shortsFilms={shortsFilms}
+          />
+        </div>
         <div className="search-form__stroke-line-bottom"></div>
       </div>
     </section>

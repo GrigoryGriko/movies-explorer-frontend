@@ -128,7 +128,7 @@ function MoviesCardList({isPreloader, isSearchError, setIsSearchError }) {
     //card.image = card.image.url;
     console.log('handlecardsave ', card);
     mainApi.addMovie(card)
-      .then(() => {
+      .then((card) => {
         handleCard('save', card);
       })
       .catch((err) => {
@@ -137,7 +137,7 @@ function MoviesCardList({isPreloader, isSearchError, setIsSearchError }) {
   }
 
   function handleCardDelete(card) {
-    mainApi.addMovie(card.id)
+    mainApi.deleteMovie(card.id)
       .then(() => {
         handleCard('delete', card);
       })

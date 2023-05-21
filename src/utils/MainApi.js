@@ -21,6 +21,7 @@ class MainApi {
   }
 
   addMovie(data) {
+    console.log(JSON.stringify(data))
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
       credentials: "include",
