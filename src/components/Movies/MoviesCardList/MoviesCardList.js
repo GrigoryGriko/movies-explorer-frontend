@@ -7,18 +7,23 @@ import Preloader from '../Preloader/Preloader';
 
 import { getFilterFormData, getFilterFormDataSavedMovies } from '../../../utils/SearchMovies';
 
-function MoviesCardList({isPreloader, isSearchError, setIsSearchError }) {
+function MoviesCardList({
+  isPreloader,
+  isSearchError,
+  setIsSearchError,
+  setterFilterFormData,
+  setMaxCountCards,
+  cards,
+  setCards,
+  maxCountCards,
+  filterFormData,
+}) {
   //localStorage.removeItem("searchMovies"); //SyntaxError: "undefined" is not valid JSON Проверка, если в локал стораж нет данных поиска
 
   const windowWidth = useWindowSize();
 
-  const [maxCountCards, setMaxCountCards] = useState(0);
   const [countAppendCards, setCountAppendCards] = useState(0);
-
   const [isShowButton, setIsShowButton] = useState(false);
-
-  const [filterFormData, setFilterFormData] = useState({});
-  const [cards, setCards] = useState([]);
 
   const location = useLocation();
 
@@ -68,16 +73,7 @@ function MoviesCardList({isPreloader, isSearchError, setIsSearchError }) {
     }
   }, [isPreloader, maxCountCards])
 
-  function setterFilterFormData() {
-    let filterFormData;
-
-    if (location.pathname === '/movies') filterFormData = getFilterFormData();
-    else if (location.pathname === '/saved-movies')  filterFormData = getFilterFormDataSavedMovies();
-
-    setFilterFormData(filterFormData ? filterFormData : {});
-
-    setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
-  }
+  
 
   function useWindowSize() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -107,21 +103,29 @@ function MoviesCardList({isPreloader, isSearchError, setIsSearchError }) {
   }
   
   function handleCard(action, card) {   //здесь меняем сохраненность фильма в общем массиве. А надло не в общем а в новом отфильтрованном
+    function cardForEach() {
+      const cards = filterFormData.cards || [];
+    
+      cards.forEach((i, index) => {
+        if (i.id === card.id) {
+          i.isSaved = flag;
+          return;
+        }
+      });
+      
+      filterFormData.cards = cards;
+    }
     const flag = (action === 'save') ? true : false;
-
-    const filterFormData = getFilterFormData();
-    const cards = filterFormData.cards || [];
-    
-    cards.forEach((i, index) => {
-      if (i.id === card.id) {
-        i.isSaved = flag;
-        return;
-      }
-    });
-    
-    filterFormData.cards = cards;
-
-    localStorage.setItem("filterFormData", JSON.stringify(filterFormData)); //помечаем фильмы, которые сохраннены. Надо меня другой локал стораж
+    let filterFormData;
+    if (flag) {
+      filterFormData = getFilterFormData();
+      cardForEach();
+      localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
+    } else {
+        filterFormData = getFilterFormDataSavedMovies();
+        cardForEach();
+        localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormData));
+    }
   }
 
   function handleCardSave(card) {

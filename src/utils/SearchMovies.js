@@ -25,7 +25,8 @@ export function handleSubmit(
     setIsPreloader, 
     setIsSearchError, 
     shortsFilms, 
-    textMovie
+    textMovie,
+    setterFilterFormData
   ) {
   e.preventDefault();
   if (!textMovie) {
@@ -35,8 +36,10 @@ export function handleSubmit(
 
     if (location.pathname === '/movies') {
       reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location);
+      setterFilterFormData();
     } else if (location.pathname === '/saved-movies') {
       reqSaveMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location);
+      setterFilterFormData();
     }
   }
 }
@@ -83,7 +86,6 @@ function reqSaveMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie,
     setIsPreloader(true);
     filterMovies(shortsFilms, textMovie, location);
     setIsPreloader(false);
-    console.log(getFilterFormDataSavedMovies().cards);
   }
 }
 

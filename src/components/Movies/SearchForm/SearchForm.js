@@ -5,7 +5,7 @@ import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 
 import { getFilterFormData, getFilterFormDataSavedMovies, handleSubmit } from '../../../utils/SearchMovies';
 
-function SearchForm({ setIsPreloader, setIsSearchError }) {
+function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData }) {
   const [textMovie, setTextMovie] = useState('');
   const [shortsFilms, setShortsFilms] = useState(false);
   const [isTextFormError, setIsTextFormError] = useState('');
@@ -48,7 +48,8 @@ function SearchForm({ setIsPreloader, setIsSearchError }) {
               setIsPreloader, 
               setIsSearchError, 
               shortsFilms, 
-              textMovie
+              textMovie,
+              setterFilterFormData
             )}
           >
           <input
