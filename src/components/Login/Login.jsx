@@ -31,7 +31,7 @@ function Login(props) {
     <main className="content section">
       <AuthTop/>
       <AuthForm
-        setValidation={props.setValidation}
+        useValidation={props.useValidation}
         isDisabled={props.isDisabled}
         setIsDisabled={props.setIsDisabled}
         dataForm={props.dataForm}

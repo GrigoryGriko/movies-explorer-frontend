@@ -42,7 +42,7 @@ function App() {
     autoLoginCookie();
   }, [])
 
-  function setValidation(props, useInput, useEffect) {
+  function useValidation(props, useInput, useEffect) {
     const nameInput = {
       name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
       email: useInput('', {isEmpty: true, isEmail: true}),
@@ -178,7 +178,7 @@ function App() {
             component={Profile}
             loggedIn={loggedIn}
 
-            setValidation={setValidation}
+            useValidation={useValidation}
               isDisabled={isDisabled}
               setIsDisabled={setIsDisabled}
           >
@@ -188,7 +188,7 @@ function App() {
             path="/signin"
           >
             <Login
-              setValidation={setValidation}
+              useValidation={useValidation}
               isDisabled={isDisabled}
               setIsDisabled={setIsDisabled}
               handleLogin={handleLogin}
@@ -199,7 +199,7 @@ function App() {
             path="/signup"
           >
             <Register
-              setValidation={setValidation}
+              useValidation={useValidation}
               isDisabled={isDisabled}
               setIsDisabled={setIsDisabled}
               handleLogin={handleLogin}

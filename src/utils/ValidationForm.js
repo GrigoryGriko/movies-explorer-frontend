@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
-function useValidation (value, validations) {
+function setterValidation (value, validations) {
   const [textError, setTextError] = useState('');
   const [isEmpty, setIsEmpty] = useState(false);
   const [minLengthError, setMinLengthError] = useState(false);
@@ -106,7 +106,7 @@ function useValidation (value, validations) {
 function useInput (initialValue, validations) {
   const [value, setValue] = useState(initialValue);
   const [isChange, setIsChange] = useState(false);
-  const valid = useValidation(value, validations);
+  const valid = setterValidation(value, validations);
 
   function onChange (e) {
     setValue(e.target.value);

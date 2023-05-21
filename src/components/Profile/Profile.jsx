@@ -19,7 +19,7 @@ function Profile(props) {
   const {
     name,
     email,
-  } = props.setValidation(props, useInput, useEffect);
+  } = props.useValidation(props, useInput, useEffect);
 
   function handleClick() {
     setIsButtonEdit(true);

@@ -9,7 +9,7 @@ function AuthForm(props) {
     email,
     password,
     isValid,
-  } = props.setValidation(props, useInput, useEffect);
+  } = props.useValidation(props, useInput, useEffect);
 
   return (
   <section className="auth-form" aria-label="форма с полями ввода">
