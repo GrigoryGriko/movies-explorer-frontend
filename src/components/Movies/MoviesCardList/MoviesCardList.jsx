@@ -62,17 +62,23 @@ function MoviesCardList({
         setIsSearchError('ничего не найдено');
       }
 
+      /*if (cards.length < filterFormData.cards.length) {
+        setIsShowButton(true);
+      } else {
+        setIsShowButton(false);
+      }*/      
+    }
+  }, [isPreloader, maxCountCards])
+
+  useEffect(() => {
+    if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
       if (cards.length < filterFormData.cards.length) {
         setIsShowButton(true);
       } else {
         setIsShowButton(false);
       }
     }
-     else {
-      setIsShowButton(false);
-    }
-  }, [isPreloader, maxCountCards])
-
+  }, [cards.length])
   
 
   function useWindowSize() {
