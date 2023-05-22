@@ -130,8 +130,8 @@ function MoviesCardList({
     mainApi.addMovie({
       ...card,
       movieId: card.id,
-      image: `https://api.nomoreparties.co${card.image.url}` || 'http://example.com', 
-      thumbnail: card.thumbnail || 'http://example.com'
+      image: `https://api.nomoreparties.co${card.image.url}` || 'https://example.com', 
+      thumbnail: card.thumbnail || 'https://example.com'
     })
       .then((cardData) => {
         handleCard('save', cardData);

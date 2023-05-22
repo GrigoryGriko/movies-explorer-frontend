@@ -4,7 +4,7 @@
 
 ## Ссылка на приложение
 
-http://grigorygriko.nomoredomains.monster/
+https://grigorygriko.nomoredomains.monster/
 
 ## Ссылка на пулл реквест
 
