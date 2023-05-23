@@ -100,11 +100,13 @@ function MoviesCardList({
   }
   
   function handleCard(action, card) {   //здесь меняем сохраненность фильма в общем массиве. А надло не в общем а в новом отфильтрованном
+    console.log('cardcardcard ', card.id);
     function cardForEach() {
       const cards = filterFormData.cards || [];
     
       cards.forEach((i, index) => {
-        if (i.id === card.id) {
+        if (i.id === card.movieId) {
+          i._id = card._id;
           i.isSaved = flag;
           return;
         }
@@ -126,6 +128,7 @@ function MoviesCardList({
   }
 
   function handleCardSave(card) {
+    console.log(card.id);
     console.log('handlecardsave ', card);
     mainApi.addMovie({
       ...card,
@@ -142,6 +145,7 @@ function MoviesCardList({
   }
 
   function handleCardDelete(card) {
+    console.log(card);
     mainApi.deleteMovie(card.id)
       .then(() => {
         handleCard('delete', card);

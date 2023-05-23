@@ -64,7 +64,12 @@ function MoviesCard({
           </Route>
 
           <Route path="/saved-movies">
-            <button className="movies-cardlist__action-delete button-hover"></button>
+            <button 
+              className="movies-cardlist__action-delete button-hover"
+              onClick={handleDeleteClick}
+            >
+
+            </button>
           </Route>
         </Switch>
 

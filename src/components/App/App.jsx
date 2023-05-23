@@ -41,7 +41,7 @@ function App() {
   useEffect(() => {
     autoLoginCookie();
   }, [])
-
+  
   function useValidation(props, useInput, useEffect) {
     const nameInput = {
       name: useInput('', {isEmpty: true, minLength: 3, maxLength: 30, isName: true}),
