@@ -69,27 +69,21 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
 }
 
 function reqSaveMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location) {
-  if (!getSearchSavedMovies()) {
-    setIsPreloader(true);
-    setIsSearchError('');
+  setIsPreloader(true);
+  setIsSearchError('');
 
-    mainApi.getMovies()
-      .then((res) => {      
-        const searchSavedMovies = res;
-        localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
+  mainApi.getMovies()
+    .then((res) => {      
+      const searchSavedMovies = res;
+      localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
 
-        filterMovies(shortsFilms, textMovie, location);
+      filterMovies(shortsFilms, textMovie, location);
 
-        setIsPreloader(false);
-      })
-      .catch(() => {
-        setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
-      });
-  } else {
-    setIsPreloader(true);
-    filterMovies(shortsFilms, textMovie, location);
-    setIsPreloader(false);
-  }
+      setIsPreloader(false);
+    })
+    .catch(() => {
+      setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+    });
 }
 
 

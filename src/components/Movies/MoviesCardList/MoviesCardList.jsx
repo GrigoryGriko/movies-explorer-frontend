@@ -99,14 +99,23 @@ function MoviesCardList({
     setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
   }
   
-  function handleCard(action, card) {   //здесь меняем сохраненность фильма в общем массиве. А надло не в общем а в новом отфильтрованном
-    console.log('cardcardcard ', card.id);
+  function handleCard(action, card) {   //обновить локал стораж сохр. фильмов
     function cardForEach() {
       const cards = filterFormData.cards || [];
     
+
+
       cards.forEach((i, index) => {
-        if (i.id === card.movieId) {
-          i._id = card._id;
+        console.log(i.movieId, '-', card.movieId);
+
+        if (i.movieId === card.movieId) {   //для movies i.id
+          if (action === 'save') {
+            i.movieId = card._id;
+          } else {
+            if (location.pathname === '/movies') delete i.movieId;
+            else if (location.pathname === '/saved-movies') cards.splice(index, 1);
+            console.log('cards-index ', cards[index]);
+          }
           i.isSaved = flag;
           return;
         }
@@ -128,7 +137,7 @@ function MoviesCardList({
   }
 
   function handleCardSave(card) {
-    console.log(card.id);
+    console.log(card.isSaved);
     console.log('handlecardsave ', card);
     mainApi.addMovie({
       ...card,
@@ -146,7 +155,11 @@ function MoviesCardList({
 
   function handleCardDelete(card) {
     console.log(card);
-    mainApi.deleteMovie(card.id)
+    let cardId;
+    if (location.pathname === '/movies') cardId = card.movieId
+    else if (location.pathname === '/saved-movies') cardId = card._id
+  
+    mainApi.deleteMovie(cardId)
       .then(() => {
         handleCard('delete', card);
       })
