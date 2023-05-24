@@ -104,8 +104,31 @@ function MoviesCardList({
       const cards = filterFormData.cards || [];
     
 
+      if (location.pathname === '/movies') {
+        cards.forEach((i, index) => {
+          if (i.id === card.movieId) {
+            if (action === 'save') {
+              i.movieId = card._id;
+            } else {
+                delete i.movieId;
+            }
+            i.isSaved = flag;
+            return;
+          }
+        });
+      } else if (location.pathname === '/saved-movies') {
+        cards.forEach((i, index) => {
+          if (i.movieId === card.movieId) {
 
-      cards.forEach((i, index) => {
+            cards.splice(index, 1);
+          
+            i.isSaved = flag;
+            return;
+          }
+        });
+      }
+
+     /* cards.forEach((i, index) => {
         console.log(i.movieId, '-', card.movieId);
 
         if (i.movieId === card.movieId) {   //для movies i.id
@@ -119,7 +142,7 @@ function MoviesCardList({
           i.isSaved = flag;
           return;
         }
-      });
+      });*/
       
       filterFormData.cards = cards;
     }
