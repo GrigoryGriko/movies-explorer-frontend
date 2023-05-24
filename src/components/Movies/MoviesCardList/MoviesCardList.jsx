@@ -99,18 +99,19 @@ function MoviesCardList({
     setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
   }
   
-  function handleCard(action, card) {   //обновить локал стораж сохр. фильмов
+  function handleCard(action, card) {   
     function cardForEach() {
       const cards = filterFormData.cards || [];
-    
+      console.log('filterFormData ', filterFormData);
 
       if (location.pathname === '/movies') {
+        console.log('cards ', cards);
         cards.forEach((i, index) => {
           if (i.id === card.movieId) {
             if (action === 'save') {
               i.movieId = card._id;
             } else {
-                delete i.movieId;
+              delete i.movieId;
             }
             i.isSaved = flag;
             return;
@@ -127,24 +128,8 @@ function MoviesCardList({
           }
         });
       }
-
-     /* cards.forEach((i, index) => {
-        console.log(i.movieId, '-', card.movieId);
-
-        if (i.movieId === card.movieId) {   //для movies i.id
-          if (action === 'save') {
-            i.movieId = card._id;
-          } else {
-            if (location.pathname === '/movies') delete i.movieId;
-            else if (location.pathname === '/saved-movies') cards.splice(index, 1);
-            console.log('cards-index ', cards[index]);
-          }
-          i.isSaved = flag;
-          return;
-        }
-      });*/
-      
       filterFormData.cards = cards;
+      setCards(cards);
     }
     const flag = (action === 'save') ? true : false;
     let filterFormData;
@@ -160,8 +145,6 @@ function MoviesCardList({
   }
 
   function handleCardSave(card) {
-    console.log(card.isSaved);
-    console.log('handlecardsave ', card);
     mainApi.addMovie({
       ...card,
       movieId: card.id,
@@ -177,7 +160,6 @@ function MoviesCardList({
   }
 
   function handleCardDelete(card) {
-    console.log(card);
     let cardId;
     if (location.pathname === '/movies') cardId = card.movieId
     else if (location.pathname === '/saved-movies') cardId = card._id
