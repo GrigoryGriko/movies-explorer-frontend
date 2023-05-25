@@ -48,7 +48,7 @@ class MainApi {
 
 
 const mainApi = new MainApi({
-  baseUrl: 'api.grigorygriko.nomoredomains.monster',
+  baseUrl: 'http://localhost:3001',
 });
 
 export default mainApi;

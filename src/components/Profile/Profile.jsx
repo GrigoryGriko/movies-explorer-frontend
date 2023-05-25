@@ -47,6 +47,7 @@ function Profile(props) {
     auth.updateProfile(name, email)
     .then((res) => {
       setCurrentUser(res);
+      setIsErrorText('Данные пользователя изменены.');
     })
     .catch(() => {
       setIsErrorText('При обновлении профиля произошла ошибка.');
