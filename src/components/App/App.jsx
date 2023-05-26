@@ -179,8 +179,8 @@ function App() {
             loggedIn={loggedIn}
 
             useValidation={useValidation}
-              isDisabled={isDisabled}
-              setIsDisabled={setIsDisabled}
+            isDisabled={isDisabled}
+            setIsDisabled={setIsDisabled}
           >
           </ProtectedRoute>
 

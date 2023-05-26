@@ -33,6 +33,19 @@ function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData }) 
   function handleChangeCheckbox(state) {
     setShortsFilms(state);
   }
+
+  useEffect(() => {
+    handleSubmit(
+      false,
+      location,
+      setIsTextFormError,
+      setIsPreloader, 
+      setIsSearchError, 
+      shortsFilms, 
+      textMovie,
+      setterFilterFormData
+    );
+  }, [shortsFilms])
   
   return(
     <section className="search-form section">
@@ -65,7 +78,13 @@ function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData }) 
           <div className={"search-form__filter-switch_desktop-visibility"}>
             <FilterCheckbox
               handleChange={handleChangeCheckbox}
+              location={location}
+              setIsTextFormError={setIsTextFormError}
+              setIsPreloader={setIsPreloader}
+              setIsSearchError={setIsSearchError} 
               shortsFilms={shortsFilms}
+              textMovie={textMovie}
+              setterFilterFormData={setterFilterFormData}
             />
           </div>
           
@@ -77,7 +96,13 @@ function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData }) 
         <div className="search-form__filter-switch_mobile-visibility">
           <FilterCheckbox 
             handleChange={handleChangeCheckbox}
+            location={location}
+            setIsTextFormError={setIsTextFormError}
+            setIsPreloader={setIsPreloader}
+            setIsSearchError={setIsSearchError} 
             shortsFilms={shortsFilms}
+            textMovie={textMovie}
+            setterFilterFormData={setterFilterFormData}
           />
         </div>
         <div className="search-form__stroke-line-bottom"></div>

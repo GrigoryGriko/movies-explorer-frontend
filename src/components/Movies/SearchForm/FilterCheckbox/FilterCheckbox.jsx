@@ -1,6 +1,16 @@
 import React from 'react';
+import { handleSubmit } from '../../../../utils/SearchMovies';
 
-function FilterCheckbox({handleChange, shortsFilms}) {
+function FilterCheckbox({
+  handleChange,
+  location,
+  setIsTextFormError,
+  setIsPreloader, 
+  setIsSearchError, 
+  shortsFilms, 
+  textMovie,
+  setterFilterFormData
+}) {
   return(
     <>
       <label className="search-form__checkbox-filter">

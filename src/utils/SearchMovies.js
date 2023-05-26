@@ -28,7 +28,9 @@ export function handleSubmit(
     textMovie,
     setterFilterFormData
   ) {
-  e.preventDefault();
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
   if (!textMovie) {
     setIsTextFormError('Нужно ввести ключевое слово');
   } else {
