@@ -207,7 +207,7 @@ function App() {
           </Route>
           
           <Route
-            path="/404"
+            path="*"
           >
             <NotFound/>
           </Route>

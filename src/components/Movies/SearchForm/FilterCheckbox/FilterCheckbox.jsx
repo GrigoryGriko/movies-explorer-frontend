@@ -3,13 +3,7 @@ import { handleSubmit } from '../../../../utils/SearchMovies';
 
 function FilterCheckbox({
   handleChange,
-  location,
-  setIsTextFormError,
-  setIsPreloader, 
-  setIsSearchError, 
-  shortsFilms, 
-  textMovie,
-  setterFilterFormData
+  shortsFilms,
 }) {
   return(
     <>
