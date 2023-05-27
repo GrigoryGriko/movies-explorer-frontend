@@ -54,6 +54,25 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
     moviesApi.getInitMovies()
     .then((res) => {      
       const searchMovies = res;
+
+      if (!getSearchSavedMovies()) {
+        mainApi.getMovies()
+          .then((res) => {      
+            const searchSavedMovies = res;
+            localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
+
+            searchMovies.forEach(item => {
+              item.isSaved = getSearchSavedMovies().some(savedItem => savedItem.movieId === item.id);
+            })
+          })
+          .catch(() => {
+            setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+          });
+      } else {
+        searchMovies.forEach(item => {
+          item.isSaved = getSearchSavedMovies().some(savedItem => savedItem.movieId === item.id);
+        })
+      }
       localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
 
       filterMovies(shortsFilms, textMovie, location);
