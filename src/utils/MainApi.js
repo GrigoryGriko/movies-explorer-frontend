@@ -25,6 +25,7 @@ class MainApi {
     delete newData.id;
     delete newData.created_at;
     delete newData.updated_at;
+    delete newData.isSaved;
     return fetch(`${this._baseUrl}/movies`, {
       method: 'POST',
       credentials: "include",

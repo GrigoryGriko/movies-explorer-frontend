@@ -47,6 +47,20 @@ export function handleSubmit(
 }
 
 function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, location) {
+  function markSaveCards(searchMovies) {
+    const searchSavedMovies = getSearchSavedMovies();
+
+    searchMovies.forEach(item => {
+      item.isSaved = searchSavedMovies
+        .some(savedItem => savedItem.movieId === item.id);
+      if (item.isSaved) {
+        item.moveId = searchSavedMovies
+          .filter(savedItem => savedItem.movieId === item.id)
+          .map(savedItem => savedItem._id)[0];
+      }
+    })
+  }
+
   if (!getSearchMovies()) {
     setIsPreloader(true);
     setIsSearchError('');
@@ -61,9 +75,7 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
             const searchSavedMovies = res;
             localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
 
-            searchMovies.forEach(item => {
-              item.isSaved = getSearchSavedMovies().some(savedItem => savedItem.movieId === item.id);
-            })
+            markSaveCards(searchMovies);
 
             localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
 
@@ -74,18 +86,14 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
             setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
           });
       } else {
-        searchMovies.forEach(item => {
-          item.isSaved = getSearchSavedMovies().some(savedItem => savedItem.movieId === item.id);
-        })
+        markSaveCards(searchMovies);
         localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
 
         filterMovies(shortsFilms, textMovie, location);
         setIsPreloader(false);
       }
     })
-    .catch((err) => {
-      
-      console.log(err);
+    .catch(() => {
       setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
     });
   } else {
