@@ -54,7 +54,7 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
       item.isSaved = searchSavedMovies
         .some(savedItem => savedItem.movieId === item.id);
       if (item.isSaved) {
-        item.moveId = searchSavedMovies
+        item.movieId = searchSavedMovies
           .filter(savedItem => savedItem.movieId === item.id)
           .map(savedItem => savedItem._id)[0];
       }
