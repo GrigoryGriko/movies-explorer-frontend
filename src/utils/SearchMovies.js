@@ -64,6 +64,11 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
             searchMovies.forEach(item => {
               item.isSaved = getSearchSavedMovies().some(savedItem => savedItem.movieId === item.id);
             })
+
+            localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
+
+            filterMovies(shortsFilms, textMovie, location);
+            setIsPreloader(false);
           })
           .catch(() => {
             setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
@@ -72,14 +77,15 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
         searchMovies.forEach(item => {
           item.isSaved = getSearchSavedMovies().some(savedItem => savedItem.movieId === item.id);
         })
-      }
-      localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
+        localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
 
-      filterMovies(shortsFilms, textMovie, location);
-      
-      setIsPreloader(false);
+        filterMovies(shortsFilms, textMovie, location);
+        setIsPreloader(false);
+      }
     })
-    .catch(() => {
+    .catch((err) => {
+      
+      console.log(err);
       setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
     });
   } else {
