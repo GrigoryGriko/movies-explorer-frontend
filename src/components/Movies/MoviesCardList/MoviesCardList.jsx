@@ -130,7 +130,6 @@ function MoviesCardList({
         });
       }
       filterFormData.cards = cards;
-      console.log('cards***** ', cards);
       setCards(cards);
     }
     const flag = (action === 'save') ? true : false;
@@ -138,8 +137,6 @@ function MoviesCardList({
     if (flag) {
       filterFormData = getFilterFormData();
       cardForEach();
-      setFilterFormData(filterFormData);
-      console.log('filterFormData.cards***** ', filterFormData.cards);
       localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
     } else {
         filterFormData = getFilterFormDataSavedMovies();

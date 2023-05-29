@@ -61,6 +61,22 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
     })
   }
 
+  function refreshSaveMovies(searchMovies) {
+    mainApi.getMovies()
+        .then((res) => {      
+          const searchSavedMovies = res;
+          localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
+
+          markSaveCards(searchMovies);
+
+          localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
+          filterMovies(shortsFilms, textMovie, location);
+          setIsPreloader(false);
+        })
+        .catch(() => {
+          setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+        });
+  }
   if (!getSearchMovies()) {
     setIsPreloader(true);
     setIsSearchError('');
@@ -68,38 +84,16 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
     moviesApi.getInitMovies()
     .then((res) => {      
       const searchMovies = res;
-
-      if (!getSearchSavedMovies()) {
-        mainApi.getMovies()
-          .then((res) => {      
-            const searchSavedMovies = res;
-            localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
-
-            markSaveCards(searchMovies);
-
-            localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
-
-            filterMovies(shortsFilms, textMovie, location);
-            setIsPreloader(false);
-          })
-          .catch(() => {
-            setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
-          });
-      } else {
-        markSaveCards(searchMovies);
-        localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
-
-        filterMovies(shortsFilms, textMovie, location);
-        setIsPreloader(false);
-      }
+      refreshSaveMovies(searchMovies);
     })
     .catch(() => {
       setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
     });
   } else {
     setIsPreloader(true);
-    filterMovies(shortsFilms, textMovie, location);
-    setIsPreloader(false);
+    
+    const searchMovies = getSearchMovies();
+    refreshSaveMovies(searchMovies);
   }
 }
 
