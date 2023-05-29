@@ -42,7 +42,6 @@ function Movies({ isPreloader, setIsPreloader }) {
         setCards={setCards}
         maxCountCards={maxCountCards}
         filterFormData={filterFormData}
-        setFilterFormData={setFilterFormData}
       />
     </main>
   )

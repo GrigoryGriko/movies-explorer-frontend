@@ -17,10 +17,7 @@ function MoviesCardList({
   setCards,
   maxCountCards,
   filterFormData,
-  setFilterFormData,
 }) {
-  //localStorage.removeItem("searchMovies"); //SyntaxError: "undefined" is not valid JSON Проверка, если в локал стораж нет данных поиска
-
   const windowWidth = useWindowSize();
 
   const [countAppendCards, setCountAppendCards] = useState(0);
@@ -103,11 +100,9 @@ function MoviesCardList({
   function handleCard(action, card) {   
     function cardForEach() {
       const cards = filterFormData.cards || [];
-      console.log('filterFormData ', filterFormData);
 
       if (location.pathname === '/movies') {
-        console.log('cards ', cards);
-        cards.forEach((i, index) => {
+        cards.forEach((i) => {
           if (i.id === card.movieId) {
             if (action === 'save') {
               i.movieId = card._id;
@@ -133,15 +128,13 @@ function MoviesCardList({
       setCards(cards);
     }
     const flag = (action === 'save') ? true : false;
-    let filterFormData;
+    const filterFormData = getFilterFormData();
     if (flag) {
-      filterFormData = getFilterFormData();
       cardForEach();
       localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
     } else {
-        filterFormData = getFilterFormDataSavedMovies();
         cardForEach();
-        localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormData));
+        localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(getFilterFormDataSavedMovies()));
     }
   }
 
