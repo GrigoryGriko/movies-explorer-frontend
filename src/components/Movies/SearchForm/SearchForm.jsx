@@ -3,27 +3,33 @@ import { withRouter, useLocation } from 'react-router-dom';
 
 import FilterCheckbox from './FilterCheckbox/FilterCheckbox';
 
-import { getFilterFormData, getFilterFormDataSavedMovies, handleSubmit } from '../../../utils/SearchMovies';
+import { getFilterFormData, getFilterFormDataSavedMovies, handleSubmit, initSavedMovies } from '../../../utils/SearchMovies';
 
-function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData }) {
+function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData, setCards, maxCountCards }) {
   const [textMovie, setTextMovie] = useState('');
   const [shortsFilms, setShortsFilms] = useState(false);
   const [isTextFormError, setIsTextFormError] = useState('');
 
   const location = useLocation();
-
+  
   useEffect(() => {
     let filterFormData;
     if (location.pathname === '/movies') filterFormData = getFilterFormData();
-    else if (location.pathname === '/saved-movies') filterFormData = getFilterFormDataSavedMovies();
+    else if (location.pathname === '/saved-movies') {
+
+      initSavedMovies(setIsPreloader, setIsSearchError, setCards, maxCountCards);
+
+      filterFormData = getFilterFormDataSavedMovies();
+    }
+    
 
     const textMovie = filterFormData ? filterFormData.textMovie : textMovie;
     const shortsFilms = filterFormData ? filterFormData.shortsFilms : shortsFilms;
     
     setTextMovie(textMovie);
     setShortsFilms(shortsFilms);
-  }, [])
-
+  }, [maxCountCards])
+  
   function handleChange(e) {
     const value = e.target.value;
     
@@ -46,7 +52,7 @@ function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData }) 
       setterFilterFormData
     );
   }, [shortsFilms])
-  
+
   return(
     <section className="search-form section">
       <div className="search-form__wrapper wrapper">

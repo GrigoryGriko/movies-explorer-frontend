@@ -37,6 +37,9 @@ function MoviesCard({
     setIsSaved(card.isSaved);
   }, [card.isSaved]);
 
+  console.log('card - ', card);
+  console.log(generateUrlImageCard());
+  
   return(
     <>
       <li className="movies-cardlist__item">

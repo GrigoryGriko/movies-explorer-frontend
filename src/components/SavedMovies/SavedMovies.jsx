@@ -20,10 +20,9 @@ function SavedMovies({ isPreloader, setIsPreloader }) {
 
     if (location.pathname === '/movies') filterFormData = getFilterFormData();
     else if (location.pathname === '/saved-movies')  filterFormData = getFilterFormDataSavedMovies();
-
     setFilterFormData(filterFormData ? filterFormData : {});
 
-    setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
+    setCards(filterFormData ? filterFormData.cards.slice().splice(0, maxCountCards) : []); 
   }
 
   return (
@@ -32,6 +31,8 @@ function SavedMovies({ isPreloader, setIsPreloader }) {
         setIsPreloader={setIsPreloader}
         setIsSearchError={setIsSearchError}
         setterFilterFormData={setterFilterFormData}
+        setCards={setCards}
+        maxCountCards={maxCountCards}
       />
       <MoviesCardList
         isPreloader={isPreloader}

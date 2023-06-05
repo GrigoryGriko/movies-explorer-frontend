@@ -103,6 +103,7 @@ function useValidationSet (value, validations) {
   }
 }
 
+
 function useInput (initialValue, validations) {
   const [value, setValue] = useState(initialValue);
   const [isChange, setIsChange] = useState(false);
@@ -112,7 +113,7 @@ function useInput (initialValue, validations) {
     setValue(e.target.value);
     setIsChange(true);
   }
-  
+
   return {
     value,
     isChange,

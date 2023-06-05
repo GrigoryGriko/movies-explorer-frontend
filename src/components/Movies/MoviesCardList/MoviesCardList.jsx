@@ -51,14 +51,13 @@ function MoviesCardList({
 
   useEffect(() => {
     setterFilterFormData();
-    
     if (cards && filterFormData.cards) {
       if (filterFormData.cards.length === 0 && !isPreloader) {
         setIsSearchError('ничего не найдено');
       }    
     }
   }, [isPreloader, maxCountCards])
-
+  
   useEffect(() => {
     if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
       if (cards.length < filterFormData.cards.length) {
@@ -69,7 +68,6 @@ function MoviesCardList({
     }
   }, [cards.length])
   
-
   function useWindowSize() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   
@@ -99,9 +97,10 @@ function MoviesCardList({
   
   function handleCard(action, card) {   
     function cardForEach() {
-      const cards = filterFormData.cards || [];
-
+      let cards;
       if (location.pathname === '/movies') {
+        cards = filterFormData.cards || [];
+
         cards.forEach((i) => {
           if (i.id === card.movieId) {
             if (action === 'save') {
@@ -113,7 +112,11 @@ function MoviesCardList({
             return;
           }
         });
+
+        filterFormData.cards = cards;
       } else if (location.pathname === '/saved-movies') {
+        cards = filterFormDataSavedMovies.cards || [];
+
         cards.forEach((i, index) => {
           if (i.movieId === card.movieId) {
 
@@ -123,18 +126,21 @@ function MoviesCardList({
             return;
           }
         });
+
+        filterFormDataSavedMovies.cards = cards;
       }
-      filterFormData.cards = cards;
+      
       setCards(cards);
     }
     const flag = (action === 'save') ? true : false;
     const filterFormData = getFilterFormData();
+    const filterFormDataSavedMovies = getFilterFormDataSavedMovies();
     if (flag) {
       cardForEach();
       localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
     } else {
         cardForEach();
-        localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(getFilterFormDataSavedMovies()));
+        localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormDataSavedMovies));
     }
   }
 

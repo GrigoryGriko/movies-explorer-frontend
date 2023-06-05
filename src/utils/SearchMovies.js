@@ -1,3 +1,4 @@
+import SavedMovies from '../components/SavedMovies/SavedMovies';
 import mainApi from './MainApi';
 import moviesApi from './MoviesApi';
 
@@ -115,6 +116,28 @@ function reqSaveMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie,
     });
 }
 
+export function initSavedMovies(setIsPreloader, setIsSearchError, setCards, maxCountCards) {
+  mainApi.getMovies()
+    .then((res) => {      
+      const searchSavedMovies = res;
+      localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
+      const cards = getSearchSavedMovies();
+      setCards(cards ? cards.splice(0, maxCountCards) : []);
+
+      const filterFormData = {
+        textMovie: '',
+        shortsFilms: false,
+        cards: cards,
+      }
+
+      localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormData));
+
+      setIsPreloader(false);
+    })
+    .catch(() => {
+      setIsSearchError('Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз');
+    });
+}
 
 
 export function filterMovies(shortsFilms, textMovie, location) {
