@@ -36,9 +36,6 @@ function MoviesCard({
   useEffect(() => {
     setIsSaved(card.isSaved);
   }, [card.isSaved]);
-
-  console.log('card - ', card);
-  console.log(generateUrlImageCard());
   
   return(
     <>

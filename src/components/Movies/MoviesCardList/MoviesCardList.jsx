@@ -25,7 +25,6 @@ function MoviesCardList({
 
   const location = useLocation();
 
-
   useEffect(() => {
     setterFilterFormData();
   }, []);
@@ -92,7 +91,7 @@ function MoviesCardList({
 
   function handleMore() {
     setMaxCountCards(prevMaxCount => prevMaxCount + countAppendCards);
-    setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
+    setCards(filterFormData ? filterFormData.cards.slice().splice(0, maxCountCards) : []);
   }
   
   function handleCard(action, card) {   
@@ -129,12 +128,12 @@ function MoviesCardList({
 
         filterFormDataSavedMovies.cards = cards;
       }
-      
+      console.log('cards --', cards);
       setCards(cards);
     }
     const flag = (action === 'save') ? true : false;
     const filterFormData = getFilterFormData();
-    const filterFormDataSavedMovies = getFilterFormDataSavedMovies();
+    const filterFormDataSavedMovies = getFilterFormDataSavedMovies(); //getFilterFormDataSavedMovies() - пустой
     if (flag) {
       cardForEach();
       localStorage.setItem("filterFormData", JSON.stringify(filterFormData));

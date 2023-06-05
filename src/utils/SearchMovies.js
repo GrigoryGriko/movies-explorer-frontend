@@ -122,16 +122,16 @@ export function initSavedMovies(setIsPreloader, setIsSearchError, setCards, maxC
       const searchSavedMovies = res;
       localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
       const cards = getSearchSavedMovies();
-      setCards(cards ? cards.splice(0, maxCountCards) : []);
+      setCards(cards ? cards.slice().splice(0, maxCountCards) : []);
 
       const filterFormData = {
         textMovie: '',
         shortsFilms: false,
         cards: cards,
       }
-
+      
       localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormData));
-
+      
       setIsPreloader(false);
     })
     .catch(() => {

@@ -22,7 +22,7 @@ function Movies({ isPreloader, setIsPreloader }) {
     else if (location.pathname === '/saved-movies')  filterFormData = getFilterFormDataSavedMovies();
 
     setFilterFormData(filterFormData ? filterFormData : {});
-    setCards(filterFormData ? filterFormData.cards.splice(0, maxCountCards) : []);
+    setCards(filterFormData ? filterFormData.cards.slice().splice(0, maxCountCards) : []);
   }
 
   return (
