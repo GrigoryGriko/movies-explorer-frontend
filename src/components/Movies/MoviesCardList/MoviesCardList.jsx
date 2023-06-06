@@ -53,7 +53,9 @@ function MoviesCardList({
     if (cards && filterFormData.cards) {
       if (filterFormData.cards.length === 0 && !isPreloader) {
         setIsSearchError('ничего не найдено');
-      }    
+      } else {
+        setIsSearchError('');
+      }
     }
   }, [isPreloader, maxCountCards])
   
@@ -65,7 +67,7 @@ function MoviesCardList({
         setIsShowButton(false);
       }
     }
-  }, [cards.length])
+  }, [cards.length, filterFormData.cards.length])
   
   function useWindowSize() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -128,7 +130,6 @@ function MoviesCardList({
 
         filterFormDataSavedMovies.cards = cards;
       }
-      console.log('cards --', cards);
       setCards(cards);
     }
     const flag = (action === 'save') ? true : false;
@@ -203,21 +204,16 @@ function MoviesCardList({
           {isSearchError}
         </p>
       </section>
-         
-      <Switch>
-        <Route path="/movies">
-          {isShowButton ? 
-            <section className="movies-more section">
-            <button 
-              className="movies-more__button-more wrapper-movies-more button-hover"
-              onClick={handleMore}
-            >
-              Ещё
-            </button>
-          </section> : ''
-          }
-        </Route>
-      </Switch>
+        {isShowButton ? 
+          <section className="movies-more section">
+          <button 
+            className="movies-more__button-more wrapper-movies-more button-hover"
+            onClick={handleMore}
+          >
+            Ещё
+          </button>
+        </section> : ''
+        }
     </>
   )
 }

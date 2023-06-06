@@ -11,7 +11,7 @@ function SavedMovies({ isPreloader, setIsPreloader }) {
   const [cards, setCards] = useState([]);
   const [maxCountCards, setMaxCountCards] = useState(0);
   
-  const [filterFormData, setFilterFormData] = useState({});
+  const [filterFormData, setFilterFormData] = useState({textMovie: '', shortsFilms: false, cards: []});
 
   const location = useLocation();
 
