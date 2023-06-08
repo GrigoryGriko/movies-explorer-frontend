@@ -17,6 +17,7 @@ function MoviesCardList({
   setCards,
   maxCountCards,
   filterFormData,
+  setFilterFormData,
 }) {
   const windowWidth = useWindowSize();
 
@@ -127,20 +128,30 @@ function MoviesCardList({
             return;
           }
         });
+        filterFormDataSavedMovies.cards = cards; 
 
-        filterFormDataSavedMovies.cards = cards;
+        const cardsMovies = filterFormData.cards || [];
+
+        cardsMovies.forEach((i) => {
+          delete i.movieId;
+          i.isSaved = false;
+        })
+        filterFormData.cards = cardsMovies;
       }
       setCards(cards);
     }
     const flag = (action === 'save') ? true : false;
     const filterFormData = getFilterFormData();
-    const filterFormDataSavedMovies = getFilterFormDataSavedMovies(); //getFilterFormDataSavedMovies() - пустой
+    const filterFormDataSavedMovies = getFilterFormDataSavedMovies();
     if (flag) {
       cardForEach();
       localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
+      setFilterFormData(filterFormData);
     } else {
         cardForEach();
         localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormDataSavedMovies));
+        localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
+        setFilterFormData(filterFormDataSavedMovies);
     }
   }
 

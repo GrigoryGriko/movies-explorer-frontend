@@ -44,6 +44,7 @@ function SavedMovies({ isPreloader, setIsPreloader }) {
         setCards={setCards}
         maxCountCards={maxCountCards}
         filterFormData={filterFormData}
+        setFilterFormData={setFilterFormData}
       />
 
       <section className="saved-movies__devider section"></section>
