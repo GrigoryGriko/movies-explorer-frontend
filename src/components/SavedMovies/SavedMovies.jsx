@@ -20,7 +20,7 @@ function SavedMovies({ isPreloader, setIsPreloader }) {
 
     if (location.pathname === '/movies') filterFormData = getFilterFormData();
     else if (location.pathname === '/saved-movies')  filterFormData = getFilterFormDataSavedMovies();
-    setFilterFormData(filterFormData ? filterFormData : {});
+    setFilterFormData(filterFormData ? filterFormData : {textMovie: '', shortsFilms: false, cards: []});
 
     setCards(filterFormData ? filterFormData.cards.slice().splice(0, maxCountCards) : []); 
   }

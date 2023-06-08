@@ -68,7 +68,7 @@ function MoviesCardList({
         setIsShowButton(false);
       }
     }
-  }, [cards.length, filterFormData.cards.length])
+  }, [cards, filterFormData])
   
   function useWindowSize() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -93,30 +93,40 @@ function MoviesCardList({
   }
 
   function handleMore() {
-    setCards(filterFormData ? filterFormData.cards.slice().splice(0, maxCountCards) : []);
+    const newFilmsArray = [...filterFormData.cards];
+
+    setCards(filterFormData ? newFilmsArray.splice(cards.length, maxCountCards) : []);
     setMaxCountCards(prevMaxCount => prevMaxCount + countAppendCards);
   }
   
   function handleCard(action, card) {   
-    function cardForEach() {
-      let cards;
+    function cardForEach(flag) {
       if (location.pathname === '/movies') {
-        cards = filterFormData.cards || [];
-
-        cards.forEach((i) => {
+        const filterFormData = getFilterFormData();
+        const newCards = [...cards];
+        newCards.forEach((i) => {
           if (i.id === card.movieId) {
+            const foundIndex = filterFormData.cards.findIndex((item) => item.id === i.id);
+
             if (action === 'save') {
               i.movieId = card._id;
+              filterFormData.cards[foundIndex].isSaved = true;
+              i.isSaved = true;
             } else {
               delete i.movieId;
+              filterFormData.cards[foundIndex].isSaved = false;
+              i.isSaved = false;
             }
-            i.isSaved = flag;
             return;
           }
         });
-
-        filterFormData.cards = cards;
+        localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
+        setCards(newCards);
       } else if (location.pathname === '/saved-movies') {
+        let cards;
+        const filterFormData = getFilterFormData();
+        const filterFormDataSavedMovies = getFilterFormDataSavedMovies();
+
         cards = filterFormDataSavedMovies.cards || [];
 
         cards.forEach((i, index) => {
@@ -137,22 +147,22 @@ function MoviesCardList({
           i.isSaved = false;
         })
         filterFormData.cards = cardsMovies;
+        setCards(cards);
       }
-      setCards(cards);
     }
-    const flag = (action === 'save') ? true : false;
-    const filterFormData = getFilterFormData();
-    const filterFormDataSavedMovies = getFilterFormDataSavedMovies();
-    if (flag) {
+    const flag = action === 'save';
+    /*const filterFormData = getFilterFormData();
+    const filterFormDataSavedMovies = getFilterFormDataSavedMovies();*/
+
+    cardForEach(flag);
+    /*if (flag) {
       cardForEach();
-      localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
-      setFilterFormData(filterFormData);
     } else {
         cardForEach();
         localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormDataSavedMovies));
         localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
         setFilterFormData(filterFormDataSavedMovies);
-    }
+    }*/
   }
 
   function handleCardSave(card) {
