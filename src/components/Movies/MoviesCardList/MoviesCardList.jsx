@@ -93,8 +93,8 @@ function MoviesCardList({
   }
 
   function handleMore() {
-    setMaxCountCards(prevMaxCount => prevMaxCount + countAppendCards);
     setCards(filterFormData ? filterFormData.cards.slice().splice(0, maxCountCards) : []);
+    setMaxCountCards(prevMaxCount => prevMaxCount + countAppendCards);
   }
   
   function handleCard(action, card) {   

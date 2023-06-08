@@ -12,7 +12,7 @@ function MoviesCard({
   const [isSaved, setIsSaved] = useState(card.isSaved);
   
   function handleSaveClick() {
-    setIsSaved(true);
+    //setIsSaved(true);
     onCardSave(card);
   }
 

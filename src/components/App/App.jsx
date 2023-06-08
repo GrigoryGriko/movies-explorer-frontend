@@ -16,6 +16,7 @@ import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
 import * as auth from '../../utils/Auth';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import UnprotectedRoute from '../UnprotectedRoute/UnprotectedRoute';
 
 
 function App() {
@@ -62,7 +63,7 @@ function App() {
         isValid = !email.inputValid || !password.inputValid;
       }
       else if (location.pathname === '/profile') {
-        isValid = !name.inputValid || !email.inputValid;
+        isValid = !name.inputValid || !email.inputValid || (!name.isChange && !email.isChange);
       }
       
       props.setIsDisabled(isValid);
@@ -184,27 +185,31 @@ function App() {
           >
           </ProtectedRoute>
 
-          <Route
+          <UnprotectedRoute
+            exact
             path="/signin"
-          >
-            <Login
-              useValidation={useValidation}
-              isDisabled={isDisabled}
-              setIsDisabled={setIsDisabled}
-              handleLogin={handleLogin}
-            />
-          </Route>
+            component={Login}
+            loggedIn={loggedIn}
 
-          <Route
-            path="/signup"
+            useValidation={useValidation}
+            isDisabled={isDisabled}
+            setIsDisabled={setIsDisabled}
+            handleLogin={handleLogin}
           >
-            <Register
-              useValidation={useValidation}
+          </UnprotectedRoute>
+
+          <UnprotectedRoute
+            exact
+            path="/signup"
+            component={Register}
+            loggedIn={loggedIn}
+
+            useValidation={useValidation}
               isDisabled={isDisabled}
               setIsDisabled={setIsDisabled}
               handleLogin={handleLogin}
-            />
-          </Route>
+          >
+          </UnprotectedRoute>
           
           <Route
             path="*"

@@ -114,10 +114,15 @@ function useInput (initialValue, validations) {
     setIsChange(true);
   }
 
+  function setInitialValue(value) {
+    setValue(value);
+  }
+
   return {
     value,
     isChange,
     onChange,
+    setInitialValue,
     ...valid,
   }
 }

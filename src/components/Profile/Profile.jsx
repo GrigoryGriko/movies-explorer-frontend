@@ -13,7 +13,10 @@ function Profile(props) {
 
   const [isErrorText, setIsErrorText] = useState('');
   const [isButtonEdit, setIsButtonEdit] = useState(false);
-  const [dataForm, setDataForm] = useState({name: '', email: ''});
+  const [dataForm, setDataForm] = useState({
+    name: currentUser.name ? currentUser.name : '', 
+    email: currentUser.email ? currentUser.email : ''
+  });
   
 
   const {
@@ -30,6 +33,8 @@ function Profile(props) {
       name: currentUser.name,
       email: currentUser.email
     })
+    name.setInitialValue(currentUser.name);
+    email.setInitialValue(currentUser.email);
   }, [currentUser])
 
   function handleChange(e) {
