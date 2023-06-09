@@ -1,5 +1,4 @@
 import React from 'react';
-import { handleSubmit } from '../../../../utils/SearchMovies';
 
 function FilterCheckbox({
   handleChange,

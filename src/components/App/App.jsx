@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, useLocation, useHistory, useParams } from "react-router-dom";
+import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 
 import { CurrentUserContext } from '../../context/CurrentUserContext';
 
