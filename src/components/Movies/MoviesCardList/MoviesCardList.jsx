@@ -123,22 +123,24 @@ function MoviesCardList({
         localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
         setCards(newCards);
       } else if (location.pathname === '/saved-movies') {
-        let cards;
+        let newCards;
         const filterFormData = getFilterFormData();
         const filterFormDataSavedMovies = getFilterFormDataSavedMovies();
 
-        cards = filterFormDataSavedMovies.cards || [];
+        newCards = filterFormDataSavedMovies.cards || [];
 
-        cards.forEach((i, index) => {
+        newCards.forEach((i, index) => {
           if (i.movieId === card.movieId) {
 
-            cards.splice(index, 1);
+            newCards.splice(index, 1);
           
             i.isSaved = flag;
             return;
           }
         });
-        filterFormDataSavedMovies.cards = cards; 
+
+        console.log(newCards);
+        filterFormDataSavedMovies.cards = newCards; 
 
         const cardsMovies = filterFormData.cards || [];
 
@@ -147,11 +149,11 @@ function MoviesCardList({
           i.isSaved = false;
         })
         filterFormData.cards = cardsMovies;
-        setCards(cards);
+        localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormDataSavedMovies));
+        setCards(newCards);
       }
     }
     const flag = action === 'save';
-
     cardForEach(flag);
   }
 
