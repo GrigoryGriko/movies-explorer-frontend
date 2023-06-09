@@ -99,13 +99,13 @@ function MoviesCardList({
     setMaxCountCards(prevMaxCount => prevMaxCount + countAppendCards);
   }
   
-  function handleCard(action, card) {   
+  function handleCard(action, card) {
     function cardForEach(flag) {
       if (location.pathname === '/movies') {
         const filterFormData = getFilterFormData();
         const newCards = [...cards];
         newCards.forEach((i) => {
-          if (i.id === card.movieId) {
+          if (i.id === card.movieId || i.movieId === card.movieId) {
             const foundIndex = filterFormData.cards.findIndex((item) => item.id === i.id);
 
             if (action === 'save') {
@@ -151,18 +151,8 @@ function MoviesCardList({
       }
     }
     const flag = action === 'save';
-    /*const filterFormData = getFilterFormData();
-    const filterFormDataSavedMovies = getFilterFormDataSavedMovies();*/
 
     cardForEach(flag);
-    /*if (flag) {
-      cardForEach();
-    } else {
-        cardForEach();
-        localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormDataSavedMovies));
-        localStorage.setItem("filterFormData", JSON.stringify(filterFormData));
-        setFilterFormData(filterFormDataSavedMovies);
-    }*/
   }
 
   function handleCardSave(card) {
