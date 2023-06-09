@@ -8,7 +8,7 @@ https://grigorygriko.nomoredomains.monster/
 
 ## Ссылка на пулл реквест
 
-https://github.com/GrigoryGriko/movies-explorer-frontend/pull/2
+https://github.com/GrigoryGriko/movies-explorer-frontend/pull/3
 
 ## Ссылка на макет
 
