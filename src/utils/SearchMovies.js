@@ -33,7 +33,7 @@ export function handleSubmit(
       e.preventDefault();
     }
   if (!textMovie) {
-    setIsTextFormError('Нужно ввести ключевое слово');
+    setIsTextFormError(e ? 'Нужно ввести ключевое слово' : '');
   } else {
     setIsTextFormError('');
 

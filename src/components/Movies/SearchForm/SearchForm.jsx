@@ -49,7 +49,7 @@ function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData, se
       setIsSearchError, 
       shortsFilms, 
       textMovie,
-      setterFilterFormData
+      setterFilterFormData,
     );
   }, [shortsFilms])
 
