@@ -143,16 +143,17 @@ function MoviesCardList({
           }
         });
 
-        console.log(newCards);
         filterFormDataSavedMovies.cards = newCards; 
 
-        const cardsMovies = filterFormData.cards || [];
+        if (filterFormData) {
+          const cardsMovies = filterFormData.cards || [];
 
-        cardsMovies.forEach((i) => {
-          delete i.movieId;
-          i.isSaved = false;
-        })
-        filterFormData.cards = cardsMovies;
+          cardsMovies.forEach((i) => {
+            delete i.movieId;
+            i.isSaved = false;
+          })
+          filterFormData.cards = cardsMovies;
+        }
         localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormDataSavedMovies));
         setCards(newCards);
       }
