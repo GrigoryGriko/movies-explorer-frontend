@@ -29,6 +29,7 @@ function MoviesCardList({
   useEffect(() => {
     setterFilterFormData();
   }, []);
+  
   if (location.pathname === '/movies') {
     useEffect(() => {
       if (windowWidth >= 1280) {
@@ -60,15 +61,18 @@ function MoviesCardList({
       }
     }
   }, [isPreloader, filterFormData.cards.length])
-  useEffect(() => {
-    if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
-      if (cards.length < filterFormData.cards.length) {
-        setIsShowButton(true);
-      } else {
-        setIsShowButton(false);
+
+  if (location.pathname === '/movies') {
+    useEffect(() => {
+      if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
+        if (cards.length < filterFormData.cards.length) {
+          setIsShowButton(true);
+        } else {
+          setIsShowButton(false);
+        }
       }
-    }
-  }, [cards, filterFormData])
+    }, [cards, filterFormData])
+  }
   
   function useWindowSize() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);

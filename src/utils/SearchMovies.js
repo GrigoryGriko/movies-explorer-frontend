@@ -67,7 +67,7 @@ function reqMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie, loc
         .then((res) => {      
           const searchSavedMovies = res;
           localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
-
+          
           markSaveCards(searchMovies);
 
           localStorage.setItem("searchMovies", JSON.stringify(searchMovies));
@@ -116,20 +116,21 @@ function reqSaveMovies(setIsPreloader, setIsSearchError, shortsFilms, textMovie,
     });
 }
 
-export function initSavedMovies(setIsPreloader, setIsSearchError, setCards) {
+export function initSavedMovies(setIsPreloader, setIsSearchError, setCards, setterFilterFormData) {
   mainApi.getMovies()
     .then((res) => {      
       const searchSavedMovies = res;
       localStorage.setItem("searchSavedMovies", JSON.stringify(searchSavedMovies));
-      const cards = getSearchSavedMovies();
-      setCards(cards ? cards : []);
+      const newCards = getSearchSavedMovies();
+      setCards(newCards ? newCards : []);
 
       const filterFormData = {
         textMovie: '',
         shortsFilms: false,
-        cards: cards,
+        cards: newCards,
       }
-      
+      setterFilterFormData(filterFormData);
+
       localStorage.setItem("filterFormDataSavedMovies", JSON.stringify(filterFormData));
       
       setIsPreloader(false);

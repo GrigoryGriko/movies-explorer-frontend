@@ -17,7 +17,7 @@ function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData, se
     if (location.pathname === '/movies') filterFormData = getFilterFormData();
     else if (location.pathname === '/saved-movies') {
 
-      initSavedMovies(setIsPreloader, setIsSearchError, setCards);
+      initSavedMovies(setIsPreloader, setIsSearchError, setCards, setterFilterFormData);
 
       filterFormData = getFilterFormDataSavedMovies();
     }

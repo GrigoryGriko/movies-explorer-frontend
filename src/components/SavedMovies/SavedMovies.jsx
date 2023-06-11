@@ -20,7 +20,7 @@ function SavedMovies({ isPreloader, setIsPreloader }) {
     filterFormData = getFilterFormDataSavedMovies();
     setFilterFormData(filterFormData ? filterFormData : {textMovie: '', shortsFilms: false, cards: []});
 
-    setCards(filterFormData ? filterFormData.cards : []); 
+    setCards(filterFormData ? filterFormData.cards : []);
   }
 
   return (
