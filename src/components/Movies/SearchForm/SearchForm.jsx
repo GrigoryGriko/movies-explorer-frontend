@@ -29,7 +29,16 @@ function SearchForm({ setIsPreloader, setIsSearchError, setterFilterFormData, se
     setTextMovie(textMovie);
     setShortsFilms(shortsFilms);
   }, [maxCountCards])
-  
+
+  useEffect(() => {
+    if (location.pathname === '/saved-movies') {
+      let filterFormData;
+      initSavedMovies(setIsPreloader, setIsSearchError, setCards, setterFilterFormData);
+
+      filterFormData = getFilterFormDataSavedMovies();
+    }
+  }, [])
+
   function handleChange(e) {
     const value = e.target.value;
     
