@@ -9,7 +9,6 @@ import { getFilterFormData, getFilterFormDataSavedMovies } from '../../utils/Sea
 function SavedMovies({ isPreloader, setIsPreloader }) {
   const [isSearchError, setIsSearchError] = useState('');
   const [cards, setCards] = useState([]);
-  const [maxCountCards, setMaxCountCards] = useState(0);
   
   const [filterFormData, setFilterFormData] = useState({textMovie: '', shortsFilms: false, cards: []});
 
@@ -18,11 +17,10 @@ function SavedMovies({ isPreloader, setIsPreloader }) {
   function setterFilterFormData() {
     let filterFormData;
 
-    if (location.pathname === '/movies') filterFormData = getFilterFormData();
-    else if (location.pathname === '/saved-movies')  filterFormData = getFilterFormDataSavedMovies();
+    filterFormData = getFilterFormDataSavedMovies();
     setFilterFormData(filterFormData ? filterFormData : {textMovie: '', shortsFilms: false, cards: []});
 
-    setCards(filterFormData ? filterFormData.cards.slice().splice(0, maxCountCards) : []); 
+    setCards(filterFormData ? filterFormData.cards : []); 
   }
 
   return (
@@ -32,17 +30,14 @@ function SavedMovies({ isPreloader, setIsPreloader }) {
         setIsSearchError={setIsSearchError}
         setterFilterFormData={setterFilterFormData}
         setCards={setCards}
-        maxCountCards={maxCountCards}
       />
       <MoviesCardList
         isPreloader={isPreloader}
         isSearchError={isSearchError}
         setIsSearchError={setIsSearchError}
         setterFilterFormData={setterFilterFormData}
-        setMaxCountCards={setMaxCountCards}
         cards={cards}
         setCards={setCards}
-        maxCountCards={maxCountCards}
         filterFormData={filterFormData}
         setFilterFormData={setFilterFormData}
       />

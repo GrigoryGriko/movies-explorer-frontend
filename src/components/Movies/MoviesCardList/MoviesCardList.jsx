@@ -29,25 +29,26 @@ function MoviesCardList({
   useEffect(() => {
     setterFilterFormData();
   }, []);
-
-  useEffect(() => {
-    if (windowWidth >= 1280) {
-      setMaxCountCards(12);
-      setCountAppendCards(3);
-    } 
-    else if (windowWidth >= 768 && windowWidth < 1280) {
-      setMaxCountCards(8);
-      setCountAppendCards(2);
-    }
-    else if (windowWidth > 480 && windowWidth < 768) {
-      setMaxCountCards(8);
-      setCountAppendCards(2);
-    }
-    else if (windowWidth >= 320 && windowWidth <= 480) {
-      setMaxCountCards(5);
-      setCountAppendCards(2);
-    }
-  }, [isPreloader, windowWidth]);
+  if (location.pathname === '/movies') {
+    useEffect(() => {
+      if (windowWidth >= 1280) {
+        setMaxCountCards(12);
+        setCountAppendCards(3);
+      } 
+      else if (windowWidth >= 768 && windowWidth < 1280) {
+        setMaxCountCards(8);
+        setCountAppendCards(2);
+      }
+      else if (windowWidth > 480 && windowWidth < 768) {
+        setMaxCountCards(8);
+        setCountAppendCards(2);
+      }
+      else if (windowWidth >= 320 && windowWidth <= 480) {
+        setMaxCountCards(5);
+        setCountAppendCards(2);
+      }
+    }, [isPreloader, windowWidth]);
+  }
 
   useEffect(() => {
     setterFilterFormData();
@@ -59,7 +60,6 @@ function MoviesCardList({
       }
     }
   }, [isPreloader, filterFormData.cards.length])
-  
   useEffect(() => {
     if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
       if (cards.length < filterFormData.cards.length) {
@@ -217,7 +217,7 @@ function MoviesCardList({
           {isSearchError}
         </p>
       </section>
-        {isShowButton ? 
+        {(isShowButton && location.pathname === '/movies') ? 
           <section className="movies-more section">
           <button 
             className="movies-more__button-more wrapper-movies-more button-hover"
