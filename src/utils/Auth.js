@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.grigorygriko.nomoredomains.monster';
+const BASE_URL = 'http://localhost:3001';
 
 export function _getResponseData(res) {
   if (!res.ok) {

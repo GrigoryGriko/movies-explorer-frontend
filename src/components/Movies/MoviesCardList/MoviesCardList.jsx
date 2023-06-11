@@ -31,21 +31,23 @@ function MoviesCardList({
   }, []);
   
   useEffect(() => {
-    if (windowWidth >= 1280) {
-      setMaxCountCards(12);
-      setCountAppendCards(3);
-    } 
-    else if (windowWidth >= 768 && windowWidth < 1280) {
-      setMaxCountCards(8);
-      setCountAppendCards(2);
-    }
-    else if (windowWidth > 480 && windowWidth < 768) {
-      setMaxCountCards(8);
-      setCountAppendCards(2);
-    }
-    else if (windowWidth >= 320 && windowWidth <= 480) {
-      setMaxCountCards(5);
-      setCountAppendCards(2);
+    if (location.pathname === '/movies') {
+      if (windowWidth >= 1280) {
+        setMaxCountCards(12);
+        setCountAppendCards(3);
+      } 
+      else if (windowWidth >= 768 && windowWidth < 1280) {
+        setMaxCountCards(8);
+        setCountAppendCards(2);
+      }
+      else if (windowWidth > 480 && windowWidth < 768) {
+        setMaxCountCards(8);
+        setCountAppendCards(2);
+      }
+      else if (windowWidth >= 320 && windowWidth <= 480) {
+        setMaxCountCards(5);
+        setCountAppendCards(2);
+      }
     }
   }, [isPreloader, windowWidth]);
 
@@ -61,11 +63,13 @@ function MoviesCardList({
   }, [isPreloader, filterFormData.cards.length])
 
   useEffect(() => {
-    if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
-      if (cards.length < filterFormData.cards.length) {
-        setIsShowButton(true);
-      } else {
-        setIsShowButton(false);
+    if (location.pathname === '/movies') {
+      if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
+        if (cards.length < filterFormData.cards.length) {
+          setIsShowButton(true);
+        } else {
+          setIsShowButton(false);
+        }
       }
     }
   }, [cards, filterFormData])
