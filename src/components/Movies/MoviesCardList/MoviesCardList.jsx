@@ -30,26 +30,24 @@ function MoviesCardList({
     setterFilterFormData();
   }, []);
   
-  if (location.pathname === '/movies') {
-    useEffect(() => {
-      if (windowWidth >= 1280) {
-        setMaxCountCards(12);
-        setCountAppendCards(3);
-      } 
-      else if (windowWidth >= 768 && windowWidth < 1280) {
-        setMaxCountCards(8);
-        setCountAppendCards(2);
-      }
-      else if (windowWidth > 480 && windowWidth < 768) {
-        setMaxCountCards(8);
-        setCountAppendCards(2);
-      }
-      else if (windowWidth >= 320 && windowWidth <= 480) {
-        setMaxCountCards(5);
-        setCountAppendCards(2);
-      }
-    }, [isPreloader, windowWidth]);
-  }
+  useEffect(() => {
+    if (windowWidth >= 1280) {
+      setMaxCountCards(12);
+      setCountAppendCards(3);
+    } 
+    else if (windowWidth >= 768 && windowWidth < 1280) {
+      setMaxCountCards(8);
+      setCountAppendCards(2);
+    }
+    else if (windowWidth > 480 && windowWidth < 768) {
+      setMaxCountCards(8);
+      setCountAppendCards(2);
+    }
+    else if (windowWidth >= 320 && windowWidth <= 480) {
+      setMaxCountCards(5);
+      setCountAppendCards(2);
+    }
+  }, [isPreloader, windowWidth]);
 
   useEffect(() => {
     setterFilterFormData();
@@ -62,17 +60,15 @@ function MoviesCardList({
     }
   }, [isPreloader, filterFormData.cards.length])
 
-  if (location.pathname === '/movies') {
-    useEffect(() => {
-      if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
-        if (cards.length < filterFormData.cards.length) {
-          setIsShowButton(true);
-        } else {
-          setIsShowButton(false);
-        }
+  useEffect(() => {
+    if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
+      if (cards.length < filterFormData.cards.length) {
+        setIsShowButton(true);
+      } else {
+        setIsShowButton(false);
       }
-    }, [cards, filterFormData])
-  }
+    }
+  }, [cards, filterFormData])
   
   function useWindowSize() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
