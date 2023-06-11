@@ -1,7 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function NotFound() {
+  const history = useHistory();
+
+  function handleClick() {
+    history.go(-3);
+  }
+
   return (
     <main className="not-found section">
       <h1 className="not-found__title">
@@ -11,9 +17,12 @@ function NotFound() {
         Страница не найдена
       </p>
 
-      <Link to="/" className="not-found__link-back link-hover">
+      <button 
+        onClick={handleClick}
+        className="not-found__link-back link-hover"
+      >
         Назад
-      </Link>
+      </button>
     </main>  
   )
 }

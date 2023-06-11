@@ -1,10 +1,18 @@
 import React from 'react';
 
-function FilterCheckbox() {
+function FilterCheckbox({
+  handleChange,
+  shortsFilms,
+}) {
   return(
     <>
       <label className="search-form__checkbox-filter">
-        <input type="checkbox"></input>
+        <input 
+          type="checkbox"
+          id="shortsFilms"
+          onChange={() => handleChange(!shortsFilms)}
+          checked={shortsFilms}
+        ></input>
         <span className="search-form__checkbox-switch"></span>
       </label>
      

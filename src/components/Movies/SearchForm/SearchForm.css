@@ -20,6 +20,17 @@
   background: #F9F9F9;
   border-radius: 9px;
 }
+.search-form__error-text {
+  margin: 0;
+  
+  height: 14px;
+  margin-top: 10px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  align-self: flex-start;
+  color: #FF3055;
+}
 
 .search-form__input-type {
   margin: 0;

@@ -50,6 +50,9 @@
 .auth-form__input:focus + .auth-form__stroke-line {
   background-color: #3456F3;
 }
+.auth-form__stroke-line-error-data {
+  background-color: #FF3055 !important;
+}
 
 .auth-form__input-error {
   margin: 0;

@@ -22,3 +22,12 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+.movies-cardlist__text {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  font-weight: 400;
+  font-size: 30px;
+  color: #ababab;
+  line-height: 27px;
+}

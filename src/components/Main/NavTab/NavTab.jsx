@@ -1,21 +1,44 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import { CurrentUserContext } from '../../../context/CurrentUserContext';
+
+
 function NavTab() {
+  const { loggedIn } = useContext(CurrentUserContext);
+
+  const [popupMenuVisible, setPopupMenuVisible] = useState('');
+
   const location = useLocation();
-  const loggedIn = true;
   let classHeaderMenuLink;
   let classHeaderActionAccount;
   let classHeaderPopupMenuButton;
+  
+  let classHeaderPopupButtonRegister;
+  let classHeaderPopupButtonLogin;
 
   if (location.pathname === '/') {
     classHeaderMenuLink = 'header__menu-link_dark';
     classHeaderActionAccount = 'header__action-account_dark';
     classHeaderPopupMenuButton = 'header__popup-menu-button_dark';
+
+    classHeaderPopupButtonRegister = '';
+    classHeaderPopupButtonLogin = '';
   } else {
     classHeaderMenuLink = '';
     classHeaderActionAccount = '';
     classHeaderPopupMenuButton = '';
+    
+    classHeaderPopupButtonRegister = 'header__action-reigister_light';
+    classHeaderPopupButtonLogin = 'header__action-login_light';
+  }
+
+  function handleClickButtonOpen() {
+    setPopupMenuVisible('popup-menu__change_visible');
+  }
+
+  function handleClickButtonClose() {
+    setPopupMenuVisible('');
   }
 
   return (
@@ -30,11 +53,19 @@ function NavTab() {
           
           <Link to="/profile" className={`header__action-account link-hover ${classHeaderActionAccount} header__wrapper-menu_site-visibility`}>Аккаунт</Link>
 
-          <button className={`header__popup-menu-button button-hover ${classHeaderPopupMenuButton}`}></button>
+          <button
+            className={`header__popup-menu-button button-hover ${classHeaderPopupMenuButton}`}
+            onClick={handleClickButtonOpen}
+          ></button>
 
-          <div className="popup-menu">
+          <div 
+            className={`popup-menu ${popupMenuVisible}`}
+          >
             <div className="popup-menu__wrapper-content">
-              <button className="popup-menu__button-close"></button>
+              <button 
+                className="popup-menu__button-close"
+                onClick={handleClickButtonClose}
+              ></button>
 
               <nav className="popup-menu__wrapper-menu">
                 <ul className="popup-menu__wrapper-menu-list">
@@ -79,14 +110,16 @@ function NavTab() {
               <Link to="/profile" className="popup-menu__action-account link-hover">Аккаунт</Link>
             </div>
           </div>
-          <div className="popup-menu-cover"></div>
+          <div 
+            className={`popup-menu-cover ${popupMenuVisible}`}
+          ></div>
         </>
         
       ) : (
         <nav className="header__wrapper-menu header__wrapper-menu_unlogged">
-          <Link to="signup" className="header__action-reigister link-hover">Регистрация</Link>
+          <Link to="signup" className={`header__action-reigister link-hover ${classHeaderPopupButtonRegister}`}>Регистрация</Link>
 
-          <Link to="signin" className="header__action-login link-hover">Войти</Link>
+          <Link to="signin" className={`header__action-login link-hover ${classHeaderPopupButtonLogin}`}>Войти</Link>
         </nav>
       )}
     </>
