@@ -58,7 +58,7 @@ function MoviesCardList({
         setIsSearchError('');
       }
     }
-  }, [isPreloader, filterFormData.cards])
+  }, [isPreloader, filterFormData.cards.length])
   
   useEffect(() => {
     if (Array.isArray(cards) && Array.isArray(filterFormData.cards)) {
