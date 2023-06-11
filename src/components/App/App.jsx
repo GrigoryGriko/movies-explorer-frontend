@@ -63,7 +63,10 @@ function App() {
         isValid = !email.inputValid || !password.inputValid;
       }
       else if (location.pathname === '/profile') {
-        isValid = !name.inputValid || !email.inputValid || (!name.isChange && !email.isChange);
+        isValid = !name.inputValid 
+          || !email.inputValid 
+          || (!name.isChange && !email.isChange)
+          || (name.value === currentUser.name && email.value === currentUser.email);
       }
       
       props.setIsDisabled(isValid);
