@@ -14,6 +14,10 @@ https://github.com/GrigoryGriko/movies-explorer-frontend/pull/2
 
 https://disk.yandex.ru/d/qOoUdzNJQNTAGg
 
+## Репозиторий бэкенда
+
+https://github.com/GrigoryGriko/movies-explorer-api.git
+
 ## Описание
 
 1. Проект сделан на фреймвороке React.
